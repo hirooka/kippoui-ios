@@ -1,8 +1,12 @@
 import SwiftUI
+import MapKit
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            MapView(location: CLLocationCoordinate2DMake(35.681236, 139.767125))
+                .edgesIgnoringSafeArea(.all)
+        }
     }
 }
 

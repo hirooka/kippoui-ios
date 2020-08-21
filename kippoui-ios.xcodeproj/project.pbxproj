@@ -16,6 +16,7 @@
 		B12884C424EECC2F00DCF3F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B12884C224EECC2F00DCF3F5 /* LaunchScreen.storyboard */; };
 		B12884CF24EECC2F00DCF3F5 /* kippoui_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12884CE24EECC2F00DCF3F5 /* kippoui_iosTests.swift */; };
 		B12884DA24EECC2F00DCF3F5 /* kippoui_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12884D924EECC2F00DCF3F5 /* kippoui_iosUITests.swift */; };
+		B1872F0E24EED3F60018A14F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1872F0D24EED3F60018A14F /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		B12884D524EECC2F00DCF3F5 /* kippoui-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "kippoui-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B12884D924EECC2F00DCF3F5 /* kippoui_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kippoui_iosUITests.swift; sourceTree = "<group>"; };
 		B12884DB24EECC2F00DCF3F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1872F0D24EED3F60018A14F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				B12884C524EECC2F00DCF3F5 /* Info.plist */,
 				B12884B824EECC2E00DCF3F5 /* kippoui_ios.xcdatamodeld */,
 				B12884BF24EECC2F00DCF3F5 /* Preview Content */,
+				B1872F0D24EED3F60018A14F /* MapView.swift */,
 			);
 			path = "kippoui-ios";
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 			files = (
 				B12884B524EECC2E00DCF3F5 /* AppDelegate.swift in Sources */,
 				B12884BA24EECC2E00DCF3F5 /* kippoui_ios.xcdatamodeld in Sources */,
+				B1872F0E24EED3F60018A14F /* MapView.swift in Sources */,
 				B12884BC24EECC2E00DCF3F5 /* ContentView.swift in Sources */,
 				B12884B724EECC2E00DCF3F5 /* SceneDelegate.swift in Sources */,
 			);

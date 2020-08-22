@@ -2,10 +2,12 @@ import SwiftUI
 import MapKit
 
 struct ContentView: View {
+    
+    @ObservedObject var myLocation = MyLocation()
+    
     var body: some View {
-        VStack {
-            MapView(location: CLLocationCoordinate2DMake(35.681236, 139.767125))
-                .edgesIgnoringSafeArea(.all)
+        VStack {            
+            MapView(location: CLLocationCoordinate2DMake(myLocation.latitude, myLocation.longitude)).edgesIgnoringSafeArea(.all)
         }
     }
 }

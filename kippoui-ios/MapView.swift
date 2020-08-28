@@ -16,7 +16,6 @@ struct MapView: UIViewRepresentable {
     @Binding var coordinate: CLLocationCoordinate2D
     @Binding var checkPoints: [CheckPoint]
     @Binding var previousCheckPoints: [CheckPoint]
-    @Binding var coordinates: [CLLocationCoordinate2D]
     @Binding var coordinates0: [CLLocationCoordinate2D]
     @Binding var coordinates1: [CLLocationCoordinate2D]
     @Binding var coordinates2: [CLLocationCoordinate2D]
@@ -52,10 +51,9 @@ struct MapView: UIViewRepresentable {
         uiView.removeAnnotations(previousCheckPoints)
         uiView.addAnnotations(checkPoints)
         
-        if coordinates.count > 1 && coordinates1.count > 1 {
+        if coordinates0.count > 1 && coordinates1.count > 1 {
             uiView.removeOverlays(mapView.overlays)
             //let polyline = MKPolyline(coordinates: coordinates, count: coordinates.count)
-            let polyline = MKGeodesicPolyline(coordinates: coordinates, count: coordinates.count)
             let polyline0 = MKGeodesicPolyline(coordinates: coordinates0, count: coordinates0.count)
             let polyline1 = MKGeodesicPolyline(coordinates: coordinates1, count: coordinates1.count)
             let polyline2 = MKGeodesicPolyline(coordinates: coordinates2, count: coordinates2.count)
@@ -64,7 +62,6 @@ struct MapView: UIViewRepresentable {
             let polyline5 = MKGeodesicPolyline(coordinates: coordinates5, count: coordinates5.count)
             let polyline6 = MKGeodesicPolyline(coordinates: coordinates6, count: coordinates6.count)
             let polyline7 = MKGeodesicPolyline(coordinates: coordinates7, count: coordinates7.count)
-            uiView.addOverlay(polyline)
             uiView.addOverlay(polyline0)
             uiView.addOverlay(polyline1)
             uiView.addOverlay(polyline2)
@@ -92,7 +89,7 @@ struct MapView: UIViewRepresentable {
             self.parent.mapView.addGestureRecognizer(tapGestureRecognizer)
             self.longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressHandler))
             self.longPressGestureRecognizer.delegate = self
-            self.longPressGestureRecognizer.minimumPressDuration = 1.0
+            self.longPressGestureRecognizer.minimumPressDuration = 0.3
             self.parent.mapView.addGestureRecognizer(longPressGestureRecognizer)
         }
         
@@ -124,57 +121,51 @@ struct MapView: UIViewRepresentable {
                 
                 let distance = 100000000.0
                 
-                self.parent.coordinates = []
-                self.parent.coordinates.append(coordinate)
-                let l0 = self.parent.getLocation(origin: coordinate, angle: 15.0, distance: distance)
-                print("0: \(l0.latitude), \(l0.longitude)")
-                self.parent.coordinates.append(l0)
-                
                 self.parent.coordinates0 = []
                 self.parent.coordinates0.append(coordinate)
-                let l00 = self.parent.getLocation(origin: coordinate, angle: 75.0, distance: distance)
-                print("0: \(l00.latitude), \(l00.longitude)")
-                self.parent.coordinates0.append(l00)
+                let l0 = self.parent.getLocation(origin: coordinate, angle: 15.0, distance: distance)
+                print("0: \(l0.latitude), \(l0.longitude)")
+                self.parent.coordinates0.append(l0)
                 
                 self.parent.coordinates1 = []
                 self.parent.coordinates1.append(coordinate)
-                let l1 = self.parent.getLocation(origin: coordinate, angle: 105.0, distance: distance)
+                let l1 = self.parent.getLocation(origin: coordinate, angle: 75.0, distance: distance)
                 print("1: \(l1.latitude), \(l1.longitude)")
                 self.parent.coordinates1.append(l1)
                 
                 self.parent.coordinates2 = []
                 self.parent.coordinates2.append(coordinate)
-                let l2 = self.parent.getLocation(origin: coordinate, angle: 165.0, distance: distance)
+                let l2 = self.parent.getLocation(origin: coordinate, angle: 105.0, distance: distance)
                 print("2: \(l2.latitude), \(l2.longitude)")
                 self.parent.coordinates2.append(l2)
                 
                 self.parent.coordinates3 = []
                 self.parent.coordinates3.append(coordinate)
-                let l3 = self.parent.getLocation(origin: coordinate, angle: 195.0, distance: distance)
+                let l3 = self.parent.getLocation(origin: coordinate, angle: 165.0, distance: distance)
                 print("3: \(l3.latitude), \(l3.longitude)")
                 self.parent.coordinates3.append(l3)
                 
                 self.parent.coordinates4 = []
                 self.parent.coordinates4.append(coordinate)
-                let l4 = self.parent.getLocation(origin: coordinate, angle: 255.0, distance: distance)
+                let l4 = self.parent.getLocation(origin: coordinate, angle: 195.0, distance: distance)
                 print("4: \(l4.latitude), \(l4.longitude)")
                 self.parent.coordinates4.append(l4)
                 
                 self.parent.coordinates5 = []
                 self.parent.coordinates5.append(coordinate)
-                let l5 = self.parent.getLocation(origin: coordinate, angle: 285.0, distance: distance)
+                let l5 = self.parent.getLocation(origin: coordinate, angle: 255.0, distance: distance)
                 print("5: \(l5.latitude), \(l5.longitude)")
                 self.parent.coordinates5.append(l5)
                 
                 self.parent.coordinates6 = []
                 self.parent.coordinates6.append(coordinate)
-                let l6 = self.parent.getLocation(origin: coordinate, angle: 345.0, distance: distance)
+                let l6 = self.parent.getLocation(origin: coordinate, angle: 285.0, distance: distance)
                 print("6: \(l6.latitude), \(l6.longitude)")
                 self.parent.coordinates6.append(l6)
                 
                 self.parent.coordinates7 = []
                 self.parent.coordinates7.append(coordinate)
-                let l7 = self.parent.getLocation(origin: coordinate, angle: 0.0, distance: distance)
+                let l7 = self.parent.getLocation(origin: coordinate, angle: 345.0, distance: distance)
                 print("7: \(l7.latitude), \(l7.longitude)")
                 self.parent.coordinates7.append(l7)
             }

@@ -7,7 +7,6 @@ struct ContentView: View {
     @State var coordinate = CLLocationCoordinate2D()
     @State var checkPoints: [CheckPoint] = []
     @State var previousCheckPoints: [CheckPoint] = []
-    @State var coordinates: [CLLocationCoordinate2D] = []
     @State var coordinates0: [CLLocationCoordinate2D] = []
     @State var coordinates1: [CLLocationCoordinate2D] = []
     @State var coordinates2: [CLLocationCoordinate2D] = []
@@ -16,6 +15,7 @@ struct ContentView: View {
     @State var coordinates5: [CLLocationCoordinate2D] = []
     @State var coordinates6: [CLLocationCoordinate2D] = []
     @State var coordinates7: [CLLocationCoordinate2D] = []
+    @Stete var zoom = 0.01
     
     var body: some View {
         VStack {
@@ -24,7 +24,6 @@ struct ContentView: View {
                 coordinate: $coordinate,
                 checkPoints: $checkPoints,
                 previousCheckPoints: $previousCheckPoints,
-                coordinates: $coordinates,
                 coordinates0: $coordinates0,
                 coordinates1: $coordinates1,
                 coordinates2: $coordinates2,

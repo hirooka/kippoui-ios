@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B120C8C724FA2B8800570864 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120C8C624FA2B8800570864 /* ModalView.swift */; };
+		B120C8C924FA41BF00570864 /* Argument.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120C8C824FA41BF00570864 /* Argument.swift */; };
 		B12884B524EECC2E00DCF3F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12884B424EECC2E00DCF3F5 /* AppDelegate.swift */; };
 		B12884B724EECC2E00DCF3F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12884B624EECC2E00DCF3F5 /* SceneDelegate.swift */; };
 		B12884BA24EECC2E00DCF3F5 /* kippoui_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B12884B824EECC2E00DCF3F5 /* kippoui_ios.xcdatamodeld */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B120C8C624FA2B8800570864 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
+		B120C8C824FA41BF00570864 /* Argument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Argument.swift; sourceTree = "<group>"; };
 		B12884B124EECC2E00DCF3F5 /* kippoui-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kippoui-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B12884B424EECC2E00DCF3F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B12884B624EECC2E00DCF3F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +119,8 @@
 				B12884BF24EECC2F00DCF3F5 /* Preview Content */,
 				B1872F0D24EED3F60018A14F /* MapView.swift */,
 				B1872F0F24F0ED4F0018A14F /* MyLocation.swift */,
+				B120C8C624FA2B8800570864 /* ModalView.swift */,
+				B120C8C824FA41BF00570864 /* Argument.swift */,
 			);
 			path = "kippoui-ios";
 			sourceTree = "<group>";
@@ -280,6 +286,8 @@
 				B12884BA24EECC2E00DCF3F5 /* kippoui_ios.xcdatamodeld in Sources */,
 				B1872F1024F0ED4F0018A14F /* MyLocation.swift in Sources */,
 				B1872F0E24EED3F60018A14F /* MapView.swift in Sources */,
+				B120C8C924FA41BF00570864 /* Argument.swift in Sources */,
+				B120C8C724FA2B8800570864 /* ModalView.swift in Sources */,
 				B12884BC24EECC2E00DCF3F5 /* ContentView.swift in Sources */,
 				B12884B724EECC2E00DCF3F5 /* SceneDelegate.swift in Sources */,
 			);

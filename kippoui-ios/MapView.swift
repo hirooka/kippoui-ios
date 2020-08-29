@@ -35,6 +35,7 @@ struct MapView: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> MKMapView {
+        print(#function)
         setupManager()
         //let mapView = MKMapView(frame: .zero)
         mapView.delegate = context.coordinator
@@ -47,6 +48,7 @@ struct MapView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
+        print(#function)
         //uiView.setCenter(coordinate, animated: true)
         uiView.removeAnnotations(previousCheckPoints)
         uiView.addAnnotations(checkPoints)
@@ -114,7 +116,7 @@ struct MapView: UIViewRepresentable {
                 print("\(coordinate.latitude), \(coordinate.longitude)")
                 self.parent.previousCheckPoints = self.parent.checkPoints
                 let checkPoint = CheckPoint(
-                    title: "Hi",
+                    title: "You",
                     coordinate: .init(latitude: coordinate.latitude, longitude: coordinate.longitude)
                 )
                 self.parent.checkPoints = [checkPoint]
@@ -124,49 +126,49 @@ struct MapView: UIViewRepresentable {
                 self.parent.coordinates0 = []
                 self.parent.coordinates0.append(coordinate)
                 let l0 = self.parent.getLocation(origin: coordinate, angle: 15.0, distance: distance)
-                print("0: \(l0.latitude), \(l0.longitude)")
+                //print("0: \(l0.latitude), \(l0.longitude)")
                 self.parent.coordinates0.append(l0)
                 
                 self.parent.coordinates1 = []
                 self.parent.coordinates1.append(coordinate)
                 let l1 = self.parent.getLocation(origin: coordinate, angle: 75.0, distance: distance)
-                print("1: \(l1.latitude), \(l1.longitude)")
+                //print("1: \(l1.latitude), \(l1.longitude)")
                 self.parent.coordinates1.append(l1)
                 
                 self.parent.coordinates2 = []
                 self.parent.coordinates2.append(coordinate)
                 let l2 = self.parent.getLocation(origin: coordinate, angle: 105.0, distance: distance)
-                print("2: \(l2.latitude), \(l2.longitude)")
+                //print("2: \(l2.latitude), \(l2.longitude)")
                 self.parent.coordinates2.append(l2)
                 
                 self.parent.coordinates3 = []
                 self.parent.coordinates3.append(coordinate)
                 let l3 = self.parent.getLocation(origin: coordinate, angle: 165.0, distance: distance)
-                print("3: \(l3.latitude), \(l3.longitude)")
+                //print("3: \(l3.latitude), \(l3.longitude)")
                 self.parent.coordinates3.append(l3)
                 
                 self.parent.coordinates4 = []
                 self.parent.coordinates4.append(coordinate)
                 let l4 = self.parent.getLocation(origin: coordinate, angle: 195.0, distance: distance)
-                print("4: \(l4.latitude), \(l4.longitude)")
+                //print("4: \(l4.latitude), \(l4.longitude)")
                 self.parent.coordinates4.append(l4)
                 
                 self.parent.coordinates5 = []
                 self.parent.coordinates5.append(coordinate)
                 let l5 = self.parent.getLocation(origin: coordinate, angle: 255.0, distance: distance)
-                print("5: \(l5.latitude), \(l5.longitude)")
+                //print("5: \(l5.latitude), \(l5.longitude)")
                 self.parent.coordinates5.append(l5)
                 
                 self.parent.coordinates6 = []
                 self.parent.coordinates6.append(coordinate)
                 let l6 = self.parent.getLocation(origin: coordinate, angle: 285.0, distance: distance)
-                print("6: \(l6.latitude), \(l6.longitude)")
+                //print("6: \(l6.latitude), \(l6.longitude)")
                 self.parent.coordinates6.append(l6)
                 
                 self.parent.coordinates7 = []
                 self.parent.coordinates7.append(coordinate)
                 let l7 = self.parent.getLocation(origin: coordinate, angle: 345.0, distance: distance)
-                print("7: \(l7.latitude), \(l7.longitude)")
+                //print("7: \(l7.latitude), \(l7.longitude)")
                 self.parent.coordinates7.append(l7)
             }
         }
@@ -179,7 +181,7 @@ struct MapView: UIViewRepresentable {
         let distanceFraction = distance / 6371000.0
         let angleRadian = angle * Double.pi / 180.0
         
-        print("input: \(origin.latitude), \(origin.longitude)")
+        //print("input: \(origin.latitude), \(origin.longitude)")
 
         let latitudeSourceRadian = origin.latitude * Double.pi / 180.0
         let longitudeSourceRadian = origin.longitude * Double.pi / 180.0
@@ -193,7 +195,7 @@ struct MapView: UIViewRepresentable {
         let latitudeDestinationDegree = latitudeDestinationRadian * 180.0 / Double.pi
         let longitudeDestinationDegree = longitudeDestinationRadian * 180.0 / Double.pi
         
-        print("output: \(latitudeDestinationDegree), \(longitudeDestinationDegree)")
+        //print("output: \(latitudeDestinationDegree), \(longitudeDestinationDegree)")
         return CLLocationCoordinate2DMake(latitudeDestinationDegree, longitudeDestinationDegree)
     }
 

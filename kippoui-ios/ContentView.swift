@@ -15,25 +15,48 @@ struct ContentView: View {
     @State var coordinates5: [CLLocationCoordinate2D] = []
     @State var coordinates6: [CLLocationCoordinate2D] = []
     @State var coordinates7: [CLLocationCoordinate2D] = []
-    @Stete var zoom = 0.01
+    
+    @State var isModalPresenting = false
     
     var body: some View {
         VStack {
-            MapView(
-                count: $count,
-                coordinate: $coordinate,
-                checkPoints: $checkPoints,
-                previousCheckPoints: $previousCheckPoints,
-                coordinates0: $coordinates0,
-                coordinates1: $coordinates1,
-                coordinates2: $coordinates2,
-                coordinates3: $coordinates3,
-                coordinates4: $coordinates4,
-                coordinates5: $coordinates5,
-                coordinates6: $coordinates6,
-                coordinates7: $coordinates7
-            )
-            .edgesIgnoringSafeArea(.all)
+            ZStack(alignment: .bottomTrailing) {
+                MapView(
+                    count: $count,
+                    coordinate: $coordinate,
+                    checkPoints: $checkPoints,
+                    previousCheckPoints: $previousCheckPoints,
+                    coordinates0: $coordinates0,
+                    coordinates1: $coordinates1,
+                    coordinates2: $coordinates2,
+                    coordinates3: $coordinates3,
+                    coordinates4: $coordinates4,
+                    coordinates5: $coordinates5,
+                    coordinates6: $coordinates6,
+                    coordinates7: $coordinates7
+                )
+                .edgesIgnoringSafeArea(.all)
+                VStack{
+                    Button(action: {
+                        self.isModalPresenting.toggle()
+                    }) {
+                        Image(systemName: "gearshape")
+                            .resizable()
+                            .frame(width: 32.0, height: 32.0)
+                            .foregroundColor(.gray)
+                    }
+                    .sheet(isPresented: $isModalPresenting,
+                           onDismiss: {
+                            print("close")
+                            
+                           }
+                           ) {
+                        ModalView()
+                    }
+                }
+                .padding(.bottom, 36.0)
+                .padding(.trailing, 12.0)
+            }
         }
     }
 }

@@ -169,64 +169,84 @@ struct MapView: UIViewRepresentable {
                 )
                 self.parent.checkPoints = [checkPoint]
                 
-                let distance = 95000000.0
+                let distance = 6378136.6
                 
                 let argument = Double(self.parent.preferences.argument)!
                 let angle = self.parent.preferences.angle
                 print("angle = \(angle)")
                 
+                let antipodes = self.parent.getAntipodes(origin: coordinate)
+                
                 self.parent.coordinates0 = []
                 self.parent.coordinates0.append(coordinate)
                 let l0 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 0, argument: argument, angle: angle), distance: distance)
-                //print("0: \(l0.latitude), \(l0.longitude)")
+                print("0: \(l0.latitude), \(l0.longitude)")
                 self.parent.coordinates0.append(l0)
+                self.parent.coordinates0.append(antipodes)
                 
                 self.parent.coordinates1 = []
                 self.parent.coordinates1.append(coordinate)
                 let l1 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 1, argument: argument, angle: angle), distance: distance)
-                //print("1: \(l1.latitude), \(l1.longitude)")
+                print("1: \(l1.latitude), \(l1.longitude)")
                 self.parent.coordinates1.append(l1)
+                self.parent.coordinates1.append(antipodes)
                 
                 self.parent.coordinates2 = []
                 self.parent.coordinates2.append(coordinate)
                 let l2 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 2, argument: argument, angle: angle), distance: distance)
-                //print("2: \(l2.latitude), \(l2.longitude)")
+                print("2: \(l2.latitude), \(l2.longitude)")
                 self.parent.coordinates2.append(l2)
+                self.parent.coordinates2.append(antipodes)
                 
                 self.parent.coordinates3 = []
                 self.parent.coordinates3.append(coordinate)
                 let l3 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 3, argument: argument, angle: angle), distance: distance)
-                //print("3: \(l3.latitude), \(l3.longitude)")
+                print("3: \(l3.latitude), \(l3.longitude)")
                 self.parent.coordinates3.append(l3)
+                self.parent.coordinates3.append(antipodes)
                 
                 self.parent.coordinates4 = []
                 self.parent.coordinates4.append(coordinate)
                 let l4 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 4, argument: argument, angle: angle), distance: distance)
-                //print("4: \(l4.latitude), \(l4.longitude)")
+                print("4: \(l4.latitude), \(l4.longitude)")
                 self.parent.coordinates4.append(l4)
+                self.parent.coordinates4.append(antipodes)
                 
                 self.parent.coordinates5 = []
                 self.parent.coordinates5.append(coordinate)
                 let l5 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 5, argument: argument, angle: angle), distance: distance)
-                //print("5: \(l5.latitude), \(l5.longitude)")
+                print("5: \(l5.latitude), \(l5.longitude)")
                 self.parent.coordinates5.append(l5)
+                self.parent.coordinates5.append(antipodes)
                 
                 self.parent.coordinates6 = []
                 self.parent.coordinates6.append(coordinate)
                 let l6 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 6, argument: argument, angle: angle), distance: distance)
-                //print("6: \(l6.latitude), \(l6.longitude)")
+                print("6: \(l6.latitude), \(l6.longitude)")
                 self.parent.coordinates6.append(l6)
+                self.parent.coordinates6.append(antipodes)
                 
                 self.parent.coordinates7 = []
                 self.parent.coordinates7.append(coordinate)
                 let l7 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 7, argument: argument, angle: angle), distance: distance)
-                //print("7: \(l7.latitude), \(l7.longitude)")
+                print("7: \(l7.latitude), \(l7.longitude)")
                 self.parent.coordinates7.append(l7)
+                self.parent.coordinates7.append(antipodes)
             }
         }
         
         @objc func tapHandler(_ gesture: UITapGestureRecognizer) {
         }
+    }
+    
+    func getAntipodes(origin: CLLocationCoordinate2D) -> CLLocationCoordinate2D {
+        return CLLocationCoordinate2DMake(-1 * origin.latitude, origin.longitude - 180)
+    }
+    
+    func getAntipodesLocation(origin: CLLocationCoordinate2D, angle: Double) -> CLLocationCoordinate2D {
+        let antipodes = CLLocationCoordinate2DMake(-1 * origin.latitude, origin.longitude - 180)
+        print("\(origin.latitude), \(origin.longitude) -> \(antipodes.latitude), \(antipodes.longitude)")
+        return getLocation(origin: antipodes, angle: angle, distance: 700000)
     }
     
     func getLocation(origin: CLLocationCoordinate2D, angle: Double, distance: Double) -> CLLocationCoordinate2D {

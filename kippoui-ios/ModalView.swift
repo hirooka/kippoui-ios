@@ -36,6 +36,10 @@ struct ModalView: View {
                             Text(self.angle[$0])
                         }
                     }
+                    .onAppear(perform: {
+                        print("Picker.onAppear : \(preferences.angle)")
+                        selected = Int(preferences.angle) ?? 0
+                    })
                 }
                 Section(header: Text("section")) {
                     
@@ -48,6 +52,15 @@ struct ModalView: View {
         .onDisappear(perform: {
             if updatedArgument != "" {
                 self.preferences.argument = updatedArgument
+            }
+            print("selected = \(selected)")
+            switch selected {
+            case 0:
+                self.preferences.angle = "0"
+            case 1:
+                self.preferences.angle = "1"
+            default:
+                self.preferences.angle = "0"
             }
         })
     }

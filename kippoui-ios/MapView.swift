@@ -107,6 +107,52 @@ struct MapView: UIViewRepresentable {
             return MKOverlayRenderer()
         }
         
+        func getAngle(index: Int, argument: Double, angle: String) -> Double {
+            
+            print("angle in = \(angle)")
+            if angle == "0" {
+                if index == 0 {
+                    return 15.0 + argument
+                } else if index == 1 {
+                    return 75.0 + argument
+                } else if index == 2 {
+                    return 105.0 + argument
+                } else if index == 3 {
+                    return 165.0 + argument
+                } else if index == 4 {
+                    return 195.0 + argument
+                } else if index == 5 {
+                    return 255.0 + argument
+                } else if index == 6 {
+                    return 285.0 + argument
+                } else if index == 7 {
+                    return 345.0 + argument
+                }
+            }else if angle == "1" {
+                if index == 0 {
+                    return 22.5 + argument
+                } else if index == 1 {
+                    return 67.5 + argument
+                } else if index == 2 {
+                    return 112.5 + argument
+                } else if index == 3 {
+                    return 157.5 + argument
+                } else if index == 4 {
+                    return 202.5 + argument
+                } else if index == 5 {
+                    return 247.5 + argument
+                } else if index == 6 {
+                    return 292.5 + argument
+                } else if index == 7 {
+                    return 337.5 + argument
+                }
+            }  else {
+                print("error")
+                return 0.0
+            }
+            return 0.0
+        }
+        
         @objc func longPressHandler(_ gesture: UILongPressGestureRecognizer) {
             let location = longPressGestureRecognizer.location(in: self.parent.mapView)
             let coordinate = self.parent.mapView.convert(location, toCoordinateFrom: self.parent.mapView)
@@ -123,55 +169,57 @@ struct MapView: UIViewRepresentable {
                 )
                 self.parent.checkPoints = [checkPoint]
                 
-                let distance = 100000000.0
+                let distance = 95000000.0
                 
                 let argument = Double(self.parent.preferences.argument)!
+                let angle = self.parent.preferences.angle
+                print("angle = \(angle)")
                 
                 self.parent.coordinates0 = []
                 self.parent.coordinates0.append(coordinate)
-                let l0 = self.parent.getLocation(origin: coordinate, angle: 15.0 + argument, distance: distance)
+                let l0 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 0, argument: argument, angle: angle), distance: distance)
                 //print("0: \(l0.latitude), \(l0.longitude)")
                 self.parent.coordinates0.append(l0)
                 
                 self.parent.coordinates1 = []
                 self.parent.coordinates1.append(coordinate)
-                let l1 = self.parent.getLocation(origin: coordinate, angle: 75.0 + argument, distance: distance)
+                let l1 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 1, argument: argument, angle: angle), distance: distance)
                 //print("1: \(l1.latitude), \(l1.longitude)")
                 self.parent.coordinates1.append(l1)
                 
                 self.parent.coordinates2 = []
                 self.parent.coordinates2.append(coordinate)
-                let l2 = self.parent.getLocation(origin: coordinate, angle: 105.0 + argument, distance: distance)
+                let l2 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 2, argument: argument, angle: angle), distance: distance)
                 //print("2: \(l2.latitude), \(l2.longitude)")
                 self.parent.coordinates2.append(l2)
                 
                 self.parent.coordinates3 = []
                 self.parent.coordinates3.append(coordinate)
-                let l3 = self.parent.getLocation(origin: coordinate, angle: 165.0 + argument, distance: distance)
+                let l3 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 3, argument: argument, angle: angle), distance: distance)
                 //print("3: \(l3.latitude), \(l3.longitude)")
                 self.parent.coordinates3.append(l3)
                 
                 self.parent.coordinates4 = []
                 self.parent.coordinates4.append(coordinate)
-                let l4 = self.parent.getLocation(origin: coordinate, angle: 195.0 + argument, distance: distance)
+                let l4 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 4, argument: argument, angle: angle), distance: distance)
                 //print("4: \(l4.latitude), \(l4.longitude)")
                 self.parent.coordinates4.append(l4)
                 
                 self.parent.coordinates5 = []
                 self.parent.coordinates5.append(coordinate)
-                let l5 = self.parent.getLocation(origin: coordinate, angle: 255.0 + argument, distance: distance)
+                let l5 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 5, argument: argument, angle: angle), distance: distance)
                 //print("5: \(l5.latitude), \(l5.longitude)")
                 self.parent.coordinates5.append(l5)
                 
                 self.parent.coordinates6 = []
                 self.parent.coordinates6.append(coordinate)
-                let l6 = self.parent.getLocation(origin: coordinate, angle: 285.0 + argument, distance: distance)
+                let l6 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 6, argument: argument, angle: angle), distance: distance)
                 //print("6: \(l6.latitude), \(l6.longitude)")
                 self.parent.coordinates6.append(l6)
                 
                 self.parent.coordinates7 = []
                 self.parent.coordinates7.append(coordinate)
-                let l7 = self.parent.getLocation(origin: coordinate, angle: 345.0 + argument, distance: distance)
+                let l7 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 7, argument: argument, angle: angle), distance: distance)
                 //print("7: \(l7.latitude), \(l7.longitude)")
                 self.parent.coordinates7.append(l7)
             }
@@ -182,7 +230,7 @@ struct MapView: UIViewRepresentable {
     }
     
     func getLocation(origin: CLLocationCoordinate2D, angle: Double, distance: Double) -> CLLocationCoordinate2D {
-        let distanceFraction = distance / 6371000.0
+        let distanceFraction = distance / 6378136.6
         let angleRadian = angle * Double.pi / 180.0
         
         //print("input: \(origin.latitude), \(origin.longitude)")

@@ -14,7 +14,7 @@ class Preferences: ObservableObject {
     init() {
         UserDefaults.standard.register(defaults: ["argument": "7.2"])
         self.argument = UserDefaults.standard.string(forKey: "argument") ?? "7.2"
-        UserDefaults.standard.register(defaults: ["angle": "30"])
-        self.angle = UserDefaults.standard.string(forKey: "argument") ?? "30"
+        UserDefaults.standard.register(defaults: ["angle": "0"])
+        self.angle = UserDefaults.standard.string(forKey: "angle") ?? "0"
     }
 }

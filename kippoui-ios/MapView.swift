@@ -12,6 +12,8 @@ final class CheckPoint: NSObject, MKAnnotation {
 
 struct MapView: UIViewRepresentable {
     
+    @EnvironmentObject var preferences: Preferences
+    
     @Binding var count: Int
     @Binding var coordinate: CLLocationCoordinate2D
     @Binding var checkPoints: [CheckPoint]
@@ -35,7 +37,7 @@ struct MapView: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> MKMapView {
-        print(#function)
+        print("\(#file) - \(#function)")
         setupManager()
         //let mapView = MKMapView(frame: .zero)
         mapView.delegate = context.coordinator
@@ -48,7 +50,7 @@ struct MapView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
-        print(#function)
+        print("\(#file) - \(#function)")
         //uiView.setCenter(coordinate, animated: true)
         uiView.removeAnnotations(previousCheckPoints)
         uiView.addAnnotations(checkPoints)
@@ -123,51 +125,53 @@ struct MapView: UIViewRepresentable {
                 
                 let distance = 100000000.0
                 
+                let argument = Double(self.parent.preferences.argument)!
+                
                 self.parent.coordinates0 = []
                 self.parent.coordinates0.append(coordinate)
-                let l0 = self.parent.getLocation(origin: coordinate, angle: 15.0, distance: distance)
+                let l0 = self.parent.getLocation(origin: coordinate, angle: 15.0 + argument, distance: distance)
                 //print("0: \(l0.latitude), \(l0.longitude)")
                 self.parent.coordinates0.append(l0)
                 
                 self.parent.coordinates1 = []
                 self.parent.coordinates1.append(coordinate)
-                let l1 = self.parent.getLocation(origin: coordinate, angle: 75.0, distance: distance)
+                let l1 = self.parent.getLocation(origin: coordinate, angle: 75.0 + argument, distance: distance)
                 //print("1: \(l1.latitude), \(l1.longitude)")
                 self.parent.coordinates1.append(l1)
                 
                 self.parent.coordinates2 = []
                 self.parent.coordinates2.append(coordinate)
-                let l2 = self.parent.getLocation(origin: coordinate, angle: 105.0, distance: distance)
+                let l2 = self.parent.getLocation(origin: coordinate, angle: 105.0 + argument, distance: distance)
                 //print("2: \(l2.latitude), \(l2.longitude)")
                 self.parent.coordinates2.append(l2)
                 
                 self.parent.coordinates3 = []
                 self.parent.coordinates3.append(coordinate)
-                let l3 = self.parent.getLocation(origin: coordinate, angle: 165.0, distance: distance)
+                let l3 = self.parent.getLocation(origin: coordinate, angle: 165.0 + argument, distance: distance)
                 //print("3: \(l3.latitude), \(l3.longitude)")
                 self.parent.coordinates3.append(l3)
                 
                 self.parent.coordinates4 = []
                 self.parent.coordinates4.append(coordinate)
-                let l4 = self.parent.getLocation(origin: coordinate, angle: 195.0, distance: distance)
+                let l4 = self.parent.getLocation(origin: coordinate, angle: 195.0 + argument, distance: distance)
                 //print("4: \(l4.latitude), \(l4.longitude)")
                 self.parent.coordinates4.append(l4)
                 
                 self.parent.coordinates5 = []
                 self.parent.coordinates5.append(coordinate)
-                let l5 = self.parent.getLocation(origin: coordinate, angle: 255.0, distance: distance)
+                let l5 = self.parent.getLocation(origin: coordinate, angle: 255.0 + argument, distance: distance)
                 //print("5: \(l5.latitude), \(l5.longitude)")
                 self.parent.coordinates5.append(l5)
                 
                 self.parent.coordinates6 = []
                 self.parent.coordinates6.append(coordinate)
-                let l6 = self.parent.getLocation(origin: coordinate, angle: 285.0, distance: distance)
+                let l6 = self.parent.getLocation(origin: coordinate, angle: 285.0 + argument, distance: distance)
                 //print("6: \(l6.latitude), \(l6.longitude)")
                 self.parent.coordinates6.append(l6)
                 
                 self.parent.coordinates7 = []
                 self.parent.coordinates7.append(coordinate)
-                let l7 = self.parent.getLocation(origin: coordinate, angle: 345.0, distance: distance)
+                let l7 = self.parent.getLocation(origin: coordinate, angle: 345.0 + argument, distance: distance)
                 //print("7: \(l7.latitude), \(l7.longitude)")
                 self.parent.coordinates7.append(l7)
             }

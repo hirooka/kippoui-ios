@@ -45,12 +45,9 @@ struct ContentView: View {
                             .frame(width: 32.0, height: 32.0)
                             .foregroundColor(.gray)
                     }
-                    .sheet(isPresented: $isModalPresenting,
-                           onDismiss: {
-                            print("close")
-                            
-                           }
-                           ) {
+                    .sheet(isPresented: $isModalPresenting, onDismiss: {
+                        
+                    }) {
                         ModalView()
                     }
                 }

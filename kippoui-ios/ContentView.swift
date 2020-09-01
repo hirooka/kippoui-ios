@@ -19,24 +19,28 @@ struct ContentView: View {
     @State var isModalPresenting = false
     
     var body: some View {
-        VStack {
-            ZStack(alignment: .bottomTrailing) {
-                MapView(
-                    count: $count,
-                    coordinate: $coordinate,
-                    checkPoints: $checkPoints,
-                    previousCheckPoints: $previousCheckPoints,
-                    coordinates0: $coordinates0,
-                    coordinates1: $coordinates1,
-                    coordinates2: $coordinates2,
-                    coordinates3: $coordinates3,
-                    coordinates4: $coordinates4,
-                    coordinates5: $coordinates5,
-                    coordinates6: $coordinates6,
-                    coordinates7: $coordinates7
-                )
-                .edgesIgnoringSafeArea(.all)
-                VStack{
+        GeometryReader { geometry in
+            VStack {
+                ZStack {
+                    MapView(
+                        count: $count,
+                        coordinate: $coordinate,
+                        checkPoints: $checkPoints,
+                        previousCheckPoints: $previousCheckPoints,
+                        coordinates0: $coordinates0,
+                        coordinates1: $coordinates1,
+                        coordinates2: $coordinates2,
+                        coordinates3: $coordinates3,
+                        coordinates4: $coordinates4,
+                        coordinates5: $coordinates5,
+                        coordinates6: $coordinates6,
+                        coordinates7: $coordinates7
+                    )
+                    .edgesIgnoringSafeArea(.all)
+                    Image(systemName: "octagon")
+                        .resizable()
+                        .frame(width: 32.0, height: 32.0, alignment: .center)
+                        .foregroundColor(.gray)
                     Button(action: {
                         self.isModalPresenting.toggle()
                     }) {
@@ -50,9 +54,8 @@ struct ContentView: View {
                     }) {
                         ModalView()
                     }
+                    .offset(x: geometry.size.width / 2 - 16 - 8, y: geometry.size.height / 2 - 56)
                 }
-                .padding(.bottom, 36.0)
-                .padding(.trailing, 12.0)
             }
         }
     }

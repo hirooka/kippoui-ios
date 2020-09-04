@@ -12,6 +12,7 @@ final class CheckPoint: NSObject, MKAnnotation {
 
 struct MapView: UIViewRepresentable {
     
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var preferences: Preferences
     
     @Binding var count: Int
@@ -26,23 +27,24 @@ struct MapView: UIViewRepresentable {
     @Binding var coordinates5: [CLLocationCoordinate2D]
     @Binding var coordinates6: [CLLocationCoordinate2D]
     @Binding var coordinates7: [CLLocationCoordinate2D]
+    @Binding var center: CLLocationCoordinate2D
+    @Binding var locationManager: CLLocationManager
     
     var mapView = MKMapView(frame: .zero)
     
-    var locationManager = CLLocationManager()
-    func setupManager() {
+    func makeUIView(context: Context) -> MKMapView {
+        print("\(#file) - \(#function)")
+        
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
-    }
-    
-    func makeUIView(context: Context) -> MKMapView {
-        print("\(#file) - \(#function)")
-        setupManager()
-        //let mapView = MKMapView(frame: .zero)
+        locationManager.startUpdatingLocation()
+        locationManager.delegate = context.coordinator
+
         mapView.delegate = context.coordinator
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
+        
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         let region = MKCoordinateRegion(center: coordinate, span: span)
         mapView.setRegion(region, animated: true)
@@ -52,12 +54,13 @@ struct MapView: UIViewRepresentable {
     func updateUIView(_ uiView: MKMapView, context: Context) {
         print("\(#file) - \(#function)")
         //uiView.setCenter(coordinate, animated: true)
-        uiView.removeAnnotations(previousCheckPoints)
-        uiView.addAnnotations(checkPoints)
         
         if coordinates0.count > 1 && coordinates1.count > 1 {
+            
+            uiView.removeAnnotations(previousCheckPoints)
+            uiView.addAnnotations(checkPoints)
             uiView.removeOverlays(mapView.overlays)
-            //let polyline = MKPolyline(coordinates: coordinates, count: coordinates.count)
+            
             let polyline0 = MKGeodesicPolyline(coordinates: coordinates0, count: coordinates0.count)
             let polyline1 = MKGeodesicPolyline(coordinates: coordinates1, count: coordinates1.count)
             let polyline2 = MKGeodesicPolyline(coordinates: coordinates2, count: coordinates2.count)
@@ -66,6 +69,7 @@ struct MapView: UIViewRepresentable {
             let polyline5 = MKGeodesicPolyline(coordinates: coordinates5, count: coordinates5.count)
             let polyline6 = MKGeodesicPolyline(coordinates: coordinates6, count: coordinates6.count)
             let polyline7 = MKGeodesicPolyline(coordinates: coordinates7, count: coordinates7.count)
+            
             uiView.addOverlay(polyline0)
             uiView.addOverlay(polyline1)
             uiView.addOverlay(polyline2)
@@ -74,6 +78,13 @@ struct MapView: UIViewRepresentable {
             uiView.addOverlay(polyline5)
             uiView.addOverlay(polyline6)
             uiView.addOverlay(polyline7)
+            
+            // slow
+//            var coordinatesC: [CLLocationCoordinate2D] = []
+//            coordinatesC.append(coordinate)
+//            coordinatesC.append(center)
+//            let polylineC = MKGeodesicPolyline(coordinates: coordinatesC, count: coordinatesC.count)
+//            uiView.addOverlay(polylineC)
         }
     }
     
@@ -81,10 +92,13 @@ struct MapView: UIViewRepresentable {
         Coordinator(self)
     }
 
-    class Coordinator: NSObject, MKMapViewDelegate, UIGestureRecognizerDelegate {
+    class Coordinator: NSObject, MKMapViewDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
+        
         var parent: MapView
         var tapGestureRecognizer = UITapGestureRecognizer()
         var longPressGestureRecognizer = UILongPressGestureRecognizer()
+        var panGestureRecognizer = UIPanGestureRecognizer()
+        
         init(_ parent: MapView) {
             self.parent = parent
             super.init()
@@ -95,16 +109,35 @@ struct MapView: UIViewRepresentable {
             self.longPressGestureRecognizer.delegate = self
             self.longPressGestureRecognizer.minimumPressDuration = 0.3
             self.parent.mapView.addGestureRecognizer(longPressGestureRecognizer)
+            
+            // slow
+//            self.panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panHandler))
+//            self.panGestureRecognizer.delegate = self
+//            self.parent.mapView.addGestureRecognizer(panGestureRecognizer)
         }
         
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
             if let polyline = overlay as? MKPolyline {
                 let polylineRenderer = MKPolylineRenderer(polyline: polyline)
-                polylineRenderer.strokeColor = .red
-                polylineRenderer.lineWidth = 3.0
+                polylineRenderer.strokeColor = self.parent.colorScheme == .dark ? UIColor(red: 255/255, green: 230/215, blue: 0/255, alpha: 1.0) : .red
+                polylineRenderer.lineWidth = 2.0
                 return polylineRenderer
             }
             return MKOverlayRenderer()
+        }
+        
+        func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+            print("\(#file) - \(#function)")
+            //self.parent.center = CLLocationCoordinate2DMake(mapView.region.center.latitude, mapView.region.center.longitude)
+        }
+        
+        func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+            print("\(#file) - \(#function)")
+            //self.parent.center = CLLocationCoordinate2DMake(mapView.region.center.latitude, mapView.region.center.longitude)
+        }
+        
+        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            print("\(#file) - \(#function)")
         }
         
         func getAngle(index: Int, argument: Double, angle: String) -> Double {
@@ -237,6 +270,16 @@ struct MapView: UIViewRepresentable {
         
         @objc func tapHandler(_ gesture: UITapGestureRecognizer) {
         }
+        
+        // slow
+//        func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+//            return true
+//        }
+
+        // slow
+//        @objc func panHandler(_ gesture: UIPanGestureRecognizer) {
+//            //self.parent.center = CLLocationCoordinate2DMake(self.parent.mapView.region.center.latitude, self.parent.mapView.region.center.longitude)
+//        }
     }
     
     func getAntipodes(origin: CLLocationCoordinate2D) -> CLLocationCoordinate2D {

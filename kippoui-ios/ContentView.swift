@@ -3,6 +3,8 @@ import MapKit
 
 struct ContentView: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     @State var count =  0
     @State var coordinate = CLLocationCoordinate2D()
     @State var checkPoints: [CheckPoint] = []
@@ -15,6 +17,8 @@ struct ContentView: View {
     @State var coordinates5: [CLLocationCoordinate2D] = []
     @State var coordinates6: [CLLocationCoordinate2D] = []
     @State var coordinates7: [CLLocationCoordinate2D] = []
+    @State var center = CLLocationCoordinate2D()
+    @State var locationManager = CLLocationManager()
     
     @State var isModalPresenting = false
     
@@ -34,13 +38,15 @@ struct ContentView: View {
                         coordinates4: $coordinates4,
                         coordinates5: $coordinates5,
                         coordinates6: $coordinates6,
-                        coordinates7: $coordinates7
+                        coordinates7: $coordinates7,
+                        center: $center,
+                        locationManager: $locationManager
                     )
                     .edgesIgnoringSafeArea(.all)
                     Image(systemName: "octagon")
                         .resizable()
                         .frame(width: 32.0, height: 32.0, alignment: .center)
-                        .foregroundColor(.gray)
+                        .foregroundColor(colorScheme == .dark ? Color(red: 255/255, green: 230/215, blue: 0/255) : .red)
                     Button(action: {
                         self.isModalPresenting.toggle()
                     }) {

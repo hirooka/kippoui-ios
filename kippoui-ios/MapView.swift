@@ -33,6 +33,9 @@ struct MapView: UIViewRepresentable {
     
     var mapView = MKMapView(frame: .zero)
     
+    @State var drawing = false
+    @State var measuring = false
+    
     func makeUIView(context: Context) -> MKMapView {
         print("\(#file) - \(#function)")
         
@@ -53,18 +56,24 @@ struct MapView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
-        print("\(#file) - \(#function)")
+        //print("\(#file) - \(#function)")
         //uiView.setCenter(coordinate, animated: true)
-        uiView.removeOverlays(mapView.overlays)
-        uiView.removeAnnotations(previousCheckPoints)
-        uiView.addAnnotations(checkPoints)
-        uiView.removeOverlays(mapView.overlays)
-        
-        if coordinates0.count > 1 && coordinates1.count > 1 {
+
+        if coordinates0.count > 1 && coordinates1.count > 1 && drawing {
+            print("\(#file) - \(#function) : DRAWING POLYLINE!")
+            
+            uiView.overlays.forEach({
+                if $0 is MKPolyline {
+                    uiView.removeOverlay($0)
+                }
+            })
             
             uiView.removeOverlays(mapView.overlays)
+            uiView.removeAnnotations(previousCheckPoints)
+            uiView.addAnnotations(checkPoints)
             
             let polyline0 = MKGeodesicPolyline(coordinates: coordinates0, count: coordinates0.count)
+            
             let polyline1 = MKGeodesicPolyline(coordinates: coordinates1, count: coordinates1.count)
             let polyline2 = MKGeodesicPolyline(coordinates: coordinates2, count: coordinates2.count)
             let polyline3 = MKGeodesicPolyline(coordinates: coordinates3, count: coordinates3.count)
@@ -88,6 +97,8 @@ struct MapView: UIViewRepresentable {
 //            coordinatesC.append(center)
 //            let polylineC = MKGeodesicPolyline(coordinates: coordinatesC, count: coordinatesC.count)
 //            uiView.addOverlay(polylineC)
+        } else if !drawing {
+            print("\(#file) - \(#function) : NOT DRAWING POLYLINE!")
         }
     }
     
@@ -110,7 +121,7 @@ struct MapView: UIViewRepresentable {
             self.parent.mapView.addGestureRecognizer(tapGestureRecognizer)
             self.longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressHandler))
             self.longPressGestureRecognizer.delegate = self
-            self.longPressGestureRecognizer.minimumPressDuration = 0.3
+            self.longPressGestureRecognizer.minimumPressDuration = 0.5
             self.parent.mapView.addGestureRecognizer(longPressGestureRecognizer)
             
             // slow
@@ -134,6 +145,7 @@ struct MapView: UIViewRepresentable {
             if self.parent.coordinates0.count > 1 {
                 let distance = CLLocation(latitude: self.parent.coordinate.latitude, longitude: self.parent.coordinate.longitude).distance(from: CLLocation(latitude: mapView.region.center.latitude, longitude: mapView.region.center.longitude))
                 self.parent.distance = String(format: "%.1f", (distance.magnitude / 1000))
+                self.parent.drawing = false
             }
             //self.parent.center = CLLocationCoordinate2DMake(mapView.region.center.latitude, mapView.region.center.longitude)
         }
@@ -149,7 +161,6 @@ struct MapView: UIViewRepresentable {
         
         func getAngle(index: Int, argument: Double, angle: String) -> Double {
             
-            print("angle in = \(angle)")
             if angle == "0" {
                 if index == 0 {
                     return 15.0 + argument
@@ -194,8 +205,14 @@ struct MapView: UIViewRepresentable {
         }
         
         @objc func longPressHandler(_ gesture: UILongPressGestureRecognizer) {
-            let location = longPressGestureRecognizer.location(in: self.parent.mapView)
-            let coordinate = self.parent.mapView.convert(location, toCoordinateFrom: self.parent.mapView)
+            
+            // ロングプレスしたポイントにピン
+//            let location = longPressGestureRecognizer.location(in: self.parent.mapView)
+//            let coordinate = self.parent.mapView.convert(location, toCoordinateFrom: self.parent.mapView)
+//            self.parent.coordinate = coordinate
+            
+            // マップ中心にピン
+            let coordinate = CLLocationCoordinate2DMake(self.parent.mapView.region.center.latitude, self.parent.mapView.region.center.longitude)
             self.parent.coordinate = coordinate
             
             if gesture.state == UILongPressGestureRecognizer.State.ended {
@@ -213,65 +230,66 @@ struct MapView: UIViewRepresentable {
                 
                 let argument = Double(self.parent.preferences.argument)!
                 let angle = self.parent.preferences.angle
-                print("angle = \(angle)")
                 
                 let antipodes = self.parent.getAntipodes(origin: coordinate)
                 
                 self.parent.coordinates0 = []
                 self.parent.coordinates0.append(coordinate)
                 let l0 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 0, argument: argument, angle: angle), distance: distance)
-                print("0: \(l0.latitude), \(l0.longitude)")
+                //print("0: \(l0.latitude), \(l0.longitude)")
                 self.parent.coordinates0.append(l0)
                 self.parent.coordinates0.append(antipodes)
                 
                 self.parent.coordinates1 = []
                 self.parent.coordinates1.append(coordinate)
                 let l1 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 1, argument: argument, angle: angle), distance: distance)
-                print("1: \(l1.latitude), \(l1.longitude)")
+                //print("1: \(l1.latitude), \(l1.longitude)")
                 self.parent.coordinates1.append(l1)
                 self.parent.coordinates1.append(antipodes)
                 
                 self.parent.coordinates2 = []
                 self.parent.coordinates2.append(coordinate)
                 let l2 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 2, argument: argument, angle: angle), distance: distance)
-                print("2: \(l2.latitude), \(l2.longitude)")
+                //print("2: \(l2.latitude), \(l2.longitude)")
                 self.parent.coordinates2.append(l2)
                 self.parent.coordinates2.append(antipodes)
                 
                 self.parent.coordinates3 = []
                 self.parent.coordinates3.append(coordinate)
                 let l3 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 3, argument: argument, angle: angle), distance: distance)
-                print("3: \(l3.latitude), \(l3.longitude)")
+                //print("3: \(l3.latitude), \(l3.longitude)")
                 self.parent.coordinates3.append(l3)
                 self.parent.coordinates3.append(antipodes)
                 
                 self.parent.coordinates4 = []
                 self.parent.coordinates4.append(coordinate)
                 let l4 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 4, argument: argument, angle: angle), distance: distance)
-                print("4: \(l4.latitude), \(l4.longitude)")
+                //print("4: \(l4.latitude), \(l4.longitude)")
                 self.parent.coordinates4.append(l4)
                 self.parent.coordinates4.append(antipodes)
                 
                 self.parent.coordinates5 = []
                 self.parent.coordinates5.append(coordinate)
                 let l5 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 5, argument: argument, angle: angle), distance: distance)
-                print("5: \(l5.latitude), \(l5.longitude)")
+                //print("5: \(l5.latitude), \(l5.longitude)")
                 self.parent.coordinates5.append(l5)
                 self.parent.coordinates5.append(antipodes)
                 
                 self.parent.coordinates6 = []
                 self.parent.coordinates6.append(coordinate)
                 let l6 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 6, argument: argument, angle: angle), distance: distance)
-                print("6: \(l6.latitude), \(l6.longitude)")
+                //print("6: \(l6.latitude), \(l6.longitude)")
                 self.parent.coordinates6.append(l6)
                 self.parent.coordinates6.append(antipodes)
                 
                 self.parent.coordinates7 = []
                 self.parent.coordinates7.append(coordinate)
                 let l7 = self.parent.getLocation(origin: coordinate, angle: getAngle(index: 7, argument: argument, angle: angle), distance: distance)
-                print("7: \(l7.latitude), \(l7.longitude)")
+                //print("7: \(l7.latitude), \(l7.longitude)")
                 self.parent.coordinates7.append(l7)
                 self.parent.coordinates7.append(antipodes)
+                
+                self.parent.drawing = true
             }
         }
         

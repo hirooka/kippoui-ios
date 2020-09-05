@@ -29,6 +29,7 @@ struct MapView: UIViewRepresentable {
     @Binding var coordinates7: [CLLocationCoordinate2D]
     @Binding var center: CLLocationCoordinate2D
     @Binding var locationManager: CLLocationManager
+    @Binding var distance: String
     
     var mapView = MKMapView(frame: .zero)
     
@@ -54,11 +55,13 @@ struct MapView: UIViewRepresentable {
     func updateUIView(_ uiView: MKMapView, context: Context) {
         print("\(#file) - \(#function)")
         //uiView.setCenter(coordinate, animated: true)
+        uiView.removeOverlays(mapView.overlays)
+        uiView.removeAnnotations(previousCheckPoints)
+        uiView.addAnnotations(checkPoints)
+        uiView.removeOverlays(mapView.overlays)
         
         if coordinates0.count > 1 && coordinates1.count > 1 {
             
-            uiView.removeAnnotations(previousCheckPoints)
-            uiView.addAnnotations(checkPoints)
             uiView.removeOverlays(mapView.overlays)
             
             let polyline0 = MKGeodesicPolyline(coordinates: coordinates0, count: coordinates0.count)
@@ -119,8 +122,8 @@ struct MapView: UIViewRepresentable {
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
             if let polyline = overlay as? MKPolyline {
                 let polylineRenderer = MKPolylineRenderer(polyline: polyline)
-                polylineRenderer.strokeColor = self.parent.colorScheme == .dark ? UIColor(red: 255/255, green: 230/215, blue: 0/255, alpha: 1.0) : .red
-                polylineRenderer.lineWidth = 2.0
+                polylineRenderer.strokeColor = .red//self.parent.colorScheme == .dark ? UIColor(red: 255/255, green: 230/215, blue: 0/255, alpha: 1.0) : .red
+                polylineRenderer.lineWidth = 1.0
                 return polylineRenderer
             }
             return MKOverlayRenderer()
@@ -128,6 +131,10 @@ struct MapView: UIViewRepresentable {
         
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
             print("\(#file) - \(#function)")
+            if self.parent.coordinates0.count > 1 {
+                let distance = CLLocation(latitude: self.parent.coordinate.latitude, longitude: self.parent.coordinate.longitude).distance(from: CLLocation(latitude: mapView.region.center.latitude, longitude: mapView.region.center.longitude))
+                self.parent.distance = String(format: "%.1f", (distance.magnitude / 1000))
+            }
             //self.parent.center = CLLocationCoordinate2DMake(mapView.region.center.latitude, mapView.region.center.longitude)
         }
         
@@ -312,6 +319,126 @@ struct MapView: UIViewRepresentable {
         
         //print("output: \(latitudeDestinationDegree), \(longitudeDestinationDegree)")
         return CLLocationCoordinate2DMake(latitudeDestinationDegree, longitudeDestinationDegree)
+    }
+    
+    func getAngle(index: Int, argument: Double, angle: String) -> Double {
+        
+        print("angle in = \(angle)")
+        if angle == "0" {
+            if index == 0 {
+                return 15.0 + argument
+            } else if index == 1 {
+                return 75.0 + argument
+            } else if index == 2 {
+                return 105.0 + argument
+            } else if index == 3 {
+                return 165.0 + argument
+            } else if index == 4 {
+                return 195.0 + argument
+            } else if index == 5 {
+                return 255.0 + argument
+            } else if index == 6 {
+                return 285.0 + argument
+            } else if index == 7 {
+                return 345.0 + argument
+            }
+        }else if angle == "1" {
+            if index == 0 {
+                return 22.5 + argument
+            } else if index == 1 {
+                return 67.5 + argument
+            } else if index == 2 {
+                return 112.5 + argument
+            } else if index == 3 {
+                return 157.5 + argument
+            } else if index == 4 {
+                return 202.5 + argument
+            } else if index == 5 {
+                return 247.5 + argument
+            } else if index == 6 {
+                return 292.5 + argument
+            } else if index == 7 {
+                return 337.5 + argument
+            }
+        }  else {
+            print("error")
+            return 0.0
+        }
+        return 0.0
+    }
+    
+    func drawPolyline() {
+        print("\(coordinate.latitude), \(coordinate.longitude)")
+        previousCheckPoints = checkPoints
+        let checkPoint = CheckPoint(
+            title: "You",
+            coordinate: .init(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        )
+        checkPoints = [checkPoint]
+        
+        let distance = 6378136.6
+        
+        let argument = Double(preferences.argument)!
+        let angle = preferences.angle
+        print("angle = \(angle)")
+        
+        let antipodes = getAntipodes(origin: coordinate)
+        
+        coordinates0 = []
+        coordinates0.append(coordinate)
+        let l0 = getLocation(origin: coordinate, angle: getAngle(index: 0, argument: argument, angle: angle), distance: distance)
+        print("0: \(l0.latitude), \(l0.longitude)")
+        coordinates0.append(l0)
+        coordinates0.append(antipodes)
+        
+        coordinates1 = []
+        coordinates1.append(coordinate)
+        let l1 = getLocation(origin: coordinate, angle: getAngle(index: 1, argument: argument, angle: angle), distance: distance)
+        print("1: \(l1.latitude), \(l1.longitude)")
+        coordinates1.append(l1)
+        coordinates1.append(antipodes)
+        
+        coordinates2 = []
+        coordinates2.append(coordinate)
+        let l2 = getLocation(origin: coordinate, angle: getAngle(index: 2, argument: argument, angle: angle), distance: distance)
+        print("2: \(l2.latitude), \(l2.longitude)")
+        coordinates2.append(l2)
+        coordinates2.append(antipodes)
+        
+        coordinates3 = []
+        coordinates3.append(coordinate)
+        let l3 = getLocation(origin: coordinate, angle: getAngle(index: 3, argument: argument, angle: angle), distance: distance)
+        print("3: \(l3.latitude), \(l3.longitude)")
+        coordinates3.append(l3)
+        coordinates3.append(antipodes)
+        
+        coordinates4 = []
+        coordinates4.append(coordinate)
+        let l4 = getLocation(origin: coordinate, angle: getAngle(index: 4, argument: argument, angle: angle), distance: distance)
+        print("4: \(l4.latitude), \(l4.longitude)")
+        coordinates4.append(l4)
+        coordinates4.append(antipodes)
+        
+        coordinates5 = []
+        coordinates5.append(coordinate)
+        let l5 = getLocation(origin: coordinate, angle: getAngle(index: 5, argument: argument, angle: angle), distance: distance)
+        print("5: \(l5.latitude), \(l5.longitude)")
+        coordinates5.append(l5)
+        coordinates5.append(antipodes)
+        
+        coordinates6 = []
+        coordinates6.append(coordinate)
+        let l6 = getLocation(origin: coordinate, angle: getAngle(index: 6, argument: argument, angle: angle), distance: distance)
+        print("6: \(l6.latitude), \(l6.longitude)")
+        coordinates6.append(l6)
+        coordinates6.append(antipodes)
+        
+        coordinates7 = []
+        coordinates7.append(coordinate)
+        let l7 = getLocation(origin: coordinate, angle: getAngle(index: 7, argument: argument, angle: angle), distance: distance)
+        print("7: \(l7.latitude), \(l7.longitude)")
+        coordinates7.append(l7)
+        coordinates7.append(antipodes)
     }
 
 }

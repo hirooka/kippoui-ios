@@ -19,6 +19,7 @@ struct ContentView: View {
     @State var coordinates7: [CLLocationCoordinate2D] = []
     @State var center = CLLocationCoordinate2D()
     @State var locationManager = CLLocationManager()
+    @State var distance = "-"
     
     @State var isModalPresenting = false
     
@@ -40,13 +41,23 @@ struct ContentView: View {
                         coordinates6: $coordinates6,
                         coordinates7: $coordinates7,
                         center: $center,
-                        locationManager: $locationManager
+                        locationManager: $locationManager,
+                        distance: $distance
                     )
                     .edgesIgnoringSafeArea(.all)
                     Image(systemName: "octagon")
                         .resizable()
                         .frame(width: 32.0, height: 32.0, alignment: .center)
-                        .foregroundColor(colorScheme == .dark ? Color(red: 255/255, green: 230/215, blue: 0/255) : .red)
+                        .foregroundColor(/*colorScheme == .dark ? Color(red: 255/255, green: 230/215, blue: 0/255) :*/ .red)
+                    Button(action: {
+                        print("drawPolyline")
+                    }) {
+                        Image(systemName: "dot.circle.and.cursorarrow")
+                            .resizable()
+                            .frame(width: 32.0, height: 32.0)
+                            .foregroundColor(.gray)
+                    }
+                    .offset(x: geometry.size.width / 2 - 16 - 8, y: geometry.size.height / 2 - 56 - 56)
                     Button(action: {
                         self.isModalPresenting.toggle()
                     }) {
@@ -61,6 +72,8 @@ struct ContentView: View {
                         ModalView()
                     }
                     .offset(x: geometry.size.width / 2 - 16 - 8, y: geometry.size.height / 2 - 56)
+                    Text("\(distance)km")
+                        .offset(x: 0, y: 28)
                 }
             }
         }

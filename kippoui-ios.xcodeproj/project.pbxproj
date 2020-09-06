@@ -18,6 +18,8 @@
 		B12884C424EECC2F00DCF3F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B12884C224EECC2F00DCF3F5 /* LaunchScreen.storyboard */; };
 		B12884CF24EECC2F00DCF3F5 /* kippoui_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12884CE24EECC2F00DCF3F5 /* kippoui_iosTests.swift */; };
 		B12884DA24EECC2F00DCF3F5 /* kippoui_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12884D924EECC2F00DCF3F5 /* kippoui_iosUITests.swift */; };
+		B167666B250548F500689D0B /* PolylineCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167666A250548F500689D0B /* PolylineCalculator.swift */; };
+		B167666D25054EA600689D0B /* MyAzimuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167666C25054EA600689D0B /* MyAzimuth.swift */; };
 		B1872F0E24EED3F60018A14F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1872F0D24EED3F60018A14F /* MapView.swift */; };
 		B1872F1024F0ED4F0018A14F /* MyLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1872F0F24F0ED4F0018A14F /* MyLocation.swift */; };
 /* End PBXBuildFile section */
@@ -57,6 +59,8 @@
 		B12884D524EECC2F00DCF3F5 /* kippoui-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "kippoui-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B12884D924EECC2F00DCF3F5 /* kippoui_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kippoui_iosUITests.swift; sourceTree = "<group>"; };
 		B12884DB24EECC2F00DCF3F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B167666A250548F500689D0B /* PolylineCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolylineCalculator.swift; sourceTree = "<group>"; };
+		B167666C25054EA600689D0B /* MyAzimuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAzimuth.swift; sourceTree = "<group>"; };
 		B1872F0D24EED3F60018A14F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		B1872F0F24F0ED4F0018A14F /* MyLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLocation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,6 +125,8 @@
 				B1872F0F24F0ED4F0018A14F /* MyLocation.swift */,
 				B120C8C624FA2B8800570864 /* ModalView.swift */,
 				B120C8CA24FB5D6D00570864 /* Preferences.swift */,
+				B167666A250548F500689D0B /* PolylineCalculator.swift */,
+				B167666C25054EA600689D0B /* MyAzimuth.swift */,
 			);
 			path = "kippoui-ios";
 			sourceTree = "<group>";
@@ -286,6 +292,8 @@
 				B12884BA24EECC2E00DCF3F5 /* kippoui_ios.xcdatamodeld in Sources */,
 				B1872F1024F0ED4F0018A14F /* MyLocation.swift in Sources */,
 				B1872F0E24EED3F60018A14F /* MapView.swift in Sources */,
+				B167666D25054EA600689D0B /* MyAzimuth.swift in Sources */,
+				B167666B250548F500689D0B /* PolylineCalculator.swift in Sources */,
 				B120C8C724FA2B8800570864 /* ModalView.swift in Sources */,
 				B12884BC24EECC2E00DCF3F5 /* ContentView.swift in Sources */,
 				B12884B724EECC2E00DCF3F5 /* SceneDelegate.swift in Sources */,

@@ -23,6 +23,8 @@ struct ContentView: View {
     
     @State var isModalPresenting = false
     
+    let polylineCalculator = PolylineCalculator()
+    
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -51,6 +53,7 @@ struct ContentView: View {
                         .foregroundColor(/*colorScheme == .dark ? Color(red: 255/255, green: 230/215, blue: 0/255) :*/ .red)
                     Button(action: {
                         print("drawPolyline")
+                        polylineCalculator.hello()
                     }) {
                         Image(systemName: "dot.circle.and.cursorarrow")
                             .resizable()

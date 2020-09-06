@@ -7,6 +7,8 @@ struct ModalView: View {
     var angle = ["30", "45"]
     @State var selected = 0
     
+    let polylineCalculator = PolylineCalculator()
+    
     let formatter: NumberFormatter = {
         let numFormatter = NumberFormatter()
         numFormatter.numberStyle = .decimal
@@ -62,6 +64,7 @@ struct ModalView: View {
             default:
                 self.preferences.angle = "0"
             }
+            polylineCalculator.calc()
         })
     }
 }

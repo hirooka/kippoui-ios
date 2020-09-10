@@ -89,8 +89,7 @@ class PolylineCalculator: NSObject {
         let coordinate = myAzimuth.center
         print("center = \(coordinate.latitude), \(coordinate.longitude)")
         
-        myAzimuth.previousMyPin = myAzimuth.myPin
-        myAzimuth.myPin = MyPin(title: "You", coordinate: .init(latitude: coordinate.latitude, longitude: coordinate.longitude))
+        myAzimuth.myPin = MyPin(title: "", coordinate: .init(latitude: coordinate.latitude, longitude: coordinate.longitude))
         
         let distance = 6378136.6
         

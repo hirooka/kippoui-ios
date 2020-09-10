@@ -48,8 +48,8 @@ struct MapView: UIViewRepresentable {
             })
 
             uiView.removeOverlays(myAzimuth.mapView.overlays)
-            let previousMyPins = [myAzimuth.previousMyPin]
-            uiView.removeAnnotations(previousMyPins)
+            uiView.removeAnnotations(uiView.annotations)
+            
             let myPins = [myAzimuth.myPin]
             uiView.addAnnotations(myPins)
 

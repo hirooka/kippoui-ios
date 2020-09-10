@@ -3,11 +3,11 @@ import SwiftUI
 struct ModalView: View {
     
     @EnvironmentObject var preferences: Preferences
+    @EnvironmentObject var myAzimuth: MyAzimuth
+    
     @State var updatedArgument = ""
     var angle = ["30", "45"]
     @State var selected = 0
-    
-    let polylineCalculator = PolylineCalculator()
     
     let formatter: NumberFormatter = {
         let numFormatter = NumberFormatter()
@@ -64,7 +64,6 @@ struct ModalView: View {
             default:
                 self.preferences.angle = "0"
             }
-            polylineCalculator.calc()
         })
     }
 }

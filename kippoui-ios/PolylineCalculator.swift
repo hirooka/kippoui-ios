@@ -1,14 +1,17 @@
-import SwiftUI
 import MapKit
 
 class PolylineCalculator: NSObject {
+        
+    private var preferences: Preferences
+    private var myAzimuth: MyAzimuth
     
-    @EnvironmentObject var preferences: Preferences
-    @EnvironmentObject var myAzimuth: MyAzimuth
+    init(preferences: Preferences, myAzimuth: MyAzimuth) {
+        self.preferences = preferences
+        self.myAzimuth = myAzimuth
+    }
     
     func hello() {
         print("\(#file) - \(#function)")
-
     }
     
     func getAntipodes(origin: CLLocationCoordinate2D) -> CLLocationCoordinate2D {
@@ -39,7 +42,6 @@ class PolylineCalculator: NSObject {
     
     func getAngle(index: Int, argument: Double, angle: String) -> Double {
         
-        print("angle in = \(angle)")
         if angle == "0" {
             if index == 0 {
                 return 15.0 + argument
@@ -76,9 +78,6 @@ class PolylineCalculator: NSObject {
             } else if index == 7 {
                 return 337.5 + argument
             }
-        }  else {
-            print("error")
-            return 0.0
         }
         return 0.0
     }
@@ -86,76 +85,74 @@ class PolylineCalculator: NSObject {
     func calc() {
         print("\(#file) - \(#function)")
         
+        myAzimuth.center = CLLocationCoordinate2DMake(myAzimuth.mapView.region.center.latitude, myAzimuth.mapView.region.center.longitude)
         let coordinate = myAzimuth.center
-        print("\(coordinate.latitude), \(coordinate.longitude)")
-//        previousCheckPoints = checkPoints
-//        let checkPoint = CheckPoint(
-//            title: "You",
-//            coordinate: .init(latitude: coordinate.latitude, longitude: coordinate.longitude)
-//        )
-//        let checkPoints = [checkPoint]
+        print("center = \(coordinate.latitude), \(coordinate.longitude)")
+        
+        myAzimuth.previousMyPin = myAzimuth.myPin
+        myAzimuth.myPin = MyPin(title: "You", coordinate: .init(latitude: coordinate.latitude, longitude: coordinate.longitude))
         
         let distance = 6378136.6
         
         let argument = Double(preferences.argument)!
         let angle = preferences.angle
-        print("angle = \(angle)")
+        //print("angle = \(angle)")
         
         let antipodes = getAntipodes(origin: coordinate)
         
         myAzimuth.coordinates0 = []
         myAzimuth.coordinates0.append(coordinate)
         let l0 = getLocation(origin: coordinate, angle: getAngle(index: 0, argument: argument, angle: angle), distance: distance)
-        print("0: \(l0.latitude), \(l0.longitude)")
+        //print("0: \(l0.latitude), \(l0.longitude)")
         myAzimuth.coordinates0.append(l0)
         myAzimuth.coordinates0.append(antipodes)
         
         myAzimuth.coordinates1 = []
         myAzimuth.coordinates1.append(coordinate)
         let l1 = getLocation(origin: coordinate, angle: getAngle(index: 1, argument: argument, angle: angle), distance: distance)
-        print("1: \(l1.latitude), \(l1.longitude)")
+        //print("1: \(l1.latitude), \(l1.longitude)")
         myAzimuth.coordinates1.append(l1)
         myAzimuth.coordinates1.append(antipodes)
         
         myAzimuth.coordinates2 = []
         myAzimuth.coordinates2.append(coordinate)
         let l2 = getLocation(origin: coordinate, angle: getAngle(index: 2, argument: argument, angle: angle), distance: distance)
-        print("2: \(l2.latitude), \(l2.longitude)")
+        //print("2: \(l2.latitude), \(l2.longitude)")
         myAzimuth.coordinates2.append(l2)
         myAzimuth.coordinates2.append(antipodes)
         
         myAzimuth.coordinates3 = []
         myAzimuth.coordinates3.append(coordinate)
         let l3 = getLocation(origin: coordinate, angle: getAngle(index: 3, argument: argument, angle: angle), distance: distance)
-        print("3: \(l3.latitude), \(l3.longitude)")
+        //print("3: \(l3.latitude), \(l3.longitude)")
         myAzimuth.coordinates3.append(l3)
         myAzimuth.coordinates3.append(antipodes)
         
         myAzimuth.coordinates4 = []
         myAzimuth.coordinates4.append(coordinate)
         let l4 = getLocation(origin: coordinate, angle: getAngle(index: 4, argument: argument, angle: angle), distance: distance)
-        print("4: \(l4.latitude), \(l4.longitude)")
+        //print("4: \(l4.latitude), \(l4.longitude)")
         myAzimuth.coordinates4.append(l4)
         myAzimuth.coordinates4.append(antipodes)
         
         myAzimuth.coordinates5 = []
         myAzimuth.coordinates5.append(coordinate)
         let l5 = getLocation(origin: coordinate, angle: getAngle(index: 5, argument: argument, angle: angle), distance: distance)
-        print("5: \(l5.latitude), \(l5.longitude)")
+        //print("5: \(l5.latitude), \(l5.longitude)")
         myAzimuth.coordinates5.append(l5)
         myAzimuth.coordinates5.append(antipodes)
         
         myAzimuth.coordinates6 = []
         myAzimuth.coordinates6.append(coordinate)
         let l6 = getLocation(origin: coordinate, angle: getAngle(index: 6, argument: argument, angle: angle), distance: distance)
-        print("6: \(l6.latitude), \(l6.longitude)")
+        //print("6: \(l6.latitude), \(l6.longitude)")
         myAzimuth.coordinates6.append(l6)
         myAzimuth.coordinates6.append(antipodes)
         
         myAzimuth.coordinates7 = []
         myAzimuth.coordinates7.append(coordinate)
         let l7 = getLocation(origin: coordinate, angle: getAngle(index: 7, argument: argument, angle: angle), distance: distance)
-        print("7: \(l7.latitude), \(l7.longitude)")
+        //print("7: \(l7.latitude), \(l7.longitude)")
         myAzimuth.coordinates7.append(l7)
         myAzimuth.coordinates7.append(antipodes)
     }

@@ -7,8 +7,10 @@ struct ContentView: View {
     @EnvironmentObject var preferences: Preferences
     @EnvironmentObject var myAzimuth: MyAzimuth
     
+    @State var first = true
     @State var distance = "-"
     @State var drawing = false
+    @State var circle = CLLocationCoordinate2D()
     
     @State var isModalPresenting = false
     
@@ -17,8 +19,10 @@ struct ContentView: View {
             VStack {
                 ZStack {
                     MapView(
+                        first: $first,
                         distance: $distance,
-                        drawing: $drawing
+                        drawing: $drawing,
+                        circle: $circle
                     )
                     .edgesIgnoringSafeArea(.all)
                     Image(systemName: "octagon")
@@ -28,6 +32,7 @@ struct ContentView: View {
                     Button(action: {
                         print("drawPolyline")
                         self.drawing.toggle()
+                        self.first = false
                         let polylineCalculator = PolylineCalculator(preferences: preferences, myAzimuth: myAzimuth)
                         polylineCalculator.calc()
                     }) {

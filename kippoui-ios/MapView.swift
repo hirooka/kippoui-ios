@@ -7,8 +7,10 @@ struct MapView: UIViewRepresentable {
     @EnvironmentObject var preferences: Preferences
     @EnvironmentObject var myAzimuth: MyAzimuth
     
+    @Binding var first: Bool
     @Binding var distance: String
     @Binding var drawing: Bool
+    @Binding var circle: CLLocationCoordinate2D
     
     @State var locationManager = CLLocationManager()
     @State var measuring = false
@@ -70,15 +72,28 @@ struct MapView: UIViewRepresentable {
             uiView.addOverlay(polyline5)
             uiView.addOverlay(polyline6)
             uiView.addOverlay(polyline7)
-
-            // slow
-//            var coordinatesC: [CLLocationCoordinate2D] = []
-//            coordinatesC.append(coordinate)
-//            coordinatesC.append(center)
-//            let polylineC = MKGeodesicPolyline(coordinates: coordinatesC, count: coordinatesC.count)
-//            uiView.addOverlay(polylineC)
+            
         } else if !drawing {
             print("\(#file) - \(#function) : NOT DRAWING POLYLINE!")
+            
+            // slow
+            uiView.overlays.forEach({
+                if $0 is MKPolyline {
+                    let ppp = $0 as! MKGeodesicPolyline
+                    if ppp.title == "line" {
+                        uiView.removeOverlay($0)
+                    }
+                }
+            })
+            
+            if !first {
+                var coordinatesC: [CLLocationCoordinate2D] = []
+                coordinatesC.append(myAzimuth.center)
+                coordinatesC.append(circle)
+                let polylineC = MKGeodesicPolyline(coordinates: coordinatesC, count: coordinatesC.count)
+                polylineC.title = "line"
+                uiView.addOverlay(polylineC)
+            }
         }
     }
     
@@ -105,9 +120,9 @@ struct MapView: UIViewRepresentable {
             self.parent.myAzimuth.mapView.addGestureRecognizer(longPressGestureRecognizer)
             
             // slow
-//            self.panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panHandler))
-//            self.panGestureRecognizer.delegate = self
-//            self.parent.mapView.addGestureRecognizer(panGestureRecognizer)
+            self.panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panHandler))
+            self.panGestureRecognizer.delegate = self
+            self.parent.myAzimuth.mapView.addGestureRecognizer(panGestureRecognizer)
         }
         
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -127,7 +142,7 @@ struct MapView: UIViewRepresentable {
                 self.parent.distance = String(format: "%.1f", (distance.magnitude / 1000))
                 self.parent.drawing = false
             }
-            //self.parent.center = CLLocationCoordinate2DMake(mapView.region.center.latitude, mapView.region.center.longitude)
+            self.parent.circle = CLLocationCoordinate2DMake(mapView.region.center.latitude, mapView.region.center.longitude)
         }
         
         func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
@@ -286,14 +301,15 @@ struct MapView: UIViewRepresentable {
         }
         
         // slow
-//        func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-//            return true
-//        }
+        func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+            return true
+        }
 
         // slow
-//        @objc func panHandler(_ gesture: UIPanGestureRecognizer) {
-//            //self.parent.center = CLLocationCoordinate2DMake(self.parent.mapView.region.center.latitude, self.parent.mapView.region.center.longitude)
-//        }
+        @objc func panHandler(_ gesture: UIPanGestureRecognizer) {
+            //self.parent.circle = CLLocationCoordinate2DMake(self.parent.mapView.region.center.latitude, self.parent.mapView.region.center.longitude)
+            //print("paned")
+        }
     }
     
 //    func getAntipodes(origin: CLLocationCoordinate2D) -> CLLocationCoordinate2D {

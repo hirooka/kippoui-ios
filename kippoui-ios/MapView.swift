@@ -11,12 +11,13 @@ struct MapView: UIViewRepresentable {
     @Binding var distance: String
     @Binding var drawing: Bool
     @Binding var circle: CLLocationCoordinate2D
+    @Binding var azimuth: Double
     
     @State var locationManager = CLLocationManager()
     @State var measuring = false
     
     func makeUIView(context: Context) -> MKMapView {
-        print("\(#file) - \(#function)")
+        //print("\(#file) - \(#function)")
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -35,13 +36,11 @@ struct MapView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
-        print("\(#file) - \(#function)")
+        //print("\(#file) - \(#function)")
         //uiView.setCenter(coordinate, animated: true)
-        
-        print("\(drawing.description)")
 
         if myAzimuth.coordinates0.count > 1 && myAzimuth.coordinates1.count > 1 && drawing {
-            print("\(#file) - \(#function) : DRAWING POLYLINE!")
+            //print("\(#file) - \(#function) : DRAWING POLYLINE!")
             
             uiView.overlays.forEach({
                 if $0 is MKPolyline {
@@ -74,26 +73,26 @@ struct MapView: UIViewRepresentable {
             uiView.addOverlay(polyline7)
             
         } else if !drawing {
-            print("\(#file) - \(#function) : NOT DRAWING POLYLINE!")
+            //print("\(#file) - \(#function) : NOT DRAWING POLYLINE!")
             
             // slow
-            uiView.overlays.forEach({
-                if $0 is MKPolyline {
-                    let ppp = $0 as! MKGeodesicPolyline
-                    if ppp.title == "line" {
-                        uiView.removeOverlay($0)
-                    }
-                }
-            })
-            
-            if !first {
-                var coordinatesC: [CLLocationCoordinate2D] = []
-                coordinatesC.append(myAzimuth.center)
-                coordinatesC.append(circle)
-                let polylineC = MKGeodesicPolyline(coordinates: coordinatesC, count: coordinatesC.count)
-                polylineC.title = "line"
-                uiView.addOverlay(polylineC)
-            }
+//            uiView.overlays.forEach({
+//                if $0 is MKPolyline {
+//                    let ppp = $0 as! MKGeodesicPolyline
+//                    if ppp.title == "arrow" {
+//                        uiView.removeOverlay($0)
+//                    }
+//                }
+//            })
+//
+//            if !first {
+//                var coordinatesC: [CLLocationCoordinate2D] = []
+//                coordinatesC.append(myAzimuth.center)
+//                coordinatesC.append(circle)
+//                let polylineC = MKGeodesicPolyline(coordinates: coordinatesC, count: coordinatesC.count)
+//                polylineC.title = "arrow"
+//                uiView.addOverlay(polylineC)
+//            }
         }
     }
     
@@ -136,22 +135,41 @@ struct MapView: UIViewRepresentable {
         }
         
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-            print("\(#file) - \(#function)")
+            //print("\(#file) - \(#function)")
             if self.parent.myAzimuth.coordinates0.count > 1 {
                 let distance = CLLocation(latitude: self.parent.myAzimuth.center.latitude, longitude: self.parent.myAzimuth.center.longitude).distance(from: CLLocation(latitude: mapView.region.center.latitude, longitude: mapView.region.center.longitude))
                 self.parent.distance = String(format: "%.1f", (distance.magnitude / 1000))
                 self.parent.drawing = false
+                
+                //print("\(self.parent.myAzimuth.center.latitude), \(self.parent.myAzimuth.center.longitude) -> \(mapView.region.center.latitude), \(mapView.region.center.longitude)")
+                
+                let lat1 = self.parent.myAzimuth.center.latitude * Double.pi / 180.0
+                let lon1 = self.parent.myAzimuth.center.longitude * Double.pi / 180.0
+                let lat2 = mapView.region.center.latitude * Double.pi / 180.0
+                let lon2 = mapView.region.center.longitude * Double.pi / 180.0
+                
+                let dLon = lon2 - lon1
+                let y = sin(dLon) * cos(lat2)
+                let x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon)
+                let d = atan2(y, x) * 180.0 / Double.pi
+                //print("degree: \(d)")
+                if d >= 0.0 {
+                    self.parent.azimuth = d * Double.pi / 180
+                } else {
+                    self.parent.azimuth = (d + 360) * Double.pi / 180
+                }
+                //print("radian: \(self.parent.azimuth)")
             }
             self.parent.circle = CLLocationCoordinate2DMake(mapView.region.center.latitude, mapView.region.center.longitude)
         }
         
         func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-            print("\(#file) - \(#function)")
+            //print("\(#file) - \(#function)")
             //self.parent.center = CLLocationCoordinate2DMake(mapView.region.center.latitude, mapView.region.center.longitude)
         }
         
         func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            print("\(#file) - \(#function)")
+            //print("\(#file) - \(#function)")
         }
         
         func getAngle(index: Int, argument: Double, angle: String) -> Double {

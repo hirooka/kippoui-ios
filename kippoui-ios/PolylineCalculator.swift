@@ -83,11 +83,11 @@ class PolylineCalculator: NSObject {
     }
     
     func calc() {
-        print("\(#file) - \(#function)")
+        //print("\(#file) - \(#function)")
         
         myAzimuth.center = CLLocationCoordinate2DMake(myAzimuth.mapView.region.center.latitude, myAzimuth.mapView.region.center.longitude)
         let coordinate = myAzimuth.center
-        print("center = \(coordinate.latitude), \(coordinate.longitude)")
+        //print("center = \(coordinate.latitude), \(coordinate.longitude)")
         
         myAzimuth.myPin = MyPin(title: "", coordinate: .init(latitude: coordinate.latitude, longitude: coordinate.longitude))
         

@@ -17,8 +17,14 @@ struct ModalView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("section")) {
-                    TextField("Argument", text: $preferences.argument).onChange(of: preferences.argument) {text in
+                Section(header: Text("")) {
+                    TextField("Argument", text: $preferences.argument, onEditingChanged: { (editingChanged) in
+                        if editingChanged {
+                            
+                        } else {
+
+                        }
+                    }).onChange(of: preferences.argument) {text in
                         updatedArgument = text
                     }
                     .keyboardType(.decimalPad)
@@ -40,9 +46,9 @@ struct ModalView: View {
                     })
                     .onDisappear(perform: {
                     })
-                }
-                Section(header: Text("section")) {
-                    
+                    .onTapGesture {
+                        //UIApplication.shared.endEditing()
+                    }
                 }
             }
             .navigationTitle("Preferences")
@@ -63,5 +69,14 @@ struct ModalView: View {
                 self.preferences.angle = "0"
             }
         })
+//        .onTapGesture {
+//            UIApplication.shared.endEditing()
+//        }
+    }
+}
+
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }

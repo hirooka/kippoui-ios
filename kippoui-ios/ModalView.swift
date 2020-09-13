@@ -47,7 +47,7 @@ struct ModalView: View {
             }
             .navigationTitle("Preferences")
         }.onAppear(perform: {
-            print("\(#file) - \(#function)")
+            //print("\(#file) - \(#function)")
         })
         .onDisappear(perform: {
             if updatedArgument != "" {

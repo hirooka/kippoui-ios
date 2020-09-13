@@ -34,6 +34,17 @@ struct ContentView: View {
                         .foregroundColor(/*colorScheme == .dark ? Color(red: 255/255, green: 230/215, blue: 0/255) :*/ .red)
                     
                     Button(action: {
+                        let polylineCalculator = PolylineCalculator(preferences: preferences, myAzimuth: myAzimuth)
+                        polylineCalculator.hello()
+                    }) {
+                        Image(systemName: "arrow.uturn.backward")
+                            .resizable()
+                            .frame(width: 32.0, height: 32.0)
+                            .foregroundColor(.gray)
+                    }
+                    .offset(x: geometry.size.width / 2 - 28, y: geometry.size.height / 2 - 168) // -16-12, -56-56-56
+                    
+                    Button(action: {
                         self.drawing.toggle()
                         self.first = false
                         let polylineCalculator = PolylineCalculator(preferences: preferences, myAzimuth: myAzimuth)

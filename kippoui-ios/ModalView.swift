@@ -7,7 +7,6 @@ struct ModalView: View {
     
     @State var updatedArgument = ""
     var angle = ["30", "45"]
-    @State var selected = 0
     
     let formatter: NumberFormatter = {
         let numFormatter = NumberFormatter()
@@ -20,7 +19,6 @@ struct ModalView: View {
             Form {
                 Section(header: Text("section")) {
                     TextField("Argument", text: $preferences.argument).onChange(of: preferences.argument) {text in
-                        print(text)
                         updatedArgument = text
                     }
                     .keyboardType(.decimalPad)
@@ -33,14 +31,14 @@ struct ModalView: View {
                         
                     })
                     
-                    Picker(selection: $selected, label: Text("Angle Type")) {
+                    Picker(selection: $preferences.selected, label: Text("Angle Type")) {
                         ForEach(0..<angle.count) {
                             Text(self.angle[$0])
                         }
                     }
                     .onAppear(perform: {
-                        print("Picker.onAppear : \(preferences.angle)")
-                        selected = Int(preferences.angle) ?? 0
+                    })
+                    .onDisappear(perform: {
                     })
                 }
                 Section(header: Text("section")) {
@@ -55,8 +53,8 @@ struct ModalView: View {
             if updatedArgument != "" {
                 self.preferences.argument = updatedArgument
             }
-            print("selected = \(selected)")
-            switch selected {
+            //print("selected = \(preferences.selected)")
+            switch preferences.selected {
             case 0:
                 self.preferences.angle = "0"
             case 1:

@@ -11,7 +11,8 @@ class PolylineCalculator: NSObject {
     }
     
     func hello() {
-        print("\(#file) - \(#function)")
+        //print("\(#file) - \(#function)")
+        myAzimuth.mapView.setCenter(myAzimuth.center, animated: true)
     }
     
     func getAntipodes(origin: CLLocationCoordinate2D) -> CLLocationCoordinate2D {

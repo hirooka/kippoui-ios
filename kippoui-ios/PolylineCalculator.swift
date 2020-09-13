@@ -10,6 +10,28 @@ class PolylineCalculator: NSObject {
         self.myAzimuth = myAzimuth
     }
     
+    func serach(name: String) {
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(name, completionHandler: {(places, error) in
+            if error == nil {
+                if places?.count == 0 {
+                    print("no place")
+                    return
+                }
+                for place in places! {
+                    let location = place.location
+                    let lat: CLLocationDegrees = (location?.coordinate.latitude)!
+                    let lon: CLLocationDegrees = (location?.coordinate.longitude)!
+                    let coordinate = CLLocationCoordinate2DMake(lat, lon)
+                    self.myAzimuth.mapView.setCenter(coordinate, animated: false)
+                    break
+                }
+            } else {
+                print("serach error")
+            }
+        })
+    }
+    
     func hello() {
         //print("\(#file) - \(#function)")
         myAzimuth.mapView.setCenter(myAzimuth.center, animated: true)

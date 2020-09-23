@@ -15,6 +15,7 @@ struct ContentView: View {
     
     @State var isModalPresenting = false
     @State var search = ""
+    @State var isSearchPresenting = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -35,11 +36,16 @@ struct ContentView: View {
                         .foregroundColor(colorScheme == .dark ? Color(red: 255/255, green: 230/215, blue: 0/255) : .red)
                     
                     TextField("検索したい地名", text: $search, onCommit: {
-                        
+                        self.isSearchPresenting.toggle()
                     })
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .offset(x: 0, y: geometry.size.height / 2 - 56)
                     .frame(width: geometry.size.width * 3 / 5, height: nil)
+                    .sheet(isPresented: $isSearchPresenting, onDismiss: {
+                        
+                    }) {
+                        SearchView()
+                    }
                     
                     Button(action: {
                         let polylineCalculator = PolylineCalculator(preferences: preferences, myAzimuth: myAzimuth)

@@ -11,25 +11,48 @@ class PolylineCalculator: NSObject {
     }
     
     func serach(name: String) {
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(name, completionHandler: {(places, error) in
-            if error == nil {
-                if places?.count == 0 {
-                    print("no place")
-                    return
-                }
-                for place in places! {
-                    let location = place.location
-                    let lat: CLLocationDegrees = (location?.coordinate.latitude)!
-                    let lon: CLLocationDegrees = (location?.coordinate.longitude)!
-                    let coordinate = CLLocationCoordinate2DMake(lat, lon)
-                    self.myAzimuth.mapView.setCenter(coordinate, animated: false)
-                    break
-                }
-            } else {
-                print("serach error")
+        
+//        let coordinate = CLLocationCoordinate2DMake(myAzimuth.mapView.region.center.latitude, myAzimuth.mapView.region.center.longitude)
+//        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+//        let region = MKCoordinateRegion(center: coordinate, span: span)
+        
+        let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = name
+        searchRequest.region = myAzimuth.mapView.region
+        
+        let search = MKLocalSearch(request: searchRequest)
+        search.start { (response, error) in
+            guard let response = response else {
+                return
             }
-        })
+            
+            for item in response.mapItems {
+                if let name = item.name,
+                    let location = item.placemark.location {
+                    print("\(name): \(location.coordinate.latitude),\(location.coordinate.longitude)")
+                }
+            }
+        }
+        
+//        let geocoder = CLGeocoder()
+//        geocoder.geocodeAddressString(name, completionHandler: {(places, error) in
+//            if error == nil {
+//                if places?.count == 0 {
+//                    print("no place")
+//                    return
+//                }
+//                for place in places! {
+//                    let location = place.location
+//                    let lat: CLLocationDegrees = (location?.coordinate.latitude)!
+//                    let lon: CLLocationDegrees = (location?.coordinate.longitude)!
+//                    let coordinate = CLLocationCoordinate2DMake(lat, lon)
+//                    self.myAzimuth.mapView.setCenter(coordinate, animated: false)
+//                    break
+//                }
+//            } else {
+//                print("serach error = \(error?.localizedDescription)")
+//            }
+//        })
     }
     
     func hello() {

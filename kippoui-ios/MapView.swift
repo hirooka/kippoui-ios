@@ -12,6 +12,7 @@ struct MapView: UIViewRepresentable {
     @Binding var drawing: Bool
     @Binding var circle: CLLocationCoordinate2D
     @Binding var azimuth: Double
+    @Binding var searching: Bool
     
     @State var locationManager = CLLocationManager()
     @State var measuring = false
@@ -140,6 +141,7 @@ struct MapView: UIViewRepresentable {
                 let distance = CLLocation(latitude: self.parent.myAzimuth.center.latitude, longitude: self.parent.myAzimuth.center.longitude).distance(from: CLLocation(latitude: mapView.region.center.latitude, longitude: mapView.region.center.longitude))
                 self.parent.distance = String(format: "%.1f", (distance.magnitude / 1000))
                 self.parent.drawing = false
+                self.parent.searching = false
                 
                 //print("\(self.parent.myAzimuth.center.latitude), \(self.parent.myAzimuth.center.longitude) -> \(mapView.region.center.latitude), \(mapView.region.center.longitude)")
                 

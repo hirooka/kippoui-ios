@@ -19,6 +19,9 @@
 		B12884CF24EECC2F00DCF3F5 /* kippoui_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12884CE24EECC2F00DCF3F5 /* kippoui_iosTests.swift */; };
 		B12884DA24EECC2F00DCF3F5 /* kippoui_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12884D924EECC2F00DCF3F5 /* kippoui_iosUITests.swift */; };
 		B15C73A3251A5F8D006C663C /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C73A2251A5F8D006C663C /* SearchView.swift */; };
+		B15C73A8251BA213006C663C /* SearchedPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C73A7251BA213006C663C /* SearchedPlace.swift */; };
+		B15C73AD251BA424006C663C /* SearchedPlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C73AC251BA424006C663C /* SearchedPlaceView.swift */; };
+		B15C73B2251BAA45006C663C /* SearchedPlaceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C73B1251BAA45006C663C /* SearchedPlaceRow.swift */; };
 		B167666B250548F500689D0B /* PolylineCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167666A250548F500689D0B /* PolylineCalculator.swift */; };
 		B167666D25054EA600689D0B /* MyAzimuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167666C25054EA600689D0B /* MyAzimuth.swift */; };
 		B167666F25093F8A00689D0B /* MyPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167666E25093F8A00689D0B /* MyPin.swift */; };
@@ -61,6 +64,9 @@
 		B12884D924EECC2F00DCF3F5 /* kippoui_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kippoui_iosUITests.swift; sourceTree = "<group>"; };
 		B12884DB24EECC2F00DCF3F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B15C73A2251A5F8D006C663C /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		B15C73A7251BA213006C663C /* SearchedPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedPlace.swift; sourceTree = "<group>"; };
+		B15C73AC251BA424006C663C /* SearchedPlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedPlaceView.swift; sourceTree = "<group>"; };
+		B15C73B1251BAA45006C663C /* SearchedPlaceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedPlaceRow.swift; sourceTree = "<group>"; };
 		B167666A250548F500689D0B /* PolylineCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolylineCalculator.swift; sourceTree = "<group>"; };
 		B167666C25054EA600689D0B /* MyAzimuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAzimuth.swift; sourceTree = "<group>"; };
 		B167666E25093F8A00689D0B /* MyPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPin.swift; sourceTree = "<group>"; };
@@ -130,6 +136,9 @@
 				B167666C25054EA600689D0B /* MyAzimuth.swift */,
 				B167666E25093F8A00689D0B /* MyPin.swift */,
 				B15C73A2251A5F8D006C663C /* SearchView.swift */,
+				B15C73A7251BA213006C663C /* SearchedPlace.swift */,
+				B15C73AC251BA424006C663C /* SearchedPlaceView.swift */,
+				B15C73B1251BAA45006C663C /* SearchedPlaceRow.swift */,
 			);
 			path = "kippoui-ios";
 			sourceTree = "<group>";
@@ -296,11 +305,14 @@
 				B12884BA24EECC2E00DCF3F5 /* kippoui_ios.xcdatamodeld in Sources */,
 				B1872F0E24EED3F60018A14F /* MapView.swift in Sources */,
 				B167666D25054EA600689D0B /* MyAzimuth.swift in Sources */,
+				B15C73B2251BAA45006C663C /* SearchedPlaceRow.swift in Sources */,
 				B167666B250548F500689D0B /* PolylineCalculator.swift in Sources */,
+				B15C73A8251BA213006C663C /* SearchedPlace.swift in Sources */,
 				B120C8C724FA2B8800570864 /* ModalView.swift in Sources */,
 				B12884BC24EECC2E00DCF3F5 /* ContentView.swift in Sources */,
 				B12884B724EECC2E00DCF3F5 /* SceneDelegate.swift in Sources */,
 				B120C8CB24FB5D6D00570864 /* Preferences.swift in Sources */,
+				B15C73AD251BA424006C663C /* SearchedPlaceView.swift in Sources */,
 				B15C73A3251A5F8D006C663C /* SearchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

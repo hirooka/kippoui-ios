@@ -13,4 +13,7 @@ class MyAzimuth: ObservableObject {
     @Published var coordinates5: [CLLocationCoordinate2D] = []
     @Published var coordinates6: [CLLocationCoordinate2D] = []
     @Published var coordinates7: [CLLocationCoordinate2D] = []
+    
+    @Published var searchedPlaces:[SearchedPlace] = []
+    @Published var destination: [CLLocationCoordinate2D] = []
 }

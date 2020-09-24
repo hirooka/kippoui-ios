@@ -16,6 +16,7 @@ struct ContentView: View {
     @State var isModalPresenting = false
     @State var search = ""
     @State var isSearchPresenting = false
+    @State var searching = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -26,7 +27,8 @@ struct ContentView: View {
                         distance: $distance,
                         drawing: $drawing,
                         circle: $circle,
-                        azimuth: $azimuth
+                        azimuth: $azimuth,
+                        searching: $searching
                     )
                     .edgesIgnoringSafeArea(.all)
                     
@@ -35,26 +37,30 @@ struct ContentView: View {
                         .frame(width: 32.0, height: 32.0, alignment: .center)
                         .foregroundColor(colorScheme == .dark ? Color(red: 255/255, green: 230/215, blue: 0/255) : .red)
                     
-                    TextField("検索したい地名", text: $search, onCommit: {
-                        self.isSearchPresenting.toggle()
-                    })
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .offset(x: 0, y: geometry.size.height / 2 - 56)
-                    .frame(width: geometry.size.width * 3 / 5, height: nil)
-                    .sheet(isPresented: $isSearchPresenting, onDismiss: {
-                        
-                    }) {
-                        SearchView()
-                    }
+//                    TextField("検索したい地名", text: $search, onCommit: {
+//                        self.isSearchPresenting.toggle()
+//                    })
+//                    .textFieldStyle(RoundedBorderTextFieldStyle())
+//                    .offset(x: 0, y: geometry.size.height / 2 - 56)
+//                    .frame(width: geometry.size.width * 3 / 5, height: nil)
+//                    .sheet(isPresented: $isSearchPresenting, onDismiss: {
+//
+//                    }) {
+//                        SearchView()
+//                    }
                     
                     Button(action: {
-                        let polylineCalculator = PolylineCalculator(preferences: preferences, myAzimuth: myAzimuth)
-                        polylineCalculator.serach(name: search)
+                        self.isSearchPresenting.toggle()
                     }) {
                         Image(systemName: "magnifyingglass")
                             .resizable()
                             .frame(width: 32.0, height: 32.0)
                             .foregroundColor(.gray)
+                    }
+                    .sheet(isPresented: $isSearchPresenting, onDismiss: {
+                        
+                    }) {
+                        SearchView(isSearchPresenting: self.$isSearchPresenting, searching: self.$searching)
                     }
                     .offset(x: geometry.size.width / 2 - 28, y: geometry.size.height / 2 - 225) // -16-12, -56-56-56-56
                     

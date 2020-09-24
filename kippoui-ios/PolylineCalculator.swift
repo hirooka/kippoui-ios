@@ -26,12 +26,17 @@ class PolylineCalculator: NSObject {
                 return
             }
             
+            self.myAzimuth.searchedPlaces = []
             for item in response.mapItems {
                 if let name = item.name,
-                    let location = item.placemark.location {
-                    print("\(name): \(location.coordinate.latitude),\(location.coordinate.longitude)")
+                    let location = item.placemark.location,
+                    let administrativeArea = item.placemark.administrativeArea {
+                    print("\(name): \(administrativeArea) \(location.coordinate.latitude),\(location.coordinate.longitude)")
+                    let searchedPlace = SearchedPlace(name: name, address: "", coordinate: location.coordinate)
+                    self.myAzimuth.searchedPlaces.append(searchedPlace)
                 }
             }
+            print("hit places: \(self.myAzimuth.searchedPlaces.count)")
         }
         
 //        let geocoder = CLGeocoder()
@@ -53,6 +58,10 @@ class PolylineCalculator: NSObject {
 //                print("serach error = \(error?.localizedDescription)")
 //            }
 //        })
+    }
+    
+    func goto() {
+        myAzimuth.mapView.setCenter(myAzimuth.destination[0], animated: true)
     }
     
     func hello() {

@@ -1,4 +1,5 @@
 import SwiftUI
+import MapKit
 
 struct SearchView: View {
     
@@ -27,10 +28,22 @@ struct SearchView: View {
                 ForEach(self.myAzimuth.searchedPlaces) { searchedPlace in
                     Text(searchedPlace.name)
                         .onTapGesture {
+                            
+                            self.myAzimuth.destination = []
+                            if myAzimuth.destinationPin.count > 1 {
+                                myAzimuth.destinationPin.remove(at: 0)
+                            }
+                            
                             self.searching.toggle()
-                            print("\(searchedPlace.name)")
                             self.myAzimuth.destination.append(searchedPlace.coordinate)
                             self.isSearchPresenting.toggle()
+                            
+                            let annotation = MKPointAnnotation()
+                            annotation.coordinate = searchedPlace.coordinate
+                            annotation.title = searchedPlace.name
+                            annotation.subtitle = "Your destination"
+                            self.myAzimuth.destinationPin.append(annotation)
+                            
                             let polylineCalculator = PolylineCalculator(preferences: preferences, myAzimuth: myAzimuth)
                             polylineCalculator.goto()
                         }

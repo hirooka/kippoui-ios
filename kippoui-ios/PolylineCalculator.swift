@@ -62,10 +62,16 @@ class PolylineCalculator: NSObject {
     
     func goto() {
         myAzimuth.mapView.setCenter(myAzimuth.destination[0], animated: true)
+        if myAzimuth.destinationPin.count > 1 {
+            myAzimuth.mapView.removeAnnotation(myAzimuth.destinationPin[0])
+            myAzimuth.mapView.addAnnotation(myAzimuth.destinationPin[1])
+        } else {
+            myAzimuth.mapView.addAnnotation(myAzimuth.destinationPin[0])
+        }
+        
     }
     
     func hello() {
-        //print("\(#file) - \(#function)")
         myAzimuth.mapView.setCenter(myAzimuth.center, animated: true)
     }
     

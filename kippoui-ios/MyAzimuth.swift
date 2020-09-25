@@ -16,4 +16,5 @@ class MyAzimuth: ObservableObject {
     
     @Published var searchedPlaces:[SearchedPlace] = []
     @Published var destination: [CLLocationCoordinate2D] = []
+    @Published var destinationPin: [MKPointAnnotation] = []
 }

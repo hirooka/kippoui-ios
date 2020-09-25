@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>location</string>
+	<string>利用者の現在地の位置から方位線を引くために位置情報を利用します。</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>location</string>
+	<string>利用者の現在地の位置から方位線を引くために位置情報を利用します。</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

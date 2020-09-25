@@ -32,7 +32,7 @@ struct MapView: UIViewRepresentable {
         
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         let region = MKCoordinateRegion(center: myAzimuth.center, span: span)
-        myAzimuth.mapView.setRegion(region, animated: true)
+        myAzimuth.mapView.setRegion(region, animated: false)
         return myAzimuth.mapView
     }
     
@@ -123,6 +123,31 @@ struct MapView: UIViewRepresentable {
             self.panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panHandler))
             self.panGestureRecognizer.delegate = self
             self.parent.myAzimuth.mapView.addGestureRecognizer(panGestureRecognizer)
+        }
+        
+        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+            switch status {
+            case .notDetermined:
+                // アプリ初回起動時に「""に位置情報の使用を許可しますか？」が表示される前に呼ばれる。
+                print("notDetermined")
+            case .restricted:
+                print("restricted")
+            case .denied:
+                // 「""に位置情報の使用を許可しますか？」で「許可しない」を選択すると呼ばれる。座標は(0,0)
+                print("denied")
+                let center = CLLocationCoordinate2DMake(35.681236, 139.767125)
+                self.parent.myAzimuth.mapView.setCenter(center, animated: false)
+            case .authorizedAlways:
+                print("authorizedAlways")
+            case .authorizedWhenInUse:
+                // 「""に位置情報の使用を許可しますか？」で「Appの使用中は許可」を選択すると呼ばれる。座標は現在地
+                // 「""に位置情報の使用を許可しますか？」で「1度だけ許可」を選択すると呼ばれる。座標は現在地
+                print("authorizedWhenInUse")
+            default:
+                print("default")
+            }
+            // 「""を使用をしていないときでも位置情報の使用を許可しますか？」で「"常に許可"に変更」を選択すると何も呼ばれない。
+            // 「""を使用をしていないときでも位置情報の使用を許可しますか？」で「"使用中のみ許可"のままにする」を選択すると何も呼ばれない。
         }
         
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {

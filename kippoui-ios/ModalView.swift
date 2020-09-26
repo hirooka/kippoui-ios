@@ -24,8 +24,8 @@ struct ModalView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("")) {
-                    TextField("Argument", text: $preferences.argument, onEditingChanged: { (editingChanged) in
+                Section(header: Text("偏角 [度]")) {
+                    TextField("", text: $preferences.argument, onEditingChanged: { (editingChanged) in
                         if editingChanged {
                             
                         } else {
@@ -43,8 +43,9 @@ struct ModalView: View {
                     .onDisappear(perform: {
                         
                     })
-                    
-                    Picker(selection: $preferences.selected, label: Text("Angle Type")) {
+                }
+                Section(header: Text("方位線のタイプ")) {
+                    Picker(selection: $preferences.selected, label: Text("方位線のタイプ")) {
                         ForEach(0..<angle.count) {
                             Text(self.angle[$0])
                         }
@@ -58,7 +59,7 @@ struct ModalView: View {
                     }
                 }
             }
-            .navigationTitle("Preferences")
+            .navigationTitle("設定")
             .navigationBarItems(trailing:
                 Button(action: {
                     print("updatedArgument = \(updatedArgument), preferences.selected = \(preferences.selected), preferences.angle = \(self.preferences.angle)")
@@ -111,16 +112,16 @@ struct ModalView: View {
                         }
                     }
                 }) {
-                    Text("Save")
+                    Text("保存")
                 }
                 .alert(isPresented: $isAlert) {
                     switch activeAlert {
                     case .error:
-                        return Alert(title: Text("エラー"), message: Text("偏角を正しく入力してください。"), dismissButton: .default(Text("わかった")))
+                        return Alert(title: Text("エラー"), message: Text("偏角を正しく入力してください。"), dismissButton: .default(Text("OK")))
                     case .save:
-                        return Alert(title: Text("成功"), message: Text("設定が保存されました。"), dismissButton: .default(Text("わかった")))
+                        return Alert(title: Text("成功"), message: Text("設定が保存されました。"), dismissButton: .default(Text("OK")))
                     case .none:
-                        return Alert(title: Text("エラー"), message: Text("何も変更されていません。"), dismissButton: .default(Text("わかった")))
+                        return Alert(title: Text("注意"), message: Text("何も変更されていません。"), dismissButton: .default(Text("OK")))
                     }
                 }
             )

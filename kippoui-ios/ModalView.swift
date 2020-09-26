@@ -76,18 +76,18 @@ struct ModalView: View {
             .navigationTitle("設定")
             .navigationBarItems(trailing:
                 Button(action: {
-                    print("arg = \(arg), updatedArgument = \(updatedArgument), preferences.argument = \(preferences.argument)")
-                    print("arg = \(sel), preferences.selected = \(preferences.selected)")
+                    //print("arg = \(arg), updatedArgument = \(updatedArgument), preferences.argument = \(preferences.argument)")
+                    //print("arg = \(sel), preferences.selected = \(preferences.selected)")
                     
                     if arg == preferences.argument && sel == preferences.selected {
-                        print("無変更")
+                        //print("無変更")
                         self.isAlert = true
                         self.activeAlert = .none
                         return
                     }
                     
                     if arg == preferences.argument && sel != preferences.selected {
-                        print("角度タイプのみ変更")
+                        //print("角度タイプのみ変更")
                         switch sel {
                         case 0:
                             self.preferences.selected = 0
@@ -105,7 +105,7 @@ struct ModalView: View {
                     }
                     
                     if arg != preferences.argument && sel == preferences.selected {
-                        print("偏角のみ変更")
+                        //print("偏角のみ変更")
                         do {
                             let regex = try NSRegularExpression(pattern: "^([1-9]\\d*|0)(\\.\\d+)?$", options: [])
                             let results = regex.matches(in: arg, options: [], range: NSRange(0..<arg.count))
@@ -123,7 +123,7 @@ struct ModalView: View {
                     }
                     
                     if arg != preferences.argument && sel != preferences.selected {
-                        print("偏角と角度タイプの両方を変更")
+                        //print("偏角と角度タイプの両方を変更")
                         do {
                             let regex = try NSRegularExpression(pattern: "^([1-9]\\d*|0)(\\.\\d+)?$", options: [])
                             let results = regex.matches(in: arg, options: [], range: NSRange(0..<arg.count))
@@ -211,6 +211,8 @@ struct ModalView: View {
                     case .save:
                         return Alert(title: Text("成功"), message: Text("設定が保存されました。"), dismissButton: .default(Text("OK"), action: {
                             self.isModalPresenting.toggle()
+                            let polylineCalculator = PolylineCalculator(preferences: preferences, myAzimuth: myAzimuth)
+                            polylineCalculator.updatePreferences()
                         }))
                     case .none:
                         return Alert(title: Text("注意"), message: Text("何も変更されていません。"), dismissButton: .default(Text("OK")))

@@ -100,7 +100,7 @@ struct ContentView: View {
                     .sheet(isPresented: $isModalPresenting, onDismiss: {
                         
                     }) {
-                        ModalView()
+                        ModalView(isModalPresenting: $isModalPresenting)
                     }
                     .offset(x: geometry.size.width / 2 - 28, y: geometry.size.height / 2 - 56) // -16-12, -16-40
                     

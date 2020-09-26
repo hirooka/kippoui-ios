@@ -16,6 +16,7 @@ struct MapView: UIViewRepresentable {
     
     @State var locationManager = CLLocationManager()
     @State var measuring = false
+    @State var isInit = false
     
     func makeUIView(context: Context) -> MKMapView {
         //print("\(#file) - \(#function)")
@@ -40,7 +41,7 @@ struct MapView: UIViewRepresentable {
         //print("\(#file) - \(#function)")
         //uiView.setCenter(coordinate, animated: true)
 
-        if myAzimuth.coordinates0.count > 1 && myAzimuth.coordinates1.count > 1 && drawing {
+        if myAzimuth.coordinates0.count > 1 && myAzimuth.coordinates1.count > 1 && (drawing || isInit) {
             //print("\(#file) - \(#function) : DRAWING POLYLINE!")
             
             uiView.overlays.forEach({
@@ -54,6 +55,13 @@ struct MapView: UIViewRepresentable {
             
             let myPins = [myAzimuth.myPin]
             uiView.addAnnotations(myPins)
+            
+            if myAzimuth.destinationPin.count == 1 {
+                uiView.addAnnotation(myAzimuth.destinationPin[0])
+            }
+            if myAzimuth.destinationPin.count == 2 {
+                uiView.addAnnotation(myAzimuth.destinationPin[1])
+            }
 
             let polyline0 = MKGeodesicPolyline(coordinates: myAzimuth.coordinates0, count: myAzimuth.coordinates0.count)
             let polyline1 = MKGeodesicPolyline(coordinates: myAzimuth.coordinates1, count: myAzimuth.coordinates1.count)
@@ -125,29 +133,64 @@ struct MapView: UIViewRepresentable {
             self.parent.myAzimuth.mapView.addGestureRecognizer(panGestureRecognizer)
         }
         
-        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-            switch status {
+        func initialPolyline(_ manager: CLLocationManager) {
+            if !self.parent.isInit, let lat = manager.location?.coordinate.latitude, let lon = manager.location?.coordinate.longitude {
+                let center = CLLocationCoordinate2DMake(lat, lon)
+                self.parent.myAzimuth.center = center
+                self.parent.myAzimuth.mapView.setCenter(center, animated: false)
+                
+                //self.parent.drawing = true
+                self.parent.isInit = true
+                let polylineCalculator = PolylineCalculator(preferences: self.parent.preferences, myAzimuth: self.parent.myAzimuth)
+                polylineCalculator.calc()
+            }
+        }
+        
+        func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+            //print("\(#file) - \(#function)")
+            
+            switch manager.authorizationStatus {
             case .notDetermined:
                 // アプリ初回起動時に「""に位置情報の使用を許可しますか？」が表示される前に呼ばれる。
                 print("notDetermined")
+                return
             case .restricted:
                 print("restricted")
+                return
             case .denied:
                 // 「""に位置情報の使用を許可しますか？」で「許可しない」を選択すると呼ばれる。座標は(0,0)
                 print("denied")
                 let center = CLLocationCoordinate2DMake(35.681236, 139.767125)
+                self.parent.myAzimuth.center = center
                 self.parent.myAzimuth.mapView.setCenter(center, animated: false)
+                
+                //self.parent.drawing = true
+                self.parent.isInit = true
+                let polylineCalculator = PolylineCalculator(preferences: self.parent.preferences, myAzimuth: self.parent.myAzimuth)
+                polylineCalculator.calc()
             case .authorizedAlways:
                 print("authorizedAlways")
+                initialPolyline(manager)
             case .authorizedWhenInUse:
                 // 「""に位置情報の使用を許可しますか？」で「Appの使用中は許可」を選択すると呼ばれる。座標は現在地
                 // 「""に位置情報の使用を許可しますか？」で「1度だけ許可」を選択すると呼ばれる。座標は現在地
+                // アプリ再起動時にも呼ばれる。
                 print("authorizedWhenInUse")
+                initialPolyline(manager)
             default:
                 print("default")
+                initialPolyline(manager)
             }
-            // 「""を使用をしていないときでも位置情報の使用を許可しますか？」で「"常に許可"に変更」を選択すると何も呼ばれない。
-            // 「""を使用をしていないときでも位置情報の使用を許可しますか？」で「"使用中のみ許可"のままにする」を選択すると何も呼ばれない。
+            // 「""を使用をしていないときでも位置情報の使用を許可しますか？」で「"常に許可"に変更」を選択すると...
+            // 「""を使用をしていないときでも位置情報の使用を許可しますか？」で「"使用中のみ許可"のままにする」を選択すると...
+        }
+        
+        func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
+            //print("\(#file) - \(#function)")
+        }
+        
+        func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
+            //print("\(#file) - \(#function)")
         }
         
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -197,6 +240,7 @@ struct MapView: UIViewRepresentable {
         
         func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
             //print("\(#file) - \(#function)")
+            initialPolyline(manager)
         }
         
         func getAngle(index: Int, argument: Double, angle: String) -> Double {

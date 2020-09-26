@@ -78,6 +78,7 @@ struct ContentView: View {
                     Button(action: {
                         self.drawing.toggle()
                         self.first = false
+                        self.distance = "0.0"
                         let polylineCalculator = PolylineCalculator(preferences: preferences, myAzimuth: myAzimuth)
                         polylineCalculator.calc()
                     }) {

@@ -154,7 +154,7 @@ class PolylineCalculator: NSObject {
         
         let distance = 6378136.6
         
-        let argument = Double(preferences.argument)!
+        let argument = Double(preferences.argument)! * -1
         let angle = preferences.angle
         //print("angle = \(angle)")
         

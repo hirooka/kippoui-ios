@@ -44,6 +44,8 @@ struct MapView: UIViewRepresentable {
         if myAzimuth.coordinates0.count > 1 && myAzimuth.coordinates1.count > 1 && (drawing || isInit) {
             //print("\(#file) - \(#function) : DRAWING POLYLINE!")
             
+            context.coordinator.parent = self // CoordinatorでcolorSchemeの変更を反映させるために必要
+            
             uiView.overlays.forEach({
                 if $0 is MKPolyline {
                     uiView.removeOverlay($0)
@@ -152,14 +154,14 @@ struct MapView: UIViewRepresentable {
             switch manager.authorizationStatus {
             case .notDetermined:
                 // アプリ初回起動時に「""に位置情報の使用を許可しますか？」が表示される前に呼ばれる。
-                print("notDetermined")
+                //print("notDetermined")
                 return
             case .restricted:
-                print("restricted")
+                //print("restricted")
                 return
             case .denied:
                 // 「""に位置情報の使用を許可しますか？」で「許可しない」を選択すると呼ばれる。座標は(0,0)
-                print("denied")
+                //print("denied")
                 let center = CLLocationCoordinate2DMake(35.681236, 139.767125)
                 self.parent.myAzimuth.center = center
                 self.parent.myAzimuth.mapView.setCenter(center, animated: false)
@@ -169,16 +171,16 @@ struct MapView: UIViewRepresentable {
                 let polylineCalculator = PolylineCalculator(preferences: self.parent.preferences, myAzimuth: self.parent.myAzimuth)
                 polylineCalculator.calc()
             case .authorizedAlways:
-                print("authorizedAlways")
+                //print("authorizedAlways")
                 initialPolyline(manager)
             case .authorizedWhenInUse:
                 // 「""に位置情報の使用を許可しますか？」で「Appの使用中は許可」を選択すると呼ばれる。座標は現在地
                 // 「""に位置情報の使用を許可しますか？」で「1度だけ許可」を選択すると呼ばれる。座標は現在地
                 // アプリ再起動時にも呼ばれる。
-                print("authorizedWhenInUse")
+                //print("authorizedWhenInUse")
                 initialPolyline(manager)
             default:
-                print("default")
+                //print("default")
                 initialPolyline(manager)
             }
             // 「""を使用をしていないときでも位置情報の使用を許可しますか？」で「"常に許可"に変更」を選択すると...

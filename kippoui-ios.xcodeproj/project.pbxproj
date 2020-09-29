@@ -26,6 +26,16 @@
 		B167666D25054EA600689D0B /* MyAzimuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167666C25054EA600689D0B /* MyAzimuth.swift */; };
 		B167666F25093F8A00689D0B /* MyPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167666E25093F8A00689D0B /* MyPin.swift */; };
 		B1872F0E24EED3F60018A14F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1872F0D24EED3F60018A14F /* MapView.swift */; };
+		B1CA36522523119A00517BCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1CA36512523119A00517BCF /* Assets.xcassets */; };
+		B1CA36592523119B00517BCF /* kippoui-watchos Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1CA36582523119B00517BCF /* kippoui-watchos Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B1CA365E2523119B00517BCF /* kippoui_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA365D2523119B00517BCF /* kippoui_iosApp.swift */; };
+		B1CA36602523119B00517BCF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA365F2523119B00517BCF /* ContentView.swift */; };
+		B1CA36622523119B00517BCF /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA36612523119B00517BCF /* NotificationController.swift */; };
+		B1CA36642523119B00517BCF /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA36632523119B00517BCF /* NotificationView.swift */; };
+		B1CA36662523119B00517BCF /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA36652523119B00517BCF /* ComplicationController.swift */; };
+		B1CA36682523119B00517BCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1CA36672523119B00517BCF /* Assets.xcassets */; };
+		B1CA366B2523119B00517BCF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1CA366A2523119B00517BCF /* Preview Assets.xcassets */; };
+		B1CA36702523119C00517BCF /* kippoui-watchos.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B1CA364F2523119900517BCF /* kippoui-watchos.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +53,46 @@
 			remoteGlobalIDString = B12884B024EECC2E00DCF3F5;
 			remoteInfo = "kippoui-ios";
 		};
+		B1CA365A2523119B00517BCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B12884A924EECC2E00DCF3F5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B1CA36572523119B00517BCF;
+			remoteInfo = "kippoui-watchos Extension";
+		};
+		B1CA366E2523119C00517BCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B12884A924EECC2E00DCF3F5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B1CA364E2523119900517BCF;
+			remoteInfo = "kippoui-watchos";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B1CA36712523119C00517BCF /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				B1CA36702523119C00517BCF /* kippoui-watchos.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1CA36742523119C00517BCF /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B1CA36592523119B00517BCF /* kippoui-watchos Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B120C8C624FA2B8800570864 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
@@ -71,6 +120,19 @@
 		B167666C25054EA600689D0B /* MyAzimuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAzimuth.swift; sourceTree = "<group>"; };
 		B167666E25093F8A00689D0B /* MyPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPin.swift; sourceTree = "<group>"; };
 		B1872F0D24EED3F60018A14F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		B1CA364F2523119900517BCF /* kippoui-watchos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kippoui-watchos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1CA36512523119A00517BCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B1CA36532523119A00517BCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1CA36582523119B00517BCF /* kippoui-watchos Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "kippoui-watchos Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1CA365D2523119B00517BCF /* kippoui_iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kippoui_iosApp.swift; sourceTree = "<group>"; };
+		B1CA365F2523119B00517BCF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B1CA36612523119B00517BCF /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		B1CA36632523119B00517BCF /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		B1CA36652523119B00517BCF /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		B1CA36672523119B00517BCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B1CA366A2523119B00517BCF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B1CA366C2523119B00517BCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1CA366D2523119B00517BCF /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +157,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B1CA36552523119B00517BCF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -104,6 +173,8 @@
 				B12884B324EECC2E00DCF3F5 /* kippoui-ios */,
 				B12884CD24EECC2F00DCF3F5 /* kippoui-iosTests */,
 				B12884D824EECC2F00DCF3F5 /* kippoui-iosUITests */,
+				B1CA36502523119900517BCF /* kippoui-watchos */,
+				B1CA365C2523119B00517BCF /* kippoui-watchos Extension */,
 				B12884B224EECC2E00DCF3F5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -114,6 +185,8 @@
 				B12884B124EECC2E00DCF3F5 /* kippoui-ios.app */,
 				B12884CA24EECC2F00DCF3F5 /* kippoui-iosTests.xctest */,
 				B12884D524EECC2F00DCF3F5 /* kippoui-iosUITests.xctest */,
+				B1CA364F2523119900517BCF /* kippoui-watchos.app */,
+				B1CA36582523119B00517BCF /* kippoui-watchos Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,6 +242,39 @@
 			path = "kippoui-iosUITests";
 			sourceTree = "<group>";
 		};
+		B1CA36502523119900517BCF /* kippoui-watchos */ = {
+			isa = PBXGroup;
+			children = (
+				B1CA36512523119A00517BCF /* Assets.xcassets */,
+				B1CA36532523119A00517BCF /* Info.plist */,
+			);
+			path = "kippoui-watchos";
+			sourceTree = "<group>";
+		};
+		B1CA365C2523119B00517BCF /* kippoui-watchos Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B1CA365D2523119B00517BCF /* kippoui_iosApp.swift */,
+				B1CA365F2523119B00517BCF /* ContentView.swift */,
+				B1CA36612523119B00517BCF /* NotificationController.swift */,
+				B1CA36632523119B00517BCF /* NotificationView.swift */,
+				B1CA36652523119B00517BCF /* ComplicationController.swift */,
+				B1CA36672523119B00517BCF /* Assets.xcassets */,
+				B1CA366C2523119B00517BCF /* Info.plist */,
+				B1CA366D2523119B00517BCF /* PushNotificationPayload.apns */,
+				B1CA36692523119B00517BCF /* Preview Content */,
+			);
+			path = "kippoui-watchos Extension";
+			sourceTree = "<group>";
+		};
+		B1CA36692523119B00517BCF /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B1CA366A2523119B00517BCF /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -179,10 +285,12 @@
 				B12884AD24EECC2E00DCF3F5 /* Sources */,
 				B12884AE24EECC2E00DCF3F5 /* Frameworks */,
 				B12884AF24EECC2E00DCF3F5 /* Resources */,
+				B1CA36712523119C00517BCF /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B1CA366F2523119C00517BCF /* PBXTargetDependency */,
 			);
 			name = "kippoui-ios";
 			productName = "kippoui-ios";
@@ -225,13 +333,47 @@
 			productReference = B12884D524EECC2F00DCF3F5 /* kippoui-iosUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		B1CA364E2523119900517BCF /* kippoui-watchos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1CA36782523119C00517BCF /* Build configuration list for PBXNativeTarget "kippoui-watchos" */;
+			buildPhases = (
+				B1CA364D2523119900517BCF /* Resources */,
+				B1CA36742523119C00517BCF /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B1CA365B2523119B00517BCF /* PBXTargetDependency */,
+			);
+			name = "kippoui-watchos";
+			productName = "kippoui-watchos";
+			productReference = B1CA364F2523119900517BCF /* kippoui-watchos.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		B1CA36572523119B00517BCF /* kippoui-watchos Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1CA36772523119C00517BCF /* Build configuration list for PBXNativeTarget "kippoui-watchos Extension" */;
+			buildPhases = (
+				B1CA36542523119B00517BCF /* Sources */,
+				B1CA36552523119B00517BCF /* Frameworks */,
+				B1CA36562523119B00517BCF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "kippoui-watchos Extension";
+			productName = "kippoui-watchos Extension";
+			productReference = B1CA36582523119B00517BCF /* kippoui-watchos Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		B12884A924EECC2E00DCF3F5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1160;
+				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = kinakoankon;
 				TargetAttributes = {
@@ -245,6 +387,12 @@
 					B12884D424EECC2F00DCF3F5 = {
 						CreatedOnToolsVersion = 11.6;
 						TestTargetID = B12884B024EECC2E00DCF3F5;
+					};
+					B1CA364E2523119900517BCF = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					B1CA36572523119B00517BCF = {
+						CreatedOnToolsVersion = 12.0;
 					};
 				};
 			};
@@ -264,6 +412,8 @@
 				B12884B024EECC2E00DCF3F5 /* kippoui-ios */,
 				B12884C924EECC2F00DCF3F5 /* kippoui-iosTests */,
 				B12884D424EECC2F00DCF3F5 /* kippoui-iosUITests */,
+				B1CA364E2523119900517BCF /* kippoui-watchos */,
+				B1CA36572523119B00517BCF /* kippoui-watchos Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -290,6 +440,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1CA364D2523119900517BCF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1CA36522523119A00517BCF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1CA36562523119B00517BCF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1CA366B2523119B00517BCF /* Preview Assets.xcassets in Resources */,
+				B1CA36682523119B00517BCF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +500,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B1CA36542523119B00517BCF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1CA36622523119B00517BCF /* NotificationController.swift in Sources */,
+				B1CA36602523119B00517BCF /* ContentView.swift in Sources */,
+				B1CA36662523119B00517BCF /* ComplicationController.swift in Sources */,
+				B1CA365E2523119B00517BCF /* kippoui_iosApp.swift in Sources */,
+				B1CA36642523119B00517BCF /* NotificationView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -345,6 +524,16 @@
 			isa = PBXTargetDependency;
 			target = B12884B024EECC2E00DCF3F5 /* kippoui-ios */;
 			targetProxy = B12884D624EECC2F00DCF3F5 /* PBXContainerItemProxy */;
+		};
+		B1CA365B2523119B00517BCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B1CA36572523119B00517BCF /* kippoui-watchos Extension */;
+			targetProxy = B1CA365A2523119B00517BCF /* PBXContainerItemProxy */;
+		};
+		B1CA366F2523119C00517BCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B1CA364E2523119900517BCF /* kippoui-watchos */;
+			targetProxy = B1CA366E2523119C00517BCF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -606,6 +795,102 @@
 			};
 			name = Release;
 		};
+		B1CA36722523119C00517BCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = Y26KU5YK2Y;
+				IBSC_MODULE = kippoui_watchos_Extension;
+				INFOPLIST_FILE = "kippoui-watchos/Info.plist";
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "pro.hirooka.kippoui-ios.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Debug;
+		};
+		B1CA36732523119C00517BCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = Y26KU5YK2Y;
+				IBSC_MODULE = kippoui_watchos_Extension;
+				INFOPLIST_FILE = "kippoui-watchos/Info.plist";
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "pro.hirooka.kippoui-ios.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Release;
+		};
+		B1CA36752523119C00517BCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "\"kippoui-watchos Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = Y26KU5YK2Y;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "kippoui-watchos Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "pro.hirooka.kippoui-ios.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Debug;
+		};
+		B1CA36762523119C00517BCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "\"kippoui-watchos Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = Y26KU5YK2Y;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "kippoui-watchos Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "pro.hirooka.kippoui-ios.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -641,6 +926,24 @@
 			buildConfigurations = (
 				B12884E524EECC2F00DCF3F5 /* Debug */,
 				B12884E624EECC2F00DCF3F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1CA36772523119C00517BCF /* Build configuration list for PBXNativeTarget "kippoui-watchos Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1CA36752523119C00517BCF /* Debug */,
+				B1CA36762523119C00517BCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1CA36782523119C00517BCF /* Build configuration list for PBXNativeTarget "kippoui-watchos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1CA36722523119C00517BCF /* Debug */,
+				B1CA36732523119C00517BCF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

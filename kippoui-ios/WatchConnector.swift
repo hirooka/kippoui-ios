@@ -42,4 +42,13 @@ class WatchConnector: NSObject, ObservableObject, WCSessionDelegate {
         }
     }
     
+    func sendMessage(message: [String : Any]) {
+        print("\(#file) - \(#function)")
+        if session.isReachable {
+            session.sendMessage(message, replyHandler: nil, errorHandler: { error in
+                print("\(error)")
+            })
+        }
+    }
+    
 }

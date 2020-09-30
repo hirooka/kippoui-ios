@@ -15,7 +15,7 @@ struct SearchView: View {
         VStack {
             VStack(alignment: .leading) {
                 HStack {
-                    TextField("検索したい地名を入力してください", text: $search, onCommit: {
+                    TextField("行きたい場所の地名、郵便番号、または住所を入力してください。", text: $search, onCommit: {
                         self.myAzimuth.destination = []
                         let polylineCalculator = PolylineCalculator(preferences: preferences, myAzimuth: myAzimuth)
                         polylineCalculator.serach(name: search)

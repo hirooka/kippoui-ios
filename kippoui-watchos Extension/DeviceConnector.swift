@@ -2,7 +2,11 @@ import WatchConnectivity
 
 class DeviceConnector: NSObject, ObservableObject, WCSessionDelegate {
     
+    @Published var azimuth = "-"
     @Published var distance = "-"
+    @Published var latitude = "-"
+    @Published var longitude = "-"
+    @Published var now = "-"
     
     override init() {
         super.init()
@@ -22,7 +26,11 @@ class DeviceConnector: NSObject, ObservableObject, WCSessionDelegate {
         print("\(#file) - \(#function)")
         print("didReceiveMessage: \(message)")
         DispatchQueue.main.async {
-            self.distance = "\(message["count"] as! String)"
+            self.azimuth = "\(message["azimuth"] as! String)"
+            self.distance = "\(message["distance"] as! String)"
+            self.latitude = "\(message["latitude"] as! String)"
+            self.longitude = "\(message["longitude"] as! String)"
+            self.now = "\(message["now"] as! String)"
         }
     }
 }

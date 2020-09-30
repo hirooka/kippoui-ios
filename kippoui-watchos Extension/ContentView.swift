@@ -5,7 +5,15 @@ struct ContentView: View {
     @ObservedObject var con = DeviceConnector()
     
     var body: some View {
-        Text("\(con.distance)").padding()
+        VStack {
+            Text("方位: \(con.azimuth)[度]")
+            Text("距離: \(con.distance)[km]")
+            Text("緯度: \(con.latitude)[度]")
+            Text("経度: \(con.longitude)[度]")
+            Text("最終更新日時:")
+            Text("\(con.now)")
+        }
+        
     }
 }
 

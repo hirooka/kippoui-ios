@@ -18,6 +18,8 @@ struct MapView: UIViewRepresentable {
     @State var measuring = false
     @State var isInit = false
     
+    @ObservedObject var watchConnector = WatchConnector()
+    
     func makeUIView(context: Context) -> MKMapView {
         //print("\(#file) - \(#function)")
         
@@ -243,6 +245,41 @@ struct MapView: UIViewRepresentable {
         func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
             //print("\(#file) - \(#function)")
             initialPolyline(manager)
+            
+            //
+            if let lat = manager.location?.coordinate.latitude, let lon = manager.location?.coordinate.longitude {
+                
+                let distanceDouble = CLLocation(latitude: self.parent.myAzimuth.center.latitude, longitude: self.parent.myAzimuth.center.longitude).distance(from: CLLocation(latitude: lat, longitude: lon))
+                let distance = String(format: "%.1f", (distanceDouble.magnitude / 1000))
+                
+                let lat1 = self.parent.myAzimuth.center.latitude * Double.pi / 180.0
+                let lon1 = self.parent.myAzimuth.center.longitude * Double.pi / 180.0
+                let lat2 = lat * Double.pi / 180.0
+                let lon2 = lon * Double.pi / 180.0
+                
+                let dLon = lon2 - lon1
+                let y = sin(dLon) * cos(lat2)
+                let x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon)
+                let d = atan2(y, x) * 180.0 / Double.pi
+                //print("degree: \(d)")
+                var azimuth = "-"
+                if d >= 0.0 {
+                    azimuth = String(format: "%.1f", d)
+                } else {
+                    azimuth = String(format: "%.1f", d + 360)
+                }
+                
+                let latitude = String(format: "%.6f", lat)
+                let longitude = String(format: "%.6f", lon)
+                
+                let df = DateFormatter()
+                df.dateStyle = .medium
+                df.timeStyle = .medium
+                let now = df.string(from: Date())
+                let message = ["now":now, "latitude":"\(latitude)", "longitude":"\(longitude)", "azimuth":"\(azimuth)", "distance":"\(distance)"] as [String : Any]
+                print("\(message)")
+                self.parent.watchConnector.sendMessage(message: message)
+            }
         }
         
         func getAngle(index: Int, argument: Double, angle: String) -> Double {

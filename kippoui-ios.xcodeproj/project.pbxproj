@@ -25,6 +25,8 @@
 		B167666B250548F500689D0B /* PolylineCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167666A250548F500689D0B /* PolylineCalculator.swift */; };
 		B167666D25054EA600689D0B /* MyAzimuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167666C25054EA600689D0B /* MyAzimuth.swift */; };
 		B167666F25093F8A00689D0B /* MyPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167666E25093F8A00689D0B /* MyPin.swift */; };
+		B16E90582523786B00D6A99E /* WatchConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16E90572523786B00D6A99E /* WatchConnector.swift */; };
+		B16E905F252380FA00D6A99E /* DeviceConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16E905E252380FA00D6A99E /* DeviceConnector.swift */; };
 		B1872F0E24EED3F60018A14F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1872F0D24EED3F60018A14F /* MapView.swift */; };
 		B1CA36522523119A00517BCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1CA36512523119A00517BCF /* Assets.xcassets */; };
 		B1CA36592523119B00517BCF /* kippoui-watchos Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1CA36582523119B00517BCF /* kippoui-watchos Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -119,6 +121,8 @@
 		B167666A250548F500689D0B /* PolylineCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolylineCalculator.swift; sourceTree = "<group>"; };
 		B167666C25054EA600689D0B /* MyAzimuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAzimuth.swift; sourceTree = "<group>"; };
 		B167666E25093F8A00689D0B /* MyPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPin.swift; sourceTree = "<group>"; };
+		B16E90572523786B00D6A99E /* WatchConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnector.swift; sourceTree = "<group>"; };
+		B16E905E252380FA00D6A99E /* DeviceConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConnector.swift; sourceTree = "<group>"; };
 		B1872F0D24EED3F60018A14F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		B1CA364F2523119900517BCF /* kippoui-watchos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kippoui-watchos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1CA36512523119A00517BCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -212,6 +216,7 @@
 				B15C73A7251BA213006C663C /* SearchedPlace.swift */,
 				B15C73AC251BA424006C663C /* SearchedPlaceView.swift */,
 				B15C73B1251BAA45006C663C /* SearchedPlaceRow.swift */,
+				B16E90572523786B00D6A99E /* WatchConnector.swift */,
 			);
 			path = "kippoui-ios";
 			sourceTree = "<group>";
@@ -263,6 +268,7 @@
 				B1CA366C2523119B00517BCF /* Info.plist */,
 				B1CA366D2523119B00517BCF /* PushNotificationPayload.apns */,
 				B1CA36692523119B00517BCF /* Preview Content */,
+				B16E905E252380FA00D6A99E /* DeviceConnector.swift */,
 			);
 			path = "kippoui-watchos Extension";
 			sourceTree = "<group>";
@@ -468,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B12884B524EECC2E00DCF3F5 /* AppDelegate.swift in Sources */,
+				B16E90582523786B00D6A99E /* WatchConnector.swift in Sources */,
 				B167666F25093F8A00689D0B /* MyPin.swift in Sources */,
 				B12884BA24EECC2E00DCF3F5 /* kippoui_ios.xcdatamodeld in Sources */,
 				B1872F0E24EED3F60018A14F /* MapView.swift in Sources */,
@@ -507,6 +514,7 @@
 				B1CA36622523119B00517BCF /* NotificationController.swift in Sources */,
 				B1CA36602523119B00517BCF /* ContentView.swift in Sources */,
 				B1CA36662523119B00517BCF /* ComplicationController.swift in Sources */,
+				B16E905F252380FA00D6A99E /* DeviceConnector.swift in Sources */,
 				B1CA365E2523119B00517BCF /* kippoui_iosApp.swift in Sources */,
 				B1CA36642523119B00517BCF /* NotificationView.swift in Sources */,
 			);

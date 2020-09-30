@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var con = DeviceConnector()
+    
     var body: some View {
-        Text("Hello, World!")
-            .padding()
+        Text("\(con.distance)").padding()
     }
 }
 

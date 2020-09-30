@@ -18,6 +18,8 @@ struct ContentView: View {
     @State var isSearchPresenting = false
     @State var searching = false
     
+    @ObservedObject var con = WatchConnector()
+    
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -67,6 +69,9 @@ struct ContentView: View {
                     Button(action: {
                         let polylineCalculator = PolylineCalculator(preferences: preferences, myAzimuth: myAzimuth)
                         polylineCalculator.hello()
+                        
+                        // TODO: test
+                        con.sendMessage()
                     }) {
                         Image(systemName: "arrow.uturn.backward")
                             .resizable()

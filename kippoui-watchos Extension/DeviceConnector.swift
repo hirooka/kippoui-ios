@@ -2,6 +2,7 @@ import WatchConnectivity
 
 class DeviceConnector: NSObject, ObservableObject, WCSessionDelegate {
     
+    @Published var direction = "-"
     @Published var azimuth = "-"
     @Published var distance = "-"
     @Published var latitude = "-"
@@ -26,6 +27,7 @@ class DeviceConnector: NSObject, ObservableObject, WCSessionDelegate {
         print("\(#file) - \(#function)")
         print("didReceiveMessage: \(message)")
         DispatchQueue.main.async {
+            self.direction = "\(message["direction"] as! String)"
             self.azimuth = "\(message["azimuth"] as! String)"
             self.distance = "\(message["distance"] as! String)"
             self.latitude = "\(message["latitude"] as! String)"

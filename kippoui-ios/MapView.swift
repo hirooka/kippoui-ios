@@ -263,11 +263,15 @@ struct MapView: UIViewRepresentable {
                 let d = atan2(y, x) * 180.0 / Double.pi
                 //print("degree: \(d)")
                 var azimuth = "-"
+                var degree = 0.0
                 if d >= 0.0 {
                     azimuth = String(format: "%.1f", d)
+                    degree = d
                 } else {
                     azimuth = String(format: "%.1f", d + 360)
+                    degree = d + 360
                 }
+                let direction = getDirection(d: degree)
                 
                 let latitude = String(format: "%.6f", lat)
                 let longitude = String(format: "%.6f", lon)
@@ -276,10 +280,53 @@ struct MapView: UIViewRepresentable {
                 df.dateStyle = .medium
                 df.timeStyle = .medium
                 let now = df.string(from: Date())
-                let message = ["now":now, "latitude":"\(latitude)", "longitude":"\(longitude)", "azimuth":"\(azimuth)", "distance":"\(distance)"] as [String : Any]
+                let message = ["now":now, "latitude":"\(latitude)", "longitude":"\(longitude)", "azimuth":"\(azimuth)", "distance":"\(distance)", "direction": direction] as [String : Any]
                 print("\(message)")
                 self.parent.watchConnector.sendMessage(message: message)
             }
+        }
+        
+        func getDirection(d: Double) -> String {
+            let a = Double(self.parent.preferences.argument)!
+            let angle = self.parent.preferences.angle
+            if angle == "0" { // 30
+                if d > 345.0 - a && d < 15.0 - a {
+                    return "北"
+                } else if d > 15.0 - a && d < 75.0 - a {
+                    return "北東"
+                } else if d > 75.0 - a && d < 105.0 - a {
+                    return "東"
+                } else if d > 105.0 - a && d < 165.0 - a {
+                    return "南東"
+                } else if d > 165.0 - a && d < 195.0 - a {
+                    return "南"
+                } else if d > 195.0 - a && d < 255.0 - a {
+                    return "南西"
+                } else if d > 255.0 - a && d < 285.0 - a {
+                    return "西"
+                } else if d > 285.0 - a && d < 345.0 - a {
+                    return "北西"
+                }
+            }else if angle == "1" { // 45
+                if d > 337.5 - a && d < 22.5 - a {
+                    return "北"
+                } else if d > 22.5 - a && d < 67.5 - a {
+                    return "北東"
+                } else if d > 67.5 - a && d < 112.5 - a {
+                    return "東"
+                } else if d > 112.5 - a && d < 157.5 - a {
+                    return "南東"
+                } else if d > 157.5 - a && d < 202.5 - a {
+                    return "南"
+                } else if d > 202.5 - a && d < 247.5 - a {
+                    return "南西"
+                } else if d > 247.5 - a && d < 292.5 - a {
+                    return "西"
+                } else if d > 292.5 - a && d < 337.5 - a {
+                    return "北西"
+                }
+            }
+            return "-"
         }
         
         func getAngle(index: Int, argument: Double, angle: String) -> Double {

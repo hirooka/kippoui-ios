@@ -17,6 +17,7 @@ struct ContentView: View {
     @State var search = ""
     @State var isSearchPresenting = false
     @State var searching = false
+    @State var isUserPresenting = false
     
     @ObservedObject var con = WatchConnector()
     
@@ -50,6 +51,21 @@ struct ContentView: View {
 //                    }) {
 //                        SearchView()
 //                    }
+                    
+                    Button(action: {
+                        self.isUserPresenting.toggle()
+                    }) {
+                        Image(systemName: "person")
+                            .resizable()
+                            .frame(width: 32.0, height: 32.0)
+                            .foregroundColor(.gray)
+                    }
+                    .sheet(isPresented: $isUserPresenting, onDismiss: {
+                        
+                    }) {
+                        UserView(isUserPresenting: $isUserPresenting)
+                    }
+                    .offset(x: geometry.size.width / 2 - 28, y: geometry.size.height / 2 - 281) // -16-12, -56-56-56-56-56
                     
                     Button(action: {
                         self.isSearchPresenting.toggle()

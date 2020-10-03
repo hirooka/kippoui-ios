@@ -12,6 +12,11 @@ extension UserEntity {
         }
         newUserEnriry.birthday = birthday
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ja_JP")
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "ydMMM(EEEEE)", options: 0, locale: Locale(identifier: "ja_JP"))
+        newUserEnriry.birthdayString = "\(dateFormatter.string(from: birthday))"
+        
         do {
             try managedObjectContext.save()
         } catch {

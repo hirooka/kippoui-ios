@@ -26,7 +26,7 @@ struct UserView: View {
             VStack {
                 List {
                     ForEach(users, id: \.self) { user in
-                        Text("\(user.name ?? "名無し") - \(user.birthday ?? Date(timeIntervalSince1970: 0))")
+                        Text("\(user.name ?? "名無し") - \(user.birthdayString ?? "")")
                     }.onDelete { indices in
                         self.users.delete(at: indices, from: self.viewContext)
                     }

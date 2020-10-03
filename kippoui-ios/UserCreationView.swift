@@ -28,7 +28,8 @@ struct UserCreationView: View {
             )
             //Text("\(birthdayDate)")
             Button(action: {
-                UserEntity.create(in: self.viewContext)
+                UserEntity.create(name: name, birthday: birthdayDate, in: self.viewContext)
+                self.isUserCreationPresenting.toggle()
             }) {
                 Text("保存")
             }

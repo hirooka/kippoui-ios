@@ -22,23 +22,29 @@ struct UserView: View {
     let dateFormatter = DateFormatter()
     
     var body: some View {
-        VStack {
-            Button(action: {
-                self.isUserCreationPresenting.toggle()
-            }) {
-                Text("追加")
-            }
-            .sheet(isPresented: $isUserCreationPresenting, onDismiss: {
-                
-            }) {
-                UserCreationView(isUserCreationPresenting: $isUserCreationPresenting)
-            }
-            List {
-                ForEach(users, id: \.self) { user in
-                    //Text("\(user.timestamp!, formatter: dateFormatter)")
-                    Text("\(user.name ?? "名無し")")
+        NavigationView {
+            VStack {
+                List {
+                    ForEach(users, id: \.self) { user in
+                        Text("\(user.name ?? "名無し") - \(user.birthday ?? Date(timeIntervalSince1970: 0))")
+                    }.onDelete { indices in
+                        self.users.delete(at: indices, from: self.viewContext)
+                    }
                 }
             }
+            .navigationTitle("ユーザー情報")
+            .navigationBarItems(trailing:
+                Button(action: {
+                    self.isUserCreationPresenting.toggle()
+                }) {
+                    Text("追加")
+                }
+                .sheet(isPresented: $isUserCreationPresenting, onDismiss: {
+                
+                }) {
+                    UserCreationView(isUserCreationPresenting: $isUserCreationPresenting)
+                }
+            )
         }
     }
 }

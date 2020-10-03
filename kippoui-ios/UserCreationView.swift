@@ -16,31 +16,36 @@ struct UserCreationView: View {
 //        return dateFormatter.date(from: "1868-01-01")!
 //    }
     
-    var f = Date()
-    
     var body: some View {
-        VStack {
-            TextField("名前", text: $name, onCommit: {
+        NavigationView {
+            VStack {
+                Spacer()
+                TextField("名前", text: $name, onCommit: {
                 
-            })
-            .textFieldStyle(RoundedBorderTextFieldStyle())
-            DatePicker(
-                selection: $birthdayDate,
-                //in: from...Date(),
-                displayedComponents: [.date],
-                label: {Text("誕生日")}
-            )
-            .environment(\.locale, Locale(identifier: "ja_JP"))
-            //Text("\(birthdayDate)")
-            Button(action: {
-                UserEntity.create(name: name, birthday: birthdayDate, in: self.viewContext)
-                self.isUserCreationPresenting.toggle()
-            }) {
-                Text("保存")
+                })
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                DatePicker(
+                    selection: $birthdayDate,
+                    //in: from...Date(),
+                    displayedComponents: [.date],
+                    label: {Text("誕生日")}
+                )
+                .environment(\.locale, Locale(identifier: "ja_JP"))
+                //Text("\(birthdayDate)")
+                Spacer()
+                Button(action: {
+                    UserEntity.create(name: name, birthday: birthdayDate, in: self.viewContext)
+                    self.isUserCreationPresenting.toggle()
+                }) {
+                    Text("保存")
+                }
+                Spacer()
             }
-        }
-        .onTapGesture {
-            UIApplication.shared.endEditing()
+            .onTapGesture {
+                UIApplication.shared.endEditing()
+            }
+            .padding([.top, .leading, .trailing])
+            .navigationTitle("ユーザー追加")
         }
     }
 }

@@ -8,11 +8,15 @@ struct UserCreationView: View {
 
     @State var name = ""
     @State var birthdayDate = Date()
-    var from: Date {
-        let  format = DateFormatter()
-        format.dateFormat = "yyyy-MM-dd"
-        return format.date(from: "1868-01-01")!
-    }
+//    var from: Date {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.locale = Locale(identifier: "ja_JP")
+//        //dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "ydMMM(EEEEE)", options: 0, locale: Locale(identifier: "ja_JP"))
+//        dateFormatter.dateFormat = "yyyy-MM-dd"
+//        return dateFormatter.date(from: "1868-01-01")!
+//    }
+    
+    var f = Date()
     
     var body: some View {
         VStack {
@@ -22,10 +26,11 @@ struct UserCreationView: View {
             .textFieldStyle(RoundedBorderTextFieldStyle())
             DatePicker(
                 selection: $birthdayDate,
-                in: from...Date(),
+                //in: from...Date(),
                 displayedComponents: [.date],
                 label: {Text("誕生日")}
             )
+            .environment(\.locale, Locale(identifier: "ja_JP"))
             //Text("\(birthdayDate)")
             Button(action: {
                 UserEntity.create(name: name, birthday: birthdayDate, in: self.viewContext)

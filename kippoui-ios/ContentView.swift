@@ -13,7 +13,7 @@ struct ContentView: View {
     @State var circle = CLLocationCoordinate2D()
     @State var azimuth = 0.0
     
-    @State var isModalPresenting = false
+    @State var isPreferencesPresenting = false
     @State var search = ""
     @State var isSearchPresenting = false
     @State var searching = false
@@ -108,17 +108,17 @@ struct ContentView: View {
                     .offset(x: geometry.size.width / 2 - 28, y: geometry.size.height / 2 - 112) // -16-12, -56-56
                     
                     Button(action: {
-                        self.isModalPresenting.toggle()
+                        self.isPreferencesPresenting.toggle()
                     }) {
                         Image(systemName: "gearshape")
                             .resizable()
                             .frame(width: 32.0, height: 32.0)
                             .foregroundColor(.gray)
                     }
-                    .sheet(isPresented: $isModalPresenting, onDismiss: {
+                    .sheet(isPresented: $isPreferencesPresenting, onDismiss: {
                         
                     }) {
-                        ModalView(isModalPresenting: $isModalPresenting)
+                        PreferencesView(isPreferencesPresenting: $isPreferencesPresenting)
                     }
                     .offset(x: geometry.size.width / 2 - 28, y: geometry.size.height / 2 - 56) // -16-12, -16-40
                     

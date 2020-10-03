@@ -2,6 +2,8 @@ import SwiftUI
 
 struct UserCreationView: View {
     
+    @Environment(\.managedObjectContext) var viewContext
+    
     @Binding var isUserCreationPresenting: Bool
 
     @State var name = ""
@@ -26,7 +28,7 @@ struct UserCreationView: View {
             )
             //Text("\(birthdayDate)")
             Button(action: {
-                
+                UserEntity.create(in: self.viewContext)
             }) {
                 Text("保存")
             }

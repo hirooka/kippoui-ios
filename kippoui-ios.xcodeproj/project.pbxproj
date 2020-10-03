@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B120C8C724FA2B8800570864 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120C8C624FA2B8800570864 /* ModalView.swift */; };
+		B120C8C724FA2B8800570864 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120C8C624FA2B8800570864 /* PreferencesView.swift */; };
 		B120C8CB24FB5D6D00570864 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120C8CA24FB5D6D00570864 /* Preferences.swift */; };
 		B12884B524EECC2E00DCF3F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12884B424EECC2E00DCF3F5 /* AppDelegate.swift */; };
 		B12884B724EECC2E00DCF3F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12884B624EECC2E00DCF3F5 /* SceneDelegate.swift */; };
@@ -30,6 +30,7 @@
 		B16E9075252789E100D6A99E /* MyCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16E9074252789E100D6A99E /* MyCalculator.swift */; };
 		B16E90882528381A00D6A99E /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16E90872528381A00D6A99E /* UserView.swift */; };
 		B16E908F2528431800D6A99E /* UserCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16E908E2528431800D6A99E /* UserCreationView.swift */; };
+		B16E9096252856CA00D6A99E /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16E9095252856CA00D6A99E /* UserEntity.swift */; };
 		B1872F0E24EED3F60018A14F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1872F0D24EED3F60018A14F /* MapView.swift */; };
 		B1CA36522523119A00517BCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1CA36512523119A00517BCF /* Assets.xcassets */; };
 		B1CA36592523119B00517BCF /* kippoui-watchos Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1CA36582523119B00517BCF /* kippoui-watchos Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -100,7 +101,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B120C8C624FA2B8800570864 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
+		B120C8C624FA2B8800570864 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		B120C8CA24FB5D6D00570864 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		B12884B124EECC2E00DCF3F5 /* kippoui-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kippoui-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B12884B424EECC2E00DCF3F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +130,7 @@
 		B16E9074252789E100D6A99E /* MyCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalculator.swift; sourceTree = "<group>"; };
 		B16E90872528381A00D6A99E /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		B16E908E2528431800D6A99E /* UserCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCreationView.swift; sourceTree = "<group>"; };
+		B16E9095252856CA00D6A99E /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
 		B1872F0D24EED3F60018A14F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		B1CA364F2523119900517BCF /* kippoui-watchos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kippoui-watchos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1CA36512523119A00517BCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -213,7 +215,7 @@
 				B12884B824EECC2E00DCF3F5 /* kippoui_ios.xcdatamodeld */,
 				B12884BF24EECC2F00DCF3F5 /* Preview Content */,
 				B1872F0D24EED3F60018A14F /* MapView.swift */,
-				B120C8C624FA2B8800570864 /* ModalView.swift */,
+				B120C8C624FA2B8800570864 /* PreferencesView.swift */,
 				B120C8CA24FB5D6D00570864 /* Preferences.swift */,
 				B167666A250548F500689D0B /* PolylineCalculator.swift */,
 				B167666C25054EA600689D0B /* MyAzimuth.swift */,
@@ -226,6 +228,7 @@
 				B16E9074252789E100D6A99E /* MyCalculator.swift */,
 				B16E90872528381A00D6A99E /* UserView.swift */,
 				B16E908E2528431800D6A99E /* UserCreationView.swift */,
+				B16E9095252856CA00D6A99E /* UserEntity.swift */,
 			);
 			path = "kippoui-ios";
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 			files = (
 				B12884B524EECC2E00DCF3F5 /* AppDelegate.swift in Sources */,
 				B16E90582523786B00D6A99E /* WatchConnector.swift in Sources */,
+				B16E9096252856CA00D6A99E /* UserEntity.swift in Sources */,
 				B16E908F2528431800D6A99E /* UserCreationView.swift in Sources */,
 				B167666F25093F8A00689D0B /* MyPin.swift in Sources */,
 				B12884BA24EECC2E00DCF3F5 /* kippoui_ios.xcdatamodeld in Sources */,
@@ -492,7 +496,7 @@
 				B15C73B2251BAA45006C663C /* SearchedPlaceRow.swift in Sources */,
 				B167666B250548F500689D0B /* PolylineCalculator.swift in Sources */,
 				B15C73A8251BA213006C663C /* SearchedPlace.swift in Sources */,
-				B120C8C724FA2B8800570864 /* ModalView.swift in Sources */,
+				B120C8C724FA2B8800570864 /* PreferencesView.swift in Sources */,
 				B12884BC24EECC2E00DCF3F5 /* ContentView.swift in Sources */,
 				B12884B724EECC2E00DCF3F5 /* SceneDelegate.swift in Sources */,
 				B120C8CB24FB5D6D00570864 /* Preferences.swift in Sources */,

@@ -4,12 +4,12 @@ enum ActiveAlert {
     case error, save, none
 }
 
-struct ModalView: View {
+struct PreferencesView: View {
     
     @EnvironmentObject var preferences: Preferences
     @EnvironmentObject var myAzimuth: MyAzimuth
     
-    @Binding var isModalPresenting: Bool
+    @Binding var isPreferencesPresenting: Bool
     
     @State var updatedArgument = ""
     var angle = ["30", "45"]
@@ -210,7 +210,7 @@ struct ModalView: View {
                         return Alert(title: Text("エラー"), message: Text("偏角を正しく入力してください(0, 0.0, 正の整数、正の小数)。"), dismissButton: .default(Text("OK")))
                     case .save:
                         return Alert(title: Text("成功"), message: Text("設定が保存されました。"), dismissButton: .default(Text("OK"), action: {
-                            self.isModalPresenting.toggle()
+                            self.isPreferencesPresenting.toggle()
                             let polylineCalculator = PolylineCalculator(preferences: preferences, myAzimuth: myAzimuth)
                             polylineCalculator.updatePreferences()
                         }))

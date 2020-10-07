@@ -25,6 +25,7 @@
 		B167666B250548F500689D0B /* PolylineCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167666A250548F500689D0B /* PolylineCalculator.swift */; };
 		B167666D25054EA600689D0B /* MyAzimuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167666C25054EA600689D0B /* MyAzimuth.swift */; };
 		B167666F25093F8A00689D0B /* MyPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167666E25093F8A00689D0B /* MyPin.swift */; };
+		B167CF84252A39B000973AD8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B167CF83252A39B000973AD8 /* CloudKit.framework */; };
 		B16E90582523786B00D6A99E /* WatchConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16E90572523786B00D6A99E /* WatchConnector.swift */; };
 		B16E905F252380FA00D6A99E /* DeviceConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16E905E252380FA00D6A99E /* DeviceConnector.swift */; };
 		B16E9075252789E100D6A99E /* MyCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16E9074252789E100D6A99E /* MyCalculator.swift */; };
@@ -125,6 +126,8 @@
 		B167666A250548F500689D0B /* PolylineCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolylineCalculator.swift; sourceTree = "<group>"; };
 		B167666C25054EA600689D0B /* MyAzimuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAzimuth.swift; sourceTree = "<group>"; };
 		B167666E25093F8A00689D0B /* MyPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPin.swift; sourceTree = "<group>"; };
+		B167CF7C252A39AC00973AD8 /* kippoui-iosRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "kippoui-iosRelease.entitlements"; sourceTree = "<group>"; };
+		B167CF83252A39B000973AD8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		B16E90572523786B00D6A99E /* WatchConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnector.swift; sourceTree = "<group>"; };
 		B16E905E252380FA00D6A99E /* DeviceConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConnector.swift; sourceTree = "<group>"; };
 		B16E9074252789E100D6A99E /* MyCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalculator.swift; sourceTree = "<group>"; };
@@ -152,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B167CF84252A39B000973AD8 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +192,7 @@
 				B1CA36502523119900517BCF /* kippoui-watchos */,
 				B1CA365C2523119B00517BCF /* kippoui-watchos Extension */,
 				B12884B224EECC2E00DCF3F5 /* Products */,
+				B167CF82252A39B000973AD8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -206,6 +211,7 @@
 		B12884B324EECC2E00DCF3F5 /* kippoui-ios */ = {
 			isa = PBXGroup;
 			children = (
+				B167CF7C252A39AC00973AD8 /* kippoui-iosRelease.entitlements */,
 				B12884B424EECC2E00DCF3F5 /* AppDelegate.swift */,
 				B12884B624EECC2E00DCF3F5 /* SceneDelegate.swift */,
 				B12884BB24EECC2E00DCF3F5 /* ContentView.swift */,
@@ -257,6 +263,14 @@
 				B12884DB24EECC2F00DCF3F5 /* Info.plist */,
 			);
 			path = "kippoui-iosUITests";
+			sourceTree = "<group>";
+		};
+		B167CF82252A39B000973AD8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B167CF83252A39B000973AD8 /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		B1CA36502523119900517BCF /* kippoui-watchos */ = {
@@ -693,6 +707,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "kippoui-ios/kippoui-iosRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"kippoui-ios/Preview Content\"";
@@ -716,7 +731,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = "kippoui-ios/kippoui-iosRelease.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"kippoui-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = Y26KU5YK2Y;
@@ -730,6 +747,7 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "pro.hirooka.kippoui-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "My Azimuth";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

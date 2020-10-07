@@ -211,30 +211,24 @@
 		B12884B324EECC2E00DCF3F5 /* kippoui-ios */ = {
 			isa = PBXGroup;
 			children = (
-				B167CF7C252A39AC00973AD8 /* kippoui-iosRelease.entitlements */,
 				B12884B424EECC2E00DCF3F5 /* AppDelegate.swift */,
 				B12884B624EECC2E00DCF3F5 /* SceneDelegate.swift */,
 				B12884BB24EECC2E00DCF3F5 /* ContentView.swift */,
-				B12884BD24EECC2F00DCF3F5 /* Assets.xcassets */,
 				B12884C224EECC2F00DCF3F5 /* LaunchScreen.storyboard */,
 				B12884C524EECC2F00DCF3F5 /* Info.plist */,
 				B12884B824EECC2E00DCF3F5 /* kippoui_ios.xcdatamodeld */,
-				B12884BF24EECC2F00DCF3F5 /* Preview Content */,
+				B167CF7C252A39AC00973AD8 /* kippoui-iosRelease.entitlements */,
 				B1872F0D24EED3F60018A14F /* MapView.swift */,
-				B120C8C624FA2B8800570864 /* PreferencesView.swift */,
-				B120C8CA24FB5D6D00570864 /* Preferences.swift */,
-				B167666A250548F500689D0B /* PolylineCalculator.swift */,
 				B167666C25054EA600689D0B /* MyAzimuth.swift */,
 				B167666E25093F8A00689D0B /* MyPin.swift */,
-				B15C73A2251A5F8D006C663C /* SearchView.swift */,
-				B15C73A7251BA213006C663C /* SearchedPlace.swift */,
-				B15C73AC251BA424006C663C /* SearchedPlaceView.swift */,
-				B15C73B1251BAA45006C663C /* SearchedPlaceRow.swift */,
+				B167666A250548F500689D0B /* PolylineCalculator.swift */,
 				B16E90572523786B00D6A99E /* WatchConnector.swift */,
+				B19807FB252E1BC200781D03 /* user */,
+				B19807FA252E1B5D00781D03 /* search */,
+				B19807F9252E0CBE00781D03 /* preferences */,
+				B12884BD24EECC2F00DCF3F5 /* Assets.xcassets */,
+				B12884BF24EECC2F00DCF3F5 /* Preview Content */,
 				B16E9074252789E100D6A99E /* MyCalculator.swift */,
-				B16E90872528381A00D6A99E /* UserView.swift */,
-				B16E908E2528431800D6A99E /* UserCreationView.swift */,
-				B16E9095252856CA00D6A99E /* UserEntity.swift */,
 			);
 			path = "kippoui-ios";
 			sourceTree = "<group>";
@@ -271,6 +265,36 @@
 				B167CF83252A39B000973AD8 /* CloudKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B19807F9252E0CBE00781D03 /* preferences */ = {
+			isa = PBXGroup;
+			children = (
+				B120C8CA24FB5D6D00570864 /* Preferences.swift */,
+				B120C8C624FA2B8800570864 /* PreferencesView.swift */,
+			);
+			path = preferences;
+			sourceTree = "<group>";
+		};
+		B19807FA252E1B5D00781D03 /* search */ = {
+			isa = PBXGroup;
+			children = (
+				B15C73A7251BA213006C663C /* SearchedPlace.swift */,
+				B15C73A2251A5F8D006C663C /* SearchView.swift */,
+				B15C73AC251BA424006C663C /* SearchedPlaceView.swift */,
+				B15C73B1251BAA45006C663C /* SearchedPlaceRow.swift */,
+			);
+			path = search;
+			sourceTree = "<group>";
+		};
+		B19807FB252E1BC200781D03 /* user */ = {
+			isa = PBXGroup;
+			children = (
+				B16E90872528381A00D6A99E /* UserView.swift */,
+				B16E908E2528431800D6A99E /* UserCreationView.swift */,
+				B16E9095252856CA00D6A99E /* UserEntity.swift */,
+			);
+			path = user;
 			sourceTree = "<group>";
 		};
 		B1CA36502523119900517BCF /* kippoui-watchos */ = {

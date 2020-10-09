@@ -101,9 +101,9 @@ class PolylineCalculator: NSObject {
         return CLLocationCoordinate2DMake(latitudeDestinationDegree, longitudeDestinationDegree)
     }
     
-    func getAngle(index: Int, argument: Double, angle: String) -> Double {
+    func getAngle(index: Int, argument: Double, angle: Int) -> Double {
         
-        if angle == "8方位(30/60)" { // 8-3060
+        if angle == 0 { // 8-3060
             if index == 0 {
                 return 15.0 + argument
             } else if index == 1 {
@@ -121,7 +121,7 @@ class PolylineCalculator: NSObject {
             } else if index == 7 {
                 return 345.0 + argument
             }
-        } else if angle == "8方位(45)" { // 8-45
+        } else if angle == 1 { // 8-45
             if index == 0 {
                 return 22.5 + argument
             } else if index == 1 {
@@ -139,7 +139,7 @@ class PolylineCalculator: NSObject {
             } else if index == 7 {
                 return 337.5 + argument
             }
-        } else if angle == "12方位" { // 12
+        } else if angle == 2 { // 12
             if index == 0 {
                 return 15.0 + argument
             } else if index == 1 {
@@ -165,7 +165,7 @@ class PolylineCalculator: NSObject {
             } else if index == 11 {
                 return 345.0 + argument
             }
-        } else if angle == "24方位" { // 24
+        } else if angle == 3 { // 24
             if index == 0 {
                 return 7.5 + argument
             } else if index == 1 {
@@ -231,14 +231,14 @@ class PolylineCalculator: NSObject {
         let distance = 6378136.6
         
         let argument = Double(preferences.argument)! * -1
-        let angle = preferences.angle
+        let angle = preferences.selected//preferences.angle
         //print("angle = \(angle)")
         
         let antipodes = getAntipodes(origin: coordinate)
         
         myAzimuth.coordinates = []
         //vat tempc: [[CLLocationCoordinate2D]] = [[]]
-        if angle == "8方位(30/60)" || angle == "8方位(45)" { // 8
+        if angle == 0 || angle == 1 { // 8
             for i in 0..<8 {
                 var c: [CLLocationCoordinate2D] = []
                 c.append(coordinate)
@@ -248,7 +248,7 @@ class PolylineCalculator: NSObject {
                 myAzimuth.coordinates.append(c)
                 print("\(myAzimuth.coordinates.count)")
             }
-        } else if angle == "12方位" { // 12
+        } else if angle == 2 { // 12
             for i in 0..<12 {
                 var c: [CLLocationCoordinate2D] = []
                 c.append(coordinate)
@@ -257,7 +257,7 @@ class PolylineCalculator: NSObject {
                 c.append(antipodes)
                 myAzimuth.coordinates.append(c)
             }
-        } else if angle == "24方位" { // 24
+        } else if angle == 3 { // 24
             for i in 0..<24 {
                 var c: [CLLocationCoordinate2D] = []
                 c.append(coordinate)
@@ -278,13 +278,13 @@ class PolylineCalculator: NSObject {
         let distance = 6378136.6
         
         let argument = Double(preferences.argument)! * -1
-        let angle = preferences.angle
+        let angle = preferences.selected//preferences.angle
         //print("angle = \(angle)")
         
         let antipodes = getAntipodes(origin: coordinate)
         
         myAzimuth.coordinates = []
-        if angle == "8方位(30/60)" || angle == "8方位(45)" { // 8
+        if angle == 0 || angle == 1 { // 8
             for i in 0..<8 {
                 var c: [CLLocationCoordinate2D] = []
                 c.append(coordinate)
@@ -294,7 +294,7 @@ class PolylineCalculator: NSObject {
                 myAzimuth.coordinates.append(c)
                 print("\(myAzimuth.coordinates.count)")
             }
-        } else if angle == "12方位" { // 12
+        } else if angle == 2 { // 12
             for i in 0..<12 {
                 var c: [CLLocationCoordinate2D] = []
                 c.append(coordinate)
@@ -303,7 +303,7 @@ class PolylineCalculator: NSObject {
                 c.append(antipodes)
                 myAzimuth.coordinates.append(c)
             }
-        } else if angle == "24方位" { // 24
+        } else if angle == 3 { // 24
             for i in 0..<24 {
                 var c: [CLLocationCoordinate2D] = []
                 c.append(coordinate)

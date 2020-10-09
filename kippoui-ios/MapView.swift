@@ -276,8 +276,8 @@ struct MapView: UIViewRepresentable {
         
         func getDirection(d: Double) -> String {
             let a = Double(self.parent.preferences.argument)!
-            let angle = self.parent.preferences.angle
-            if angle == "0" { // 30
+            let angle = self.parent.preferences.selected//.angle
+            if angle == 0 { // 30
                 if d > 345.0 - a && d < 15.0 - a {
                     return "北"
                 } else if d > 15.0 - a && d < 75.0 - a {
@@ -295,7 +295,7 @@ struct MapView: UIViewRepresentable {
                 } else if d > 285.0 - a && d < 345.0 - a {
                     return "北西"
                 }
-            }else if angle == "1" { // 45
+            }else if angle == 1 { // 45
                 if d > 337.5 - a && d < 22.5 - a {
                     return "北"
                 } else if d > 22.5 - a && d < 67.5 - a {

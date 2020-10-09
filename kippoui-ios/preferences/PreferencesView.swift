@@ -91,19 +91,19 @@ struct PreferencesView: View {
                         switch sel {
                         case 0:
                             self.preferences.selected = 0
-                            self.preferences.angle = "8方位(30/60)"
+                            //self.preferences.angle = "8方位(30/60)"
                         case 1:
                             self.preferences.selected = 1
-                            self.preferences.angle = "8方位(45)"
+                            //self.preferences.angle = "8方位(45)"
                         case 2:
                             self.preferences.selected = 2
-                            self.preferences.angle = "12方位"
+                            //self.preferences.angle = "12方位"
                         case 3:
                             self.preferences.selected = 3
-                            self.preferences.angle = "24方位"
+                            //self.preferences.angle = "24方位"
                         default:
                             self.preferences.selected = 0
-                            self.preferences.angle = "8方位(30/60)"
+                            //self.preferences.angle = "8方位(30/60)"
                         }
                         self.isAlert = true
                         self.activeAlert = .save
@@ -141,19 +141,19 @@ struct PreferencesView: View {
                                 switch sel {
                                 case 0:
                                     self.preferences.selected = 0
-                                    self.preferences.angle = "8方位(30/60)"
+                                    //self.preferences.angle = "8方位(30/60)"
                                 case 1:
                                     self.preferences.selected = 1
-                                    self.preferences.angle = "8方位(45)"
+                                    //self.preferences.angle = "8方位(45)"
                                 case 2:
                                     self.preferences.selected = 2
-                                    self.preferences.angle = "12方位"
+                                    //self.preferences.angle = "12方位"
                                 case 3:
                                     self.preferences.selected = 3
-                                    self.preferences.angle = "24方位"
+                                    //self.preferences.angle = "24方位"
                                 default:
                                     self.preferences.selected = 0
-                                    self.preferences.angle = "8方位(30/60)"
+                                    //self.preferences.angle = "8方位(30/60)"
                                 }
                                 self.isAlert = true
                                 self.activeAlert = .save

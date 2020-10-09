@@ -40,18 +40,6 @@ struct ContentView: View {
                         .frame(width: 32.0, height: 32.0, alignment: .center)
                         .foregroundColor(colorScheme == .dark ? Color(red: 255/255, green: 230/215, blue: 0/255) : .red)
                     
-//                    TextField("検索したい地名", text: $search, onCommit: {
-//                        self.isSearchPresenting.toggle()
-//                    })
-//                    .textFieldStyle(RoundedBorderTextFieldStyle())
-//                    .offset(x: 0, y: geometry.size.height / 2 - 56)
-//                    .frame(width: geometry.size.width * 3 / 5, height: nil)
-//                    .sheet(isPresented: $isSearchPresenting, onDismiss: {
-//
-//                    }) {
-//                        SearchView()
-//                    }
-                    
                     Button(action: {
                         self.isUserPresenting.toggle()
                     }) {

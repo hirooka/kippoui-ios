@@ -103,7 +103,7 @@ class PolylineCalculator: NSObject {
     
     func getAngle(index: Int, argument: Double, angle: String) -> Double {
         
-        if angle == "0" {
+        if angle == "8方位(30/60)" { // 8-3060
             if index == 0 {
                 return 15.0 + argument
             } else if index == 1 {
@@ -121,7 +121,7 @@ class PolylineCalculator: NSObject {
             } else if index == 7 {
                 return 345.0 + argument
             }
-        }else if angle == "1" {
+        } else if angle == "8方位(45)" { // 8-45
             if index == 0 {
                 return 22.5 + argument
             } else if index == 1 {
@@ -138,6 +138,82 @@ class PolylineCalculator: NSObject {
                 return 292.5 + argument
             } else if index == 7 {
                 return 337.5 + argument
+            }
+        } else if angle == "12方位" { // 12
+            if index == 0 {
+                return 15.0 + argument
+            } else if index == 1 {
+                return 45.0 + argument
+            } else if index == 2 {
+                return 75.0 + argument
+            } else if index == 3 {
+                return 105.0 + argument
+            } else if index == 4 {
+                return 135.0 + argument
+            } else if index == 5 {
+                return 165.0 + argument
+            } else if index == 6 {
+                return 195.0 + argument
+            } else if index == 7 {
+                return 225.0 + argument
+            } else if index == 8 {
+                return 255.0 + argument
+            } else if index == 9 {
+                return 285.0 + argument
+            } else if index == 10 {
+                return 315.0 + argument
+            } else if index == 11 {
+                return 345.0 + argument
+            }
+        } else if angle == "24方位" { // 24
+            if index == 0 {
+                return 7.5 + argument
+            } else if index == 1 {
+                return 22.5 + argument
+            } else if index == 2 {
+                return 37.5 + argument
+            } else if index == 3 {
+                return 52.5 + argument
+            } else if index == 4 {
+                return 67.5 + argument
+            } else if index == 5 {
+                return 82.5 + argument
+            } else if index == 6 {
+                return 97.5 + argument
+            } else if index == 7 {
+                return 112.5 + argument
+            } else if index == 8 {
+                return 127.5 + argument
+            } else if index == 9 {
+                return 142.5 + argument
+            } else if index == 10 {
+                return 157.5 + argument
+            } else if index == 11 {
+                return 172.5 + argument
+            } else if index == 12 {
+                return 187.5 + argument
+            } else if index == 13 {
+                return 202.5 + argument
+            } else if index == 14 {
+                return 217.5 + argument
+            } else if index == 15 {
+                return 232.5 + argument
+            } else if index == 16 {
+                return 247.5 + argument
+            } else if index == 17 {
+                return 262.5 + argument
+            } else if index == 18 {
+                return 277.5 + argument
+            } else if index == 19 {
+                return 292.5 + argument
+            } else if index == 20 {
+                return 307.5 + argument
+            } else if index == 21 {
+                return 322.5 + argument
+            } else if index == 22 {
+                return 337.5 + argument
+            } else if index == 23 {
+                return 352.5 + argument
             }
         }
         return 0.0
@@ -160,61 +236,38 @@ class PolylineCalculator: NSObject {
         
         let antipodes = getAntipodes(origin: coordinate)
         
-        myAzimuth.coordinates0 = []
-        myAzimuth.coordinates0.append(coordinate)
-        let l0 = getLocation(origin: coordinate, angle: getAngle(index: 0, argument: argument, angle: angle), distance: distance)
-        //print("0: \(l0.latitude), \(l0.longitude)")
-        myAzimuth.coordinates0.append(l0)
-        myAzimuth.coordinates0.append(antipodes)
-        
-        myAzimuth.coordinates1 = []
-        myAzimuth.coordinates1.append(coordinate)
-        let l1 = getLocation(origin: coordinate, angle: getAngle(index: 1, argument: argument, angle: angle), distance: distance)
-        //print("1: \(l1.latitude), \(l1.longitude)")
-        myAzimuth.coordinates1.append(l1)
-        myAzimuth.coordinates1.append(antipodes)
-        
-        myAzimuth.coordinates2 = []
-        myAzimuth.coordinates2.append(coordinate)
-        let l2 = getLocation(origin: coordinate, angle: getAngle(index: 2, argument: argument, angle: angle), distance: distance)
-        //print("2: \(l2.latitude), \(l2.longitude)")
-        myAzimuth.coordinates2.append(l2)
-        myAzimuth.coordinates2.append(antipodes)
-        
-        myAzimuth.coordinates3 = []
-        myAzimuth.coordinates3.append(coordinate)
-        let l3 = getLocation(origin: coordinate, angle: getAngle(index: 3, argument: argument, angle: angle), distance: distance)
-        //print("3: \(l3.latitude), \(l3.longitude)")
-        myAzimuth.coordinates3.append(l3)
-        myAzimuth.coordinates3.append(antipodes)
-        
-        myAzimuth.coordinates4 = []
-        myAzimuth.coordinates4.append(coordinate)
-        let l4 = getLocation(origin: coordinate, angle: getAngle(index: 4, argument: argument, angle: angle), distance: distance)
-        //print("4: \(l4.latitude), \(l4.longitude)")
-        myAzimuth.coordinates4.append(l4)
-        myAzimuth.coordinates4.append(antipodes)
-        
-        myAzimuth.coordinates5 = []
-        myAzimuth.coordinates5.append(coordinate)
-        let l5 = getLocation(origin: coordinate, angle: getAngle(index: 5, argument: argument, angle: angle), distance: distance)
-        //print("5: \(l5.latitude), \(l5.longitude)")
-        myAzimuth.coordinates5.append(l5)
-        myAzimuth.coordinates5.append(antipodes)
-        
-        myAzimuth.coordinates6 = []
-        myAzimuth.coordinates6.append(coordinate)
-        let l6 = getLocation(origin: coordinate, angle: getAngle(index: 6, argument: argument, angle: angle), distance: distance)
-        //print("6: \(l6.latitude), \(l6.longitude)")
-        myAzimuth.coordinates6.append(l6)
-        myAzimuth.coordinates6.append(antipodes)
-        
-        myAzimuth.coordinates7 = []
-        myAzimuth.coordinates7.append(coordinate)
-        let l7 = getLocation(origin: coordinate, angle: getAngle(index: 7, argument: argument, angle: angle), distance: distance)
-        //print("7: \(l7.latitude), \(l7.longitude)")
-        myAzimuth.coordinates7.append(l7)
-        myAzimuth.coordinates7.append(antipodes)
+        myAzimuth.coordinates = []
+        //vat tempc: [[CLLocationCoordinate2D]] = [[]]
+        if angle == "8方位(30/60)" || angle == "8方位(45)" { // 8
+            for i in 0..<8 {
+                var c: [CLLocationCoordinate2D] = []
+                c.append(coordinate)
+                let c1 = getLocation(origin: coordinate, angle: getAngle(index: i, argument: argument, angle: angle), distance: distance)
+                c.append(c1)
+                c.append(antipodes)
+                myAzimuth.coordinates.append(c)
+                print("\(myAzimuth.coordinates.count)")
+            }
+        } else if angle == "12方位" { // 12
+            for i in 0..<12 {
+                var c: [CLLocationCoordinate2D] = []
+                c.append(coordinate)
+                let c1 = getLocation(origin: coordinate, angle: getAngle(index: i, argument: argument, angle: angle), distance: distance)
+                c.append(c1)
+                c.append(antipodes)
+                myAzimuth.coordinates.append(c)
+            }
+        } else if angle == "24方位" { // 24
+            for i in 0..<24 {
+                var c: [CLLocationCoordinate2D] = []
+                c.append(coordinate)
+                let c1 = getLocation(origin: coordinate, angle: getAngle(index: i, argument: argument, angle: angle), distance: distance)
+                c.append(c1)
+                c.append(antipodes)
+                myAzimuth.coordinates.append(c)
+            }
+        }
+        print("myAzimuth.coordinates.count = \(myAzimuth.coordinates.count), myAzimuth.coordinates[0].count = \(myAzimuth.coordinates[0].count)")
     }
     
     func updatePreferences() {
@@ -230,60 +283,35 @@ class PolylineCalculator: NSObject {
         
         let antipodes = getAntipodes(origin: coordinate)
         
-        myAzimuth.coordinates0 = []
-        myAzimuth.coordinates0.append(coordinate)
-        let l0 = getLocation(origin: coordinate, angle: getAngle(index: 0, argument: argument, angle: angle), distance: distance)
-        //print("0: \(l0.latitude), \(l0.longitude)")
-        myAzimuth.coordinates0.append(l0)
-        myAzimuth.coordinates0.append(antipodes)
-        
-        myAzimuth.coordinates1 = []
-        myAzimuth.coordinates1.append(coordinate)
-        let l1 = getLocation(origin: coordinate, angle: getAngle(index: 1, argument: argument, angle: angle), distance: distance)
-        //print("1: \(l1.latitude), \(l1.longitude)")
-        myAzimuth.coordinates1.append(l1)
-        myAzimuth.coordinates1.append(antipodes)
-        
-        myAzimuth.coordinates2 = []
-        myAzimuth.coordinates2.append(coordinate)
-        let l2 = getLocation(origin: coordinate, angle: getAngle(index: 2, argument: argument, angle: angle), distance: distance)
-        //print("2: \(l2.latitude), \(l2.longitude)")
-        myAzimuth.coordinates2.append(l2)
-        myAzimuth.coordinates2.append(antipodes)
-        
-        myAzimuth.coordinates3 = []
-        myAzimuth.coordinates3.append(coordinate)
-        let l3 = getLocation(origin: coordinate, angle: getAngle(index: 3, argument: argument, angle: angle), distance: distance)
-        //print("3: \(l3.latitude), \(l3.longitude)")
-        myAzimuth.coordinates3.append(l3)
-        myAzimuth.coordinates3.append(antipodes)
-        
-        myAzimuth.coordinates4 = []
-        myAzimuth.coordinates4.append(coordinate)
-        let l4 = getLocation(origin: coordinate, angle: getAngle(index: 4, argument: argument, angle: angle), distance: distance)
-        //print("4: \(l4.latitude), \(l4.longitude)")
-        myAzimuth.coordinates4.append(l4)
-        myAzimuth.coordinates4.append(antipodes)
-        
-        myAzimuth.coordinates5 = []
-        myAzimuth.coordinates5.append(coordinate)
-        let l5 = getLocation(origin: coordinate, angle: getAngle(index: 5, argument: argument, angle: angle), distance: distance)
-        //print("5: \(l5.latitude), \(l5.longitude)")
-        myAzimuth.coordinates5.append(l5)
-        myAzimuth.coordinates5.append(antipodes)
-        
-        myAzimuth.coordinates6 = []
-        myAzimuth.coordinates6.append(coordinate)
-        let l6 = getLocation(origin: coordinate, angle: getAngle(index: 6, argument: argument, angle: angle), distance: distance)
-        //print("6: \(l6.latitude), \(l6.longitude)")
-        myAzimuth.coordinates6.append(l6)
-        myAzimuth.coordinates6.append(antipodes)
-        
-        myAzimuth.coordinates7 = []
-        myAzimuth.coordinates7.append(coordinate)
-        let l7 = getLocation(origin: coordinate, angle: getAngle(index: 7, argument: argument, angle: angle), distance: distance)
-        //print("7: \(l7.latitude), \(l7.longitude)")
-        myAzimuth.coordinates7.append(l7)
-        myAzimuth.coordinates7.append(antipodes)
+        myAzimuth.coordinates = []
+        if angle == "8方位(30/60)" || angle == "8方位(45)" { // 8
+            for i in 0..<8 {
+                var c: [CLLocationCoordinate2D] = []
+                c.append(coordinate)
+                let c1 = getLocation(origin: coordinate, angle: getAngle(index: i, argument: argument, angle: angle), distance: distance)
+                c.append(c1)
+                c.append(antipodes)
+                myAzimuth.coordinates.append(c)
+                print("\(myAzimuth.coordinates.count)")
+            }
+        } else if angle == "12方位" { // 12
+            for i in 0..<12 {
+                var c: [CLLocationCoordinate2D] = []
+                c.append(coordinate)
+                let c1 = getLocation(origin: coordinate, angle: getAngle(index: i, argument: argument, angle: angle), distance: distance)
+                c.append(c1)
+                c.append(antipodes)
+                myAzimuth.coordinates.append(c)
+            }
+        } else if angle == "24方位" { // 24
+            for i in 0..<24 {
+                var c: [CLLocationCoordinate2D] = []
+                c.append(coordinate)
+                let c1 = getLocation(origin: coordinate, angle: getAngle(index: i, argument: argument, angle: angle), distance: distance)
+                c.append(c1)
+                c.append(antipodes)
+                myAzimuth.coordinates.append(c)
+            }
+        }
     }
 }

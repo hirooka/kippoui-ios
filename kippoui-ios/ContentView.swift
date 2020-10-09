@@ -40,20 +40,20 @@ struct ContentView: View {
                         .frame(width: 32.0, height: 32.0, alignment: .center)
                         .foregroundColor(colorScheme == .dark ? Color(red: 255/255, green: 230/215, blue: 0/255) : .red)
                     
-                    Button(action: {
-                        self.isUserPresenting.toggle()
-                    }) {
-                        Image(systemName: "person")
-                            .resizable()
-                            .frame(width: 32.0, height: 32.0)
-                            .foregroundColor(.gray)
-                    }
-                    .sheet(isPresented: $isUserPresenting, onDismiss: {
-                        
-                    }) {
-                        UserView(isUserPresenting: $isUserPresenting)
-                    }
-                    .offset(x: geometry.size.width / 2 - 28, y: geometry.size.height / 2 - 281) // -16-12, -56-56-56-56-56
+//                    Button(action: {
+//                        self.isUserPresenting.toggle()
+//                    }) {
+//                        Image(systemName: "person")
+//                            .resizable()
+//                            .frame(width: 32.0, height: 32.0)
+//                            .foregroundColor(.gray)
+//                    }
+//                    .sheet(isPresented: $isUserPresenting, onDismiss: {
+//                        
+//                    }) {
+//                        UserView(isUserPresenting: $isUserPresenting)
+//                    }
+//                    .offset(x: geometry.size.width / 2 - 28, y: geometry.size.height / 2 - 281) // -16-12, -56-56-56-56-56
                     
                     Button(action: {
                         self.isSearchPresenting.toggle()

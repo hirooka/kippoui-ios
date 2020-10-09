@@ -61,7 +61,7 @@ struct PreferencesView: View {
                     }
                     .onAppear(perform: {
                         if sel == -1 {
-                            sel = preferences.selected
+                            sel = preferences.lineType
                         } else {
                             
                         }
@@ -79,38 +79,33 @@ struct PreferencesView: View {
                     //print("arg = \(arg), updatedArgument = \(updatedArgument), preferences.argument = \(preferences.argument)")
                     //print("arg = \(sel), preferences.selected = \(preferences.selected)")
                     
-                    if arg == preferences.argument && sel == preferences.selected {
+                    if arg == preferences.argument && sel == preferences.lineType {
                         //print("無変更")
                         self.isAlert = true
                         self.activeAlert = .none
                         return
                     }
                     
-                    if arg == preferences.argument && sel != preferences.selected {
+                    if arg == preferences.argument && sel != preferences.lineType {
                         //print("角度タイプのみ変更")
                         switch sel {
                         case 0:
-                            self.preferences.selected = 0
-                            //self.preferences.angle = "8方位(30/60)"
+                            self.preferences.lineType = 0
                         case 1:
-                            self.preferences.selected = 1
-                            //self.preferences.angle = "8方位(45)"
+                            self.preferences.lineType = 1
                         case 2:
-                            self.preferences.selected = 2
-                            //self.preferences.angle = "12方位"
+                            self.preferences.lineType = 2
                         case 3:
-                            self.preferences.selected = 3
-                            //self.preferences.angle = "24方位"
+                            self.preferences.lineType = 3
                         default:
-                            self.preferences.selected = 0
-                            //self.preferences.angle = "8方位(30/60)"
+                            self.preferences.lineType = 0
                         }
                         self.isAlert = true
                         self.activeAlert = .save
                         return
                     }
                     
-                    if arg != preferences.argument && sel == preferences.selected {
+                    if arg != preferences.argument && sel == preferences.lineType {
                         //print("偏角のみ変更")
                         do {
                             let regex = try NSRegularExpression(pattern: "^([1-9]\\d*|0)(\\.\\d+)?$", options: [])
@@ -128,7 +123,7 @@ struct PreferencesView: View {
                         }
                     }
                     
-                    if arg != preferences.argument && sel != preferences.selected {
+                    if arg != preferences.argument && sel != preferences.lineType {
                         //print("偏角と角度タイプの両方を変更")
                         do {
                             let regex = try NSRegularExpression(pattern: "^([1-9]\\d*|0)(\\.\\d+)?$", options: [])
@@ -140,20 +135,15 @@ struct PreferencesView: View {
                                 self.preferences.argument = arg
                                 switch sel {
                                 case 0:
-                                    self.preferences.selected = 0
-                                    //self.preferences.angle = "8方位(30/60)"
+                                    self.preferences.lineType = 0
                                 case 1:
-                                    self.preferences.selected = 1
-                                    //self.preferences.angle = "8方位(45)"
+                                    self.preferences.lineType = 1
                                 case 2:
-                                    self.preferences.selected = 2
-                                    //self.preferences.angle = "12方位"
+                                    self.preferences.lineType = 2
                                 case 3:
-                                    self.preferences.selected = 3
-                                    //self.preferences.angle = "24方位"
+                                    self.preferences.lineType = 3
                                 default:
-                                    self.preferences.selected = 0
-                                    //self.preferences.angle = "8方位(30/60)"
+                                    self.preferences.lineType = 0
                                 }
                                 self.isAlert = true
                                 self.activeAlert = .save
@@ -163,56 +153,6 @@ struct PreferencesView: View {
                             print("\(error)")
                         }
                     }
-                    
-//                    print("updatedArgument = \(updatedArgument), preferences.selected = \(preferences.selected), preferences.angle = \(self.preferences.angle)")
-//                    if updatedArgument == "" && preferences.selected == Int(self.preferences.angle) {
-//                        self.isAlert = true
-//                        self.activeAlert = .none
-//                        return
-//                    }
-//                    if updatedArgument == preferences.argument && preferences.selected == Int(self.preferences.angle) {
-//                        self.isAlert = true
-//                        self.activeAlert = .none
-//                        return
-//                    }
-//                    if updatedArgument == "" && preferences.selected != Int(self.preferences.angle) {
-//                        switch preferences.selected {
-//                        case 0:
-//                            self.preferences.angle = "0"
-//                        case 1:
-//                            self.preferences.angle = "1"
-//                        default:
-//                            self.preferences.angle = "0"
-//                        }
-//                        self.isAlert = true
-//                        self.activeAlert = .save
-//                        return
-//                    } else {
-//                        do {
-//                            let regex = try NSRegularExpression(pattern: "^([1-9]\\d*|0)(\\.\\d+)?$", options: [])
-//                            let results = regex.matches(in: updatedArgument, options: [], range: NSRange(0..<updatedArgument.count))
-//                            if results.count == 0 {
-//                                self.isAlert = true
-//                                self.activeAlert = .error
-//                            } else {
-//                                if updatedArgument != "" {
-//                                    self.preferences.argument = updatedArgument
-//                                }
-//                                switch preferences.selected {
-//                                case 0:
-//                                    self.preferences.angle = "0"
-//                                case 1:
-//                                    self.preferences.angle = "1"
-//                                default:
-//                                    self.preferences.angle = "0"
-//                                }
-//                                self.isAlert = true
-//                                self.activeAlert = .save
-//                            }
-//                        } catch {
-//                            print("\(error)")
-//                        }
-//                    }
                 }) {
                     Text("保存")
                 }
@@ -235,18 +175,7 @@ struct PreferencesView: View {
             //print("\(#file) - \(#function)")
         })
         .onDisappear(perform: {
-//            if updatedArgument != "" {
-//                self.preferences.argument = updatedArgument
-//            }
-//            //print("selected = \(preferences.selected)")
-//            switch preferences.selected {
-//            case 0:
-//                self.preferences.angle = "0"
-//            case 1:
-//                self.preferences.angle = "1"
-//            default:
-//                self.preferences.angle = "0"
-//            }
+
         })
 //        .onTapGesture {
 //            UIApplication.shared.endEditing() // Picker機能しない

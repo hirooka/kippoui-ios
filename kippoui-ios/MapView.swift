@@ -276,8 +276,8 @@ struct MapView: UIViewRepresentable {
         
         func getDirection(d: Double) -> String {
             let a = Double(self.parent.preferences.argument)!
-            let angle = self.parent.preferences.selected//.angle
-            if angle == 0 { // 30
+            let lineType = self.parent.preferences.lineType
+            if lineType == 0 { // 30
                 if d > 345.0 - a && d < 15.0 - a {
                     return "北"
                 } else if d > 15.0 - a && d < 75.0 - a {
@@ -295,7 +295,7 @@ struct MapView: UIViewRepresentable {
                 } else if d > 285.0 - a && d < 345.0 - a {
                     return "北西"
                 }
-            }else if angle == 1 { // 45
+            } else if lineType == 1 { // 45
                 if d > 337.5 - a && d < 22.5 - a {
                     return "北"
                 } else if d > 22.5 - a && d < 67.5 - a {
@@ -312,6 +312,82 @@ struct MapView: UIViewRepresentable {
                     return "西"
                 } else if d > 292.5 - a && d < 337.5 - a {
                     return "北西"
+                }
+            } else if lineType == 2 {
+                if d > 345.0 - a && d < 15.0 - a {
+                    return "子"
+                } else if d > 15.0 - a && d < 45.0 - a {
+                    return "丑"
+                } else if d > 45.0 - a && d < 75.0 - a {
+                    return "寅"
+                } else if d > 75.0 - a && d < 105.0 - a {
+                    return "卯"
+                } else if d > 105.0 - a && d < 135.0 - a {
+                    return "辰"
+                } else if d > 135.0 - a && d < 165.0 - a {
+                    return "巳"
+                } else if d > 165.0 - a && d < 195.0 - a {
+                    return "午"
+                } else if d > 195.0 - a && d < 225.0 - a {
+                    return "未"
+                } else if d > 225.0 - a && d < 255.0 - a {
+                    return "申"
+                } else if d > 255.0 - a && d < 285.0 - a {
+                    return "酉"
+                } else if d > 285.0 - a && d < 315.0 - a {
+                    return "戌"
+                } else if d > 315.0 - a && d < 345.0 - a {
+                    return "亥"
+                }
+            } else if lineType == 3 {
+                if d > 352.5 - a && d < 7.5 - a {
+                    return "子"
+                } else if d > 7.5 - a && d < 22.5 - a {
+                    return "癸"
+                } else if d > 22.5 - a && d < 37.5 - a {
+                    return "丑"
+                } else if d > 37.5 - a && d < 52.5 - a {
+                    return "艮"
+                } else if d > 52.5 - a && d < 67.5 - a {
+                    return "寅"
+                } else if d > 67.5 - a && d < 82.5 - a {
+                    return "甲"
+                } else if d > 82.5 - a && d < 97.5 - a {
+                    return "卯"
+                } else if d > 97.5 - a && d < 112.5 - a {
+                    return "乙"
+                } else if d > 112.5 - a && d < 127.5 - a {
+                    return "辰"
+                } else if d > 127.5 - a && d < 142.5 - a {
+                    return "巽"
+                } else if d > 142.5 - a && d < 157.5 - a {
+                    return "巳"
+                } else if d > 157.5 - a && d < 172.5 - a {
+                    return "丙"
+                } else if d > 172.5 - a && d < 187.5 - a {
+                    return "午"
+                } else if d > 187.5 - a && d < 202.5 - a {
+                    return "丁"
+                } else if d > 202.5 - a && d < 217.5 - a {
+                    return "未"
+                } else if d > 217.5 - a && d < 232.5 - a {
+                    return "坤"
+                } else if d > 232.5 - a && d < 247.5 - a {
+                    return "申"
+                } else if d > 247.5 - a && d < 262.5 - a {
+                    return "庚"
+                } else if d > 262.5 - a && d < 277.5 - a {
+                    return "酉"
+                } else if d > 277.5 - a && d < 292.5 - a {
+                    return "辛"
+                } else if d > 292.5 - a && d < 307.5 - a {
+                    return "戌"
+                } else if d > 307.5 - a && d < 322.5 - a {
+                    return "乾"
+                } else if d > 322.5 - a && d < 337.5 - a {
+                    return "亥"
+                } else if d > 337.5 - a && d < 352.5 - a {
+                    return "壬"
                 }
             }
             return "-"

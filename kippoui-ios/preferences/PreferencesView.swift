@@ -12,7 +12,7 @@ struct PreferencesView: View {
     @Binding var isPreferencesPresenting: Bool
     
     @State var updatedArgument = ""
-    var angle = ["8方位(30/60)", "8方位(45)", "12方位", "24方位"]
+    var angle = ["8方位(30/60)", "8方位(45)", "12方位", "16方位", "24方位"]
     
     @State var isAlert = false;
     @State var activeAlert: ActiveAlert = .error
@@ -97,6 +97,8 @@ struct PreferencesView: View {
                             self.preferences.lineType = 2
                         case 3:
                             self.preferences.lineType = 3
+                        case 4:
+                            self.preferences.lineType = 4
                         default:
                             self.preferences.lineType = 0
                         }
@@ -142,6 +144,8 @@ struct PreferencesView: View {
                                     self.preferences.lineType = 2
                                 case 3:
                                     self.preferences.lineType = 3
+                                case 4:
+                                    self.preferences.lineType = 4
                                 default:
                                     self.preferences.lineType = 0
                                 }

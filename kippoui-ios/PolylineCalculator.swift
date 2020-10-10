@@ -165,7 +165,9 @@ class PolylineCalculator: NSObject {
             } else if index == 11 {
                 return 345.0 + argument
             }
-        } else if lineType == 3 { // 24
+        } else if lineType == 3 { // 16
+            return 11.25 + argument + Double(index) * 22.5
+        } else if lineType == 4 { // 24
             if index == 0 {
                 return 7.5 + argument
             } else if index == 1 {
@@ -256,7 +258,16 @@ class PolylineCalculator: NSObject {
                 c.append(antipodes)
                 myAzimuth.coordinates.append(c)
             }
-        } else if lineType == 3 { // 24
+        } else if lineType == 3 { // 16
+            for i in 0..<16 {
+                var c: [CLLocationCoordinate2D] = []
+                c.append(coordinate)
+                let c1 = getLocation(origin: coordinate, angle: getAngle(index: i, argument: argument, lineType: lineType), distance: distance)
+                c.append(c1)
+                c.append(antipodes)
+                myAzimuth.coordinates.append(c)
+            }
+        } else if lineType == 4 { // 24
             for i in 0..<24 {
                 var c: [CLLocationCoordinate2D] = []
                 c.append(coordinate)
@@ -301,7 +312,16 @@ class PolylineCalculator: NSObject {
                 c.append(antipodes)
                 myAzimuth.coordinates.append(c)
             }
-        } else if lineType == 3 { // 24
+        } else if lineType == 3 { // 16
+            for i in 0..<16 {
+                var c: [CLLocationCoordinate2D] = []
+                c.append(coordinate)
+                let c1 = getLocation(origin: coordinate, angle: getAngle(index: i, argument: argument, lineType: lineType), distance: distance)
+                c.append(c1)
+                c.append(antipodes)
+                myAzimuth.coordinates.append(c)
+            }
+        } else if lineType == 4 { // 24
             for i in 0..<24 {
                 var c: [CLLocationCoordinate2D] = []
                 c.append(coordinate)

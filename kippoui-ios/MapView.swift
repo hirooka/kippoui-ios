@@ -313,7 +313,7 @@ struct MapView: UIViewRepresentable {
                 } else if d > 292.5 - a && d < 337.5 - a {
                     return "北西"
                 }
-            } else if lineType == 2 {
+            } else if lineType == 2 { // 12
                 if d > 345.0 - a && d < 15.0 - a {
                     return "子"
                 } else if d > 15.0 - a && d < 45.0 - a {
@@ -339,7 +339,41 @@ struct MapView: UIViewRepresentable {
                 } else if d > 315.0 - a && d < 345.0 - a {
                     return "亥"
                 }
-            } else if lineType == 3 {
+            } else if lineType == 3 { // 16
+                if d > 348.75 - a && d < 11.25 - a {
+                    return "北"
+                } else if d > 11.25 - a && d < 33.75 - a {
+                    return "北北東"
+                } else if d > 33.75 - a && d < 56.25 - a {
+                    return "北東"
+                } else if d > 56.25 - a && d < 78.75 - a {
+                    return "東北東"
+                } else if d > 78.75 - a && d < 101.25 - a {
+                    return "東"
+                } else if d > 101.25 - a && d < 123.75 - a {
+                    return "東南東"
+                } else if d > 123.75 - a && d < 146.25 - a {
+                    return "南東"
+                } else if d > 146.25 - a && d < 168.75 - a {
+                    return "南南東"
+                } else if d > 168.75 - a && d < 191.25 - a {
+                    return "南"
+                } else if d > 191.25 - a && d < 213.75 - a {
+                    return "南南西"
+                } else if d > 213.75 - a && d < 236.25 - a {
+                    return "南西"
+                } else if d > 236.25 - a && d < 258.75 - a {
+                    return "西南西"
+                } else if d > 258.75 - a && d < 281.25 - a {
+                    return "西"
+                } else if d > 281.25 - a && d < 303.75 - a {
+                    return "西北西"
+                } else if d > 303.75 - a && d < 326.25 - a {
+                    return "北西"
+                } else if d > 326.25 - a && d < 348.75 - a {
+                    return "北北西"
+                }
+            } else if lineType == 4 { // 24
                 if d > 352.5 - a && d < 7.5 - a {
                     return "子"
                 } else if d > 7.5 - a && d < 22.5 - a {

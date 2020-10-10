@@ -122,101 +122,13 @@ class PolylineCalculator: NSObject {
                 return 345.0 + argument
             }
         } else if lineType == 1 { // 8-45
-            if index == 0 {
-                return 22.5 + argument
-            } else if index == 1 {
-                return 67.5 + argument
-            } else if index == 2 {
-                return 112.5 + argument
-            } else if index == 3 {
-                return 157.5 + argument
-            } else if index == 4 {
-                return 202.5 + argument
-            } else if index == 5 {
-                return 247.5 + argument
-            } else if index == 6 {
-                return 292.5 + argument
-            } else if index == 7 {
-                return 337.5 + argument
-            }
+            return 22.5 + argument + Double(index) * 45.0
         } else if lineType == 2 { // 12
-            if index == 0 {
-                return 15.0 + argument
-            } else if index == 1 {
-                return 45.0 + argument
-            } else if index == 2 {
-                return 75.0 + argument
-            } else if index == 3 {
-                return 105.0 + argument
-            } else if index == 4 {
-                return 135.0 + argument
-            } else if index == 5 {
-                return 165.0 + argument
-            } else if index == 6 {
-                return 195.0 + argument
-            } else if index == 7 {
-                return 225.0 + argument
-            } else if index == 8 {
-                return 255.0 + argument
-            } else if index == 9 {
-                return 285.0 + argument
-            } else if index == 10 {
-                return 315.0 + argument
-            } else if index == 11 {
-                return 345.0 + argument
-            }
+            return 15.0 + argument + Double(index) * 30.0
         } else if lineType == 3 { // 16
             return 11.25 + argument + Double(index) * 22.5
         } else if lineType == 4 { // 24
-            if index == 0 {
-                return 7.5 + argument
-            } else if index == 1 {
-                return 22.5 + argument
-            } else if index == 2 {
-                return 37.5 + argument
-            } else if index == 3 {
-                return 52.5 + argument
-            } else if index == 4 {
-                return 67.5 + argument
-            } else if index == 5 {
-                return 82.5 + argument
-            } else if index == 6 {
-                return 97.5 + argument
-            } else if index == 7 {
-                return 112.5 + argument
-            } else if index == 8 {
-                return 127.5 + argument
-            } else if index == 9 {
-                return 142.5 + argument
-            } else if index == 10 {
-                return 157.5 + argument
-            } else if index == 11 {
-                return 172.5 + argument
-            } else if index == 12 {
-                return 187.5 + argument
-            } else if index == 13 {
-                return 202.5 + argument
-            } else if index == 14 {
-                return 217.5 + argument
-            } else if index == 15 {
-                return 232.5 + argument
-            } else if index == 16 {
-                return 247.5 + argument
-            } else if index == 17 {
-                return 262.5 + argument
-            } else if index == 18 {
-                return 277.5 + argument
-            } else if index == 19 {
-                return 292.5 + argument
-            } else if index == 20 {
-                return 307.5 + argument
-            } else if index == 21 {
-                return 322.5 + argument
-            } else if index == 22 {
-                return 337.5 + argument
-            } else if index == 23 {
-                return 352.5 + argument
-            }
+            return 7.5 + argument + Double(index) * 15.0
         }
         return 0.0
     }
@@ -232,7 +144,7 @@ class PolylineCalculator: NSObject {
         
         let distance = 6378136.6
         
-        let argument = Double(preferences.argument)! * -1
+        let argument = preferences.argument * -1
         let lineType = preferences.lineType
         
         let antipodes = getAntipodes(origin: coordinate)
@@ -287,7 +199,7 @@ class PolylineCalculator: NSObject {
         
         let distance = 6378136.6
         
-        let argument = Double(preferences.argument)! * -1
+        let argument = preferences.argument * -1
         let lineType = preferences.lineType
         
         let antipodes = getAntipodes(origin: coordinate)

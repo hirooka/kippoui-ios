@@ -37,14 +37,12 @@ struct PreferencesView: View {
                             
                         }
                     }).onChange(of: preferences.argument) {text in
-                        updatedArgument = text
+                        //updatedArgument = text
                     }
                     .keyboardType(.decimalPad)
-//                    TextField("Argument", value: $argumentValue, formatter: formatter)
-//                        .keyboardType(.decimalPad)
                     .onAppear(perform: {
                         if arg == "" {
-                            arg = preferences.argument
+                            arg = "\(preferences.argument)"
                         } else {
                             
                         }
@@ -79,14 +77,14 @@ struct PreferencesView: View {
                     //print("arg = \(arg), updatedArgument = \(updatedArgument), preferences.argument = \(preferences.argument)")
                     //print("arg = \(sel), preferences.selected = \(preferences.selected)")
                     
-                    if arg == preferences.argument && sel == preferences.lineType {
+                    if arg == "\(preferences.argument)" && sel == preferences.lineType {
                         //print("無変更")
                         self.isAlert = true
                         self.activeAlert = .none
                         return
                     }
                     
-                    if arg == preferences.argument && sel != preferences.lineType {
+                    if arg == "\(preferences.argument)" && sel != preferences.lineType {
                         //print("角度タイプのみ変更")
                         switch sel {
                         case 0:
@@ -107,7 +105,7 @@ struct PreferencesView: View {
                         return
                     }
                     
-                    if arg != preferences.argument && sel == preferences.lineType {
+                    if arg != "\(preferences.argument)" && sel == preferences.lineType {
                         //print("偏角のみ変更")
                         do {
                             let regex = try NSRegularExpression(pattern: "^([1-9]\\d*|0)(\\.\\d+)?$", options: [])
@@ -116,7 +114,7 @@ struct PreferencesView: View {
                                 self.isAlert = true
                                 self.activeAlert = .error
                             } else {
-                                self.preferences.argument = arg
+                                self.preferences.argument = Double(arg) ?? 0.0
                                 self.isAlert = true
                                 self.activeAlert = .save
                             }
@@ -125,7 +123,7 @@ struct PreferencesView: View {
                         }
                     }
                     
-                    if arg != preferences.argument && sel != preferences.lineType {
+                    if arg != "\(preferences.argument)" && sel != preferences.lineType {
                         //print("偏角と角度タイプの両方を変更")
                         do {
                             let regex = try NSRegularExpression(pattern: "^([1-9]\\d*|0)(\\.\\d+)?$", options: [])
@@ -134,7 +132,7 @@ struct PreferencesView: View {
                                 self.isAlert = true
                                 self.activeAlert = .error
                             } else {
-                                self.preferences.argument = arg
+                                self.preferences.argument = Double(arg) ?? 0.0
                                 switch sel {
                                 case 0:
                                     self.preferences.lineType = 0

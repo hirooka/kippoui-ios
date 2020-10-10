@@ -275,7 +275,7 @@ struct MapView: UIViewRepresentable {
         }
         
         func getDirection(d: Double) -> String {
-            let a = Double(self.parent.preferences.argument)!
+            let a = self.parent.preferences.argument
             let lineType = self.parent.preferences.lineType
             if lineType == 0 { // 30
                 if d > 345.0 - a && d < 15.0 - a {

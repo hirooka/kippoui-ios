@@ -8,6 +8,7 @@ struct ContentView: View {
     @EnvironmentObject var myAzimuth: MyAzimuth
     
     @State var first = true
+    @State var direction = "-"
     @State var distance = "-"
     @State var drawing = false
     @State var circle = CLLocationCoordinate2D()
@@ -27,6 +28,7 @@ struct ContentView: View {
                 ZStack {
                     MapView(
                         first: $first,
+                        direction: $direction,
                         distance: $distance,
                         drawing: $drawing,
                         circle: $circle,
@@ -109,6 +111,9 @@ struct ContentView: View {
                         PreferencesView(isPreferencesPresenting: $isPreferencesPresenting)
                     }
                     .offset(x: geometry.size.width / 2 - 28, y: geometry.size.height / 2 - 56) // -16-12, -16-40
+                    
+                    Text("\(direction)")
+                        .offset(x: 0, y: -28)
                     
                     Text("\(distance)km")
                         .offset(x: 0, y: 28)

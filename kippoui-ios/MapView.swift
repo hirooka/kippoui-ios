@@ -8,6 +8,7 @@ struct MapView: UIViewRepresentable {
     @EnvironmentObject var myAzimuth: MyAzimuth
     
     @Binding var first: Bool
+    @Binding var direction: String
     @Binding var distance: String
     @Binding var drawing: Bool
     @Binding var circle: CLLocationCoordinate2D
@@ -217,8 +218,10 @@ struct MapView: UIViewRepresentable {
                 //print("degree: \(d)")
                 if d >= 0.0 {
                     self.parent.azimuth = d * Double.pi / 180
+                    self.parent.direction = getDirection(d: d)
                 } else {
                     self.parent.azimuth = (d + 360) * Double.pi / 180
+                    self.parent.direction = getDirection(d: d + 360)
                 }
                 //print("radian: \(self.parent.azimuth)")
             }
@@ -278,7 +281,7 @@ struct MapView: UIViewRepresentable {
             let a = self.parent.preferences.argument
             let lineType = self.parent.preferences.lineType
             if lineType == 0 { // 30
-                if d > 345.0 - a && d < 15.0 - a {
+                if d > 345.0 - a || d < 15.0 - a {
                     return "北"
                 } else if d > 15.0 - a && d < 75.0 - a {
                     return "北東"
@@ -296,7 +299,7 @@ struct MapView: UIViewRepresentable {
                     return "北西"
                 }
             } else if lineType == 1 { // 45
-                if d > 337.5 - a && d < 22.5 - a {
+                if d > 337.5 - a || d < 22.5 - a {
                     return "北"
                 } else if d > 22.5 - a && d < 67.5 - a {
                     return "北東"
@@ -314,7 +317,7 @@ struct MapView: UIViewRepresentable {
                     return "北西"
                 }
             } else if lineType == 2 { // 12
-                if d > 345.0 - a && d < 15.0 - a {
+                if d > 345.0 - a || d < 15.0 - a {
                     return "子"
                 } else if d > 15.0 - a && d < 45.0 - a {
                     return "丑"
@@ -340,7 +343,7 @@ struct MapView: UIViewRepresentable {
                     return "亥"
                 }
             } else if lineType == 3 { // 16
-                if d > 348.75 - a && d < 11.25 - a {
+                if d > 348.75 - a || d < 11.25 - a {
                     return "北"
                 } else if d > 11.25 - a && d < 33.75 - a {
                     return "北北東"
@@ -374,7 +377,7 @@ struct MapView: UIViewRepresentable {
                     return "北北西"
                 }
             } else if lineType == 4 { // 24
-                if d > 352.5 - a && d < 7.5 - a {
+                if d > 352.5 - a || d < 7.5 - a {
                     return "子"
                 } else if d > 7.5 - a && d < 22.5 - a {
                     return "癸"
